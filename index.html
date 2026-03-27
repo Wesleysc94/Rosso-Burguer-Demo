@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA BURGER | O hambúrguer com alma paulistana</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* CSS VARIABLES */
+        :root {
+            --bg-main: #0a0a0a;
+            --bg-sec: #111111;
+            --bg-card: #161616;
+            --red: #E8161B;
+            --orange: #E85D16;
+            --text-main: #FFFFFF;
+            --text-sec: #999999;
+            --border: #222222;
+            
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* RESET & GLOBAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0 !important; /* Zero border-radius rule */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background-color: var(--red);
+            color: #FFFFFF;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--red);
+        }
+
+        /* GRAIN OVERLAY */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4, h5, h6, .font-head {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* BUTTONS & CTAS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-red {
+            background-color: var(--red);
+            color: #FFFFFF;
+        }
+        .btn-red:hover {
+            background-color: #c41217;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #FFFFFF;
+            border: 1px solid #FFFFFF;
+        }
+        .btn-outline:hover {
+            background-color: #FFFFFF;
+            color: var(--bg-main);
+        }
+
+        .link-underline {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--red);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: color 0.3s ease;
+        }
+        .link-underline:hover {
+            color: #FFFFFF;
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid #1a1a1a;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            height: 80px;
+        }
+        .navbar.scrolled {
+            border-bottom: 1px solid var(--red);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-head);
+            font-weight: 900;
+            font-size: 28px;
+            color: #FFFFFF;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-sec);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #FFFFFF;
+        }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--red);
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: block;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        /* MOBILE MENU DRAWER */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: var(--bg-sec);
+            border-left: 1px solid var(--border);
+            z-index: 1001;
+            padding: 80px 5%;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .mobile-drawer.open {
+            right: 0;
+        }
+        .mobile-drawer a {
+            font-family: var(--font-head);
+            font-weight: 900;
+            font-size: 32px;
+            letter-spacing: 0.1em;
+            color: #FFFFFF;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+        }
+        .close-menu {
+            position: absolute;
+            top: 24px;
+            right: 5%;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .drawer-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* TICKER */
+        .ticker-wrap {
+            background-color: var(--red);
+            height: 40px;
+            line-height: 40px;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 20s linear infinite;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .ticker-wrap:hover .ticker {
+            animation-play-state: paused;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* SPACING & LAYOUT */
+        section {
+            padding: 80px 5%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-top: 80px; /* offset navbar */
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 100%), url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-weight: 900;
+            font-size: 72px;
+            line-height: 0.9;
+            color: #FFFFFF;
+            margin-bottom: 24px;
+        }
+        .hero-title .highlight {
+            color: var(--red);
+        }
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-sec);
+            max-width: 480px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+        .hero-indicators {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .indicator-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+        }
+
+        /* FAVORITOS SECTION */
+        .favoritos {
+            background-color: var(--bg-sec);
+        }
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFFFFF;
+        }
+        .section-title .highlight {
+            color: var(--red);
+        }
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-sec);
+            max-width: 500px;
+        }
+        .favoritos-header-top {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .favoritos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        .card-burger {
+            background-color: var(--bg-card);
+            padding: 24px;
+            transition: transform 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+        }
+        .card-burger:hover {
+            transform: scale(1.02);
+            border-bottom: 3px solid var(--red);
+        }
+        .card-img-wrapper {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        .card-burger:hover .card-img-wrapper img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: 28px;
+            color: #FFFFFF;
+        }
+        .card-price {
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--orange);
+        }
+        .card-desc {
+            font-size: 14px;
+            color: #777777;
+            line-height: 1.6;
+        }
+
+        /* EDITORIAL SECTION */
+        .editorial {
+            height: 80vh;
+            background-color: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .quotes {
+            font-family: Georgia, serif;
+            font-size: 200px;
+            color: #1a1a1a;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            line-height: 1;
+        }
+        .editorial-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .editorial-title {
+            font-weight: 900;
+            font-size: 64px;
+            line-height: 0.9;
+            color: #FFFFFF;
+            margin-bottom: 40px;
+        }
+        .editorial-line {
+            width: 60px;
+            height: 2px;
+            background-color: var(--red);
+            margin-bottom: 24px;
+        }
+        .editorial-attr {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            color: var(--red);
+            text-transform: uppercase;
+        }
+
+        /* DELIVERY SECTION */
+        .delivery {
+            background-color: var(--bg-sec);
+        }
+        .delivery-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+        }
+        .delivery-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .eyebrow {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.3em;
+            color: var(--red);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .delivery-title {
+            font-weight: 900;
+            font-size: 64px;
+            line-height: 0.9;
+            margin-bottom: 24px;
+        }
+        .delivery-title .highlight {
+            color: var(--red);
+        }
+        .delivery-desc {
+            font-size: 18px;
+            color: var(--text-sec);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 400px;
+        }
+        .delivery-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .platform-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s ease;
+        }
+        .platform-card:hover {
+            border-color: var(--red);
+        }
+        .platform-logo {
+            font-family: var(--font-head);
+            font-weight: 900;
+            font-size: 32px;
+            text-transform: lowercase;
+        }
+        .logo-ifood { color: #EA1D2C; }
+        .logo-rappi { color: #FF441F; }
+        .logo-99 { color: #F5A623; }
+        .status-badge {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .status-active { color: #2d6a4f; }
+        .status-soon { color: #666666; }
+
+        /* UNIDADES SECTION */
+        .unidades {
+            background-color: var(--bg-main);
+        }
+        .unidades-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-top: 64px;
+            margin-bottom: 64px;
+        }
+        .unidade-card {
+            background-color: var(--bg-sec);
+            border: 1px solid #1a1a1a;
+            padding: 32px;
+            position: relative;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .unidade-card:hover {
+            border-color: var(--red);
+            transform: translateY(-4px);
+        }
+        .unidade-ghost {
+            font-family: var(--font-head);
+            font-weight: 900;
+            font-size: 64px;
+            color: #1a1a1a;
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            line-height: 1;
+        }
+        .unidade-bairro {
+            font-weight: 700;
+            font-size: 24px;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        .unidade-address {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .unidade-hours {
+            font-size: 13px;
+            color: #555555;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #080808;
+            border-top: 1px solid #1a1a1a;
+            padding: 80px 5% 40px;
+        }
+        .newsletter {
+            margin-bottom: 80px;
+        }
+        .news-title {
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+        .news-sub {
+            font-size: 16px;
+            color: var(--text-sec);
+            margin-bottom: 32px;
+        }
+        .news-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .news-input {
+            flex: 1;
+            min-width: 250px;
+            background-color: #111111;
+            border: 1px solid #222222;
+            padding: 16px 24px;
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .news-input:focus {
+            border-color: var(--red);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            margin-bottom: 80px;
+        }
+        .footer-col h4 {
+            font-weight: 700;
+            font-size: 18px;
+            color: #FFFFFF;
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+        }
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .footer-col a, .footer-col p {
+            font-size: 14px;
+            color: var(--text-sec);
+            transition: color 0.3s ease;
+        }
+        .footer-col a:hover {
+            color: var(--red);
+        }
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-sec);
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 8px;
+        }
+        .hours-closed {
+            color: var(--red);
+            font-weight: 500;
+        }
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 32px;
+            align-items: center;
+            text-align: center;
+        }
+        .socials {
+            display: flex;
+            gap: 16px;
+        }
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50% !important; /* Exception for circular icons */
+            border: 1px solid #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            border-color: var(--red);
+            background-color: var(--red);
+        }
+
+        /* MEDIA QUERIES */
+        @media (min-width: 768px) {
+            section { padding: 100px 5%; }
+            .hero-title { font-size: 100px; }
+            .favoritos-header-top { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+            .favoritos-grid { grid-template-columns: repeat(2, 1fr); }
+            .editorial-title { font-size: 80px; }
+            .delivery-container { grid-template-columns: 1fr 1fr; }
+            .unidades-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; }
+            .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+        }
+
+        @media (min-width: 1200px) {
+            section { padding: 120px 5%; }
+            .hero-title { font-size: 120px; }
+            .nav-links { display: flex; }
+            .nav-cta { display: block; }
+            .hamburger { display: none; }
+            .editorial-title { font-size: 96px; }
+            .delivery-title { font-size: 80px; }
+            .unidades-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GRAIN OVERLAY -->
+    <svg class="grain-overlay" xmlns="http://www.w3.org/2000/svg">
+        <filter id="noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noise)"/>
+    </svg>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-brand">
+            <i data-lucide="flame" size="28" color="#E8161B"></i>
+            AURA BURGER
+        </a>
+        <div class="nav-links">
+            <a href="cardapio.html">Cardápio</a>
+            <a href="nossa-historia.html">Nossa História</a>
+            <a href="unidades.html">Unidades</a>
+            <a href="delivery.html">Delivery</a>
+        </div>
+        <a href="delivery.html" class="btn btn-red nav-cta">Pedir Agora</a>
+        <button class="hamburger" id="hamburgerBtn">
+            <i data-lucide="menu" size="32"></i>
+        </button>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <button class="close-menu" id="closeMenuBtn">
+            <i data-lucide="x" size="32"></i>
+        </button>
+        <a href="cardapio.html">Cardápio</a>
+        <a href="nossa-historia.html">Nossa História</a>
+        <a href="unidades.html">Unidades</a>
+        <a href="delivery.html">Delivery</a>
+        <a href="delivery.html" class="btn btn-red" style="margin-top: auto;">Pedir Agora</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content reveal">
+            <div class="hero-badge">SÃO PAULO · DESDE 2018</div>
+            <h1 class="hero-title">
+                O MELHOR<br>
+                HAMBÚRGUER<br>
+                <span class="highlight">DA CIDADE.</span>
+            </h1>
+            <p class="hero-subtitle">Blend artesanal, ingredientes frescos, sem atalhos. O hambúrguer com alma paulistana.</p>
+            <div class="hero-ctas">
+                <a href="cardapio.html" class="btn btn-red">VER CARDÁPIO &rarr;</a>
+                <a href="nossa-historia.html" class="btn btn-outline">NOSSA HISTÓRIA</a>
+            </div>
+            <div class="hero-indicators">
+                <div class="indicator-pill">
+                    <i data-lucide="circle-dot" size="16" color="#E8161B"></i> Carne Fresca Diária
+                </div>
+                <div class="indicator-pill">
+                    <i data-lucide="circle-dot" size="16" color="#2d6a4f"></i> Pão Artesanal
+                </div>
+                <div class="indicator-pill">
+                    <i data-lucide="circle-dot" size="16" color="#E8161B"></i> Feito na Hora
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap" id="tickerWrap">
+        <div class="ticker">
+            BLEND ARTESANAL • AURA BURGER • INGREDIENTES FRESCOS • SEM CONGELADOS • FEITO NA HORA • AURA BURGER • 
+            BLEND ARTESANAL • AURA BURGER • INGREDIENTES FRESCOS • SEM CONGELADOS • FEITO NA HORA • AURA BURGER • 
+            BLEND ARTESANAL • AURA BURGER • INGREDIENTES FRESCOS • SEM CONGELADOS • FEITO NA HORA • AURA BURGER • 
+        </div>
+    </div>
+
+    <!-- FAVORITOS DA CASA -->
+    <section class="favoritos">
+        <div class="section-header reveal">
+            <div class="favoritos-header-top">
+                <div>
+                    <h2 class="section-title">OS FAVORITOS <br><span class="highlight">DA CASA</span></h2>
+                    <p class="section-subtitle" style="margin-top: 16px;">Aqueles que fizeram nossa história. Se é sua primeira vez, comece por aqui.</p>
+                </div>
+                <a href="cardapio.html" class="link-underline">VER MENU COMPLETO &rarr;</a>
+            </div>
+        </div>
+
+        <div class="favoritos-grid">
+            <!-- Card 1 -->
+            <div class="card-burger reveal">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Aura Clássico">
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title">AURA CLÁSSICO</h3>
+                    <span class="card-price">R$ 36</span>
+                </div>
+                <p class="card-desc">Pão brioche artesanal, blend 160g de costela, queijo prato derretido, alface americana, tomate e nossa maionese verde secreta.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card-burger reveal" style="transition-delay: 0.1s;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=800&q=80" alt="Duplo Cheddar Bacon">
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title">DUPLO CHEDDAR</h3>
+                    <span class="card-price">R$ 48</span>
+                </div>
+                <p class="card-desc">Pão australiano, dois blends 160g, muito cheddar cremoso, fatias de bacon crocante e cebola caramelizada.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card-burger reveal" style="transition-delay: 0.2s;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80" alt="Smash Burger">
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title">SMASH DUPLO</h3>
+                    <span class="card-price">R$ 32</span>
+                </div>
+                <p class="card-desc">Pão de batata, dois smash burgers de 90g, american cheese, picles e mostarda escura.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="card-burger reveal" style="transition-delay: 0.3s;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1585039041167-3f8f3f0c3c8e?w=800&q=80" alt="Vegano da Vila">
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title">VEGANO DA VILA</h3>
+                    <span class="card-price">R$ 38</span>
+                </div>
+                <p class="card-desc">Pão vegano, hambúrguer de grão de bico e cogumelos, queijo vegano, rúcula e maionese de alho assado.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDITORIAL -->
+    <section class="editorial">
+        <div class="quotes">"</div>
+        <div class="editorial-content reveal">
+            <h2 class="editorial-title">QUALIDADE QUE VOCÊ PROVA.</h2>
+            <div class="editorial-line"></div>
+            <span class="editorial-attr">&mdash; FUNDADOR, 2018</span>
+        </div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="delivery">
+        <div class="delivery-container">
+            <div class="delivery-left reveal">
+                <span class="eyebrow">DELIVERY</span>
+                <h2 class="delivery-title">ENTREGUE.<br><span class="highlight">QUENTE.</span></h2>
+                <p class="delivery-desc">Pediu, saiu. Parceiros selecionados que garantem que seu lanche chega do jeito que saiu da chapa.</p>
+                <a href="delivery.html" class="btn btn-red">PEDIR DELIVERY &rarr;</a>
+            </div>
+            <div class="delivery-right reveal" style="transition-delay: 0.2s;">
+                <div class="platform-card">
+                    <span class="platform-logo logo-ifood">ifood</span>
+                    <span class="status-badge status-active"><i data-lucide="circle" fill="#2d6a4f" size="12" color="#2d6a4f"></i> Disponível agora</span>
+                </div>
+                <div class="platform-card">
+                    <span class="platform-logo logo-rappi">rappi</span>
+                    <span class="status-badge status-active"><i data-lucide="circle" fill="#2d6a4f" size="12" color="#2d6a4f"></i> Disponível agora</span>
+                </div>
+                <div class="platform-card">
+                    <span class="platform-logo logo-99">99food</span>
+                    <span class="status-badge status-soon"><i data-lucide="circle" fill="#666666" size="12" color="#666666"></i> Em breve</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIDADES -->
+    <section class="unidades">
+        <div class="section-header reveal" style="margin-bottom: 0; align-items: center; text-align: center;">
+            <span class="eyebrow">NOSSAS UNIDADES</span>
+            <h2 class="section-title">NOS ENCONTRE.</h2>
+        </div>
+        
+        <div class="unidades-grid">
+            <div class="unidade-card reveal">
+                <span class="unidade-ghost">01</span>
+                <h3 class="unidade-bairro">VILA MADALENA</h3>
+                <p class="unidade-address">Rua Fradique Coutinho, 1234<br>São Paulo - SP</p>
+                <p class="unidade-hours">Ter-Qui: 18h-23h<br>Sex-Sáb: 18h-01h<br>Dom: 17h-23h</p>
+                <a href="#" class="link-underline">VER NO MAPA &rarr;</a>
+            </div>
+            <div class="unidade-card reveal" style="transition-delay: 0.1s;">
+                <span class="unidade-ghost">02</span>
+                <h3 class="unidade-bairro">PINHEIROS</h3>
+                <p class="unidade-address">Rua dos Pinheiros, 567<br>São Paulo - SP</p>
+                <p class="unidade-hours">Ter-Qui: 18h-23h<br>Sex-Sáb: 18h-01h<br>Dom: 17h-23h</p>
+                <a href="#" class="link-underline">VER NO MAPA &rarr;</a>
+            </div>
+            <div class="unidade-card reveal" style="transition-delay: 0.2s;">
+                <span class="unidade-ghost">03</span>
+                <h3 class="unidade-bairro">ITAIM BIBI</h3>
+                <p class="unidade-address">Rua Joaquim Floriano, 890<br>São Paulo - SP</p>
+                <p class="unidade-hours">Ter-Qui: 18h-23h<br>Sex-Sáb: 18h-01h<br>Dom: 17h-23h</p>
+                <a href="#" class="link-underline">VER NO MAPA &rarr;</a>
+            </div>
+        </div>
+
+        <div style="text-align: center;" class="reveal">
+            <a href="unidades.html" class="btn btn-outline">VER TODAS AS UNIDADES &rarr;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="newsletter reveal">
+            <h2 class="news-title">FIQUE POR DENTRO.</h2>
+            <p class="news-sub">Promoções, novidades e bastidores direto no seu e-mail.</p>
+            <form class="news-form" onsubmit="event.preventDefault();">
+                <input type="email" class="news-input" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="btn btn-red">INSCREVER</button>
+            </form>
+        </div>
+
+        <div class="footer-grid reveal">
+            <div class="footer-col">
+                <div class="nav-brand" style="margin-bottom: 16px;">
+                    <i data-lucide="flame" size="28" color="#E8161B"></i>
+                    AURA BURGER
+                </div>
+                <p style="color: var(--text-sec); font-size: 14px; max-width: 250px;">O hambúrguer com alma paulistana. Blend artesanal, ingredientes frescos, sem atalhos.</p>
+            </div>
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="cardapio.html">Cardápio</a></li>
+                    <li><a href="nossa-historia.html">Nossa História</a></li>
+                    <li><a href="unidades.html">Unidades</a></li>
+                    <li><a href="delivery.html">Delivery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CONTATO</h4>
+                <ul>
+                    <li><p>contato@auraburger.com.br</p></li>
+                    <li><p>(11) 99999-9999</p></li>
+                    <li><p>Trabalhe Conosco</p></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>HORÁRIOS</h4>
+                <ul>
+                    <li class="hours-row"><span>Segunda</span> <span class="hours-closed">FECHADO</span></li>
+                    <li class="hours-row"><span>Ter - Qui</span> <span>18h - 23h</span></li>
+                    <li class="hours-row"><span>Sex - Sáb</span> <span>18h - 01h</span></li>
+                    <li class="hours-row"><span>Domingo</span> <span>17h - 23h</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom reveal">
+            <p style="color: var(--text-sec); font-size: 14px;">&copy; 2026 AURA BURGER. Todos os direitos reservados.</p>
+            <div style="display: flex; gap: 24px;">
+                <a href="#" style="color: var(--text-sec); font-size: 14px;">Termos de Uso</a>
+                <a href="#" style="color: var(--text-sec); font-size: 14px;">Privacidade</a>
+            </div>
+            <div class="socials">
+                <a href="#" class="social-icon"><i data-lucide="instagram" size="20"></i></a>
+                <a href="#" class="social-icon"><i data-lucide="facebook" size="20"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        function toggleMenu() {
+            mobileDrawer.classList.toggle('open');
+            drawerOverlay.classList.toggle('open');
+            document.body.style.overflow = mobileDrawer.classList.contains('open') ? 'hidden' : '';
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        drawerOverlay.addEventListener('click', toggleMenu);
+
+        // Reveal on Scroll (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Ticker Pause on Hover (JS Implementation as requested, though CSS is also active)
+        const tickerWrap = document.getElementById('tickerWrap');
+        const ticker = tickerWrap.querySelector('.ticker');
+        
+        tickerWrap.addEventListener('mouseenter', () => {
+            ticker.style.animationPlayState = 'paused';
+        });
+        
+        tickerWrap.addEventListener('mouseleave', () => {
+            ticker.style.animationPlayState = 'running';
+        });
+    </script>
+</body>
+</html>
