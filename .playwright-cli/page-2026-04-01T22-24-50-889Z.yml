@@ -1,0 +1,371 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: 🔥
+    - generic [ref=e4]: AURA BURGER
+  - button "Menu" [ref=e6] [cursor=pointer]
+  - navigation [ref=e10]:
+    - link "AURA BURGER" [ref=e12]:
+      - /url: "#"
+      - generic [ref=e13]: 🔥
+      - generic [ref=e14]: AURA BURGER
+  - generic [ref=e15]:
+    - button "✕" [ref=e16]
+    - navigation [ref=e17]:
+      - link "PÁGINA INICIAL" [ref=e18]:
+        - /url: "#"
+      - link "CARDÁPIO" [ref=e19]:
+        - /url: "#"
+      - link "NOSSA HISTÓRIA" [ref=e20]:
+        - /url: "#"
+      - link "UNIDADES" [ref=e21]:
+        - /url: "#"
+      - link "DELIVERY" [ref=e22]:
+        - /url: "#"
+      - link "TRABALHE CONOSCO" [ref=e23]:
+        - /url: "#"
+      - link "WHATSAPP" [ref=e24]:
+        - /url: https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20o%20card%C3%A1pio%20e%20quero%20fazer%20um%20pedido%20%F0%9F%8D%94
+        - img [ref=e25]
+        - text: WHATSAPP
+    - link "PEDIR AGORA" [ref=e27]:
+      - /url: "#"
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - img "Hambúrguer Aura Burger" [ref=e32]
+        - generic [ref=e34]:
+          - generic [ref=e35]: SÃO PAULO · DESDE 2018
+          - heading "O MELHOR HAMBÚRGUER DA CIDADE." [level=1] [ref=e36]:
+            - generic [ref=e37]: O MELHOR
+            - generic [ref=e38]: HAMBÚRGUER
+            - generic [ref=e39]: DA CIDADE.
+          - paragraph [ref=e40]:
+            - generic [ref=e41]: Blend artesanal, ingredientes frescos, sem atalhos.
+            - generic [ref=e42]: O hambúrguer com alma paulistana.
+          - generic [ref=e43]:
+            - link "VER CARDÁPIO →" [ref=e44]:
+              - /url: "#"
+            - link "NOSSA HISTÓRIA" [ref=e45]:
+              - /url: "#"
+          - generic [ref=e46]:
+            - generic [ref=e47] [cursor=pointer]: ● CARNE FRESCA DIÁRIA
+            - generic [ref=e48] [cursor=pointer]: ● PÃO ARTESANAL
+            - generic [ref=e49] [cursor=pointer]: ● FEITO NA HORA
+        - generic [ref=e51]: SCROLL
+      - generic [ref=e53]:
+        - generic [ref=e54]: 🔥 COMBO DUPLO CHEDDAR + FRITAS R$49
+        - generic [ref=e55]: •
+        - generic [ref=e56]: 📦 FRETE GRÁTIS ACIMA DE R$60 NO IFOOD
+        - generic [ref=e57]: •
+        - generic [ref=e58]: "⭐ NOVO: SMASH DUPLO JÁ DISPONÍVEL"
+        - generic [ref=e59]: •
+        - generic [ref=e60]: 🍔 INGREDIENTES 100% FRESCOS
+        - generic [ref=e61]: •
+        - generic [ref=e62]: ⏰ DELIVERY ATÉ 45 MIN
+        - generic [ref=e63]: •
+        - generic [ref=e64]: 🔥 COMBO DUPLO CHEDDAR + FRITAS R$49
+        - generic [ref=e65]: •
+        - generic [ref=e66]: 📦 FRETE GRÁTIS ACIMA DE R$60 NO IFOOD
+        - generic [ref=e67]: •
+        - generic [ref=e68]: "⭐ NOVO: SMASH DUPLO JÁ DISPONÍVEL"
+        - generic [ref=e69]: •
+        - generic [ref=e70]: 🍔 INGREDIENTES 100% FRESCOS
+        - generic [ref=e71]: •
+        - generic [ref=e72]: ⏰ DELIVERY ATÉ 45 MIN
+        - generic [ref=e73]: •
+    - generic [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - heading "OS FAVORITOS DA CASA" [level=2] [ref=e78]:
+            - text: OS FAVORITOS
+            - text: DA CASA
+          - paragraph [ref=e79]: Aqueles que fizeram nossa história. Se é sua primeira vez, comece por aqui.
+        - link "VER MENU COMPLETO →" [ref=e80]:
+          - /url: "#"
+      - generic [ref=e81]:
+        - article [ref=e82]:
+          - generic [ref=e83]:
+            - img "Aura Clássico" [ref=e84]
+            - generic [ref=e86]: MAIS PEDIDO
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - heading "AURA CLÁSSICO" [level=3] [ref=e89]
+              - generic [ref=e90]: R$ 36
+            - paragraph [ref=e91]: Pão brioche artesanal, blend 160g de costela, queijo prato derretido, alface americana, tomate e nossa maionese verde secreta.
+            - link "VER NO CARDÁPIO →" [ref=e92]:
+              - /url: "#"
+        - article [ref=e93]:
+          - img "Duplo Cheddar" [ref=e95]
+          - generic [ref=e97]:
+            - generic [ref=e98]:
+              - heading "DUPLO CHEDDAR" [level=3] [ref=e99]
+              - generic [ref=e100]: R$ 48
+            - paragraph [ref=e101]: Pão australiano, dois blends 160g, muito cheddar cremoso, fatias de bacon crocante e cebola caramelizada.
+            - link "VER NO CARDÁPIO →" [ref=e102]:
+              - /url: "#"
+        - article [ref=e103]:
+          - generic [ref=e104]:
+            - img "Smash Duplo" [ref=e105]
+            - generic [ref=e107]: NOVO
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - heading "SMASH DUPLO" [level=3] [ref=e110]
+              - generic [ref=e111]: R$ 32
+            - paragraph [ref=e112]: Pão de batata, dois smash burgers de 90g, american cheese, picles e mostarda escura.
+            - link "VER NO CARDÁPIO →" [ref=e113]:
+              - /url: "#"
+        - article [ref=e114]:
+          - generic [ref=e115]:
+            - img "Vegano da Vila" [ref=e116]
+            - generic [ref=e118]: VEGANO
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - heading "VEGANO DA VILA" [level=3] [ref=e121]
+              - generic [ref=e122]: R$ 38
+            - paragraph [ref=e123]: Pão vegano, hambúrguer de grão de bico e cogumelos, queijo vegano, rúcula e maionese de alho assado.
+            - link "VER NO CARDÁPIO →" [ref=e124]:
+              - /url: "#"
+        - article [ref=e125]:
+          - img "O Clássico" [ref=e127]
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - heading "O CLÁSSICO" [level=3] [ref=e131]
+              - generic [ref=e132]: R$ 28
+            - paragraph [ref=e133]: Pão macio, blend 120g, queijo americano, ketchup artesanal, mostarda e picles crocante.
+            - link "VER NO CARDÁPIO →" [ref=e134]:
+              - /url: "#"
+    - generic [ref=e135]:
+      - img "Qualidade Aura Burger" [ref=e137]
+      - generic [ref=e139]:
+        - generic [ref=e140]: "2018"
+        - generic [ref=e141]:
+          - blockquote [ref=e143]:
+            - text: QUALIDADE QUE
+            - emphasis [ref=e144]: VOCÊ PROVA.
+          - generic [ref=e147]: FUNDADOR, 2018
+    - generic [ref=e149]:
+      - generic [ref=e150]:
+        - generic [ref=e151]: DELIVERY
+        - heading "ENTREGUE. QUENTE." [level=2] [ref=e152]:
+          - text: ENTREGUE.
+          - text: QUENTE.
+        - paragraph [ref=e153]: Pediu, saiu. Parceiros selecionados que garantem que seu lanche chega do jeito que saiu da chapa.
+        - link "PEDIR DELIVERY →" [ref=e154]:
+          - /url: "#"
+      - generic [ref=e155]:
+        - link "ifood DISPONÍVEL AGORA" [ref=e156]:
+          - /url: https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood
+          - generic [ref=e157]: ifood
+          - generic [ref=e160]: DISPONÍVEL AGORA
+        - link "keeta DISPONÍVEL AGORA" [ref=e161]:
+          - /url: https://play.google.com/store/apps/details?hl=pt_BR&id=com.sankuai.sailor.afooddelivery
+          - generic [ref=e162]: keeta
+          - generic [ref=e165]: DISPONÍVEL AGORA
+        - link "99food DISPONÍVEL AGORA" [ref=e166]:
+          - /url: https://play.google.com/store/apps/details?hl=pt_BR&id=com.taxis99
+          - generic [ref=e167]: 99food
+          - generic [ref=e170]: DISPONÍVEL AGORA
+    - generic [ref=e172]:
+      - generic [ref=e173]:
+        - generic [ref=e174]: NOSSAS UNIDADES
+        - heading "NOS ENCONTRE." [level=2] [ref=e175]
+      - generic [ref=e176]:
+        - article [ref=e177]:
+          - generic [ref=e178]: "01"
+          - generic [ref=e179]:
+            - heading "VILA MADALENA" [level=3] [ref=e180]
+            - generic [ref=e181]:
+              - text: Rua Fradique Coutinho, 1234
+              - text: São Paulo - SP
+            - generic [ref=e182]:
+              - generic [ref=e183]:
+                - generic [ref=e184]: Segunda
+                - generic [ref=e185]: FECHADO
+              - generic [ref=e186]:
+                - generic [ref=e187]: Ter - Qui
+                - generic [ref=e188]: 18h - 23h
+              - generic [ref=e189]:
+                - generic [ref=e190]: Sex - Sáb
+                - generic [ref=e191]: 18h - 01h
+              - generic [ref=e192]:
+                - generic [ref=e193]: Dom
+                - generic [ref=e194]: 17h - 23h
+            - link "VER NO MAPA →" [ref=e195]:
+              - /url: "#"
+          - generic [ref=e196]: ABERTO AGORA
+        - article [ref=e197]:
+          - generic [ref=e198]: "02"
+          - generic [ref=e199]:
+            - heading "PINHEIROS" [level=3] [ref=e200]
+            - generic [ref=e201]:
+              - text: Rua dos Pinheiros, 567
+              - text: São Paulo - SP
+            - generic [ref=e202]:
+              - generic [ref=e203]:
+                - generic [ref=e204]: Segunda
+                - generic [ref=e205]: FECHADO
+              - generic [ref=e206]:
+                - generic [ref=e207]: Ter - Qui
+                - generic [ref=e208]: 18h - 23h
+              - generic [ref=e209]:
+                - generic [ref=e210]: Sex - Sáb
+                - generic [ref=e211]: 18h - 01h
+              - generic [ref=e212]:
+                - generic [ref=e213]: Dom
+                - generic [ref=e214]: 17h - 23h
+            - link "VER NO MAPA →" [ref=e215]:
+              - /url: unidades.html
+        - article [ref=e216]:
+          - generic [ref=e217]: "03"
+          - generic [ref=e218]:
+            - heading "ITAIM BIBI" [level=3] [ref=e219]
+            - generic [ref=e220]:
+              - text: Rua Joaquim Floriano, 890
+              - text: São Paulo - SP
+            - generic [ref=e221]:
+              - generic [ref=e222]:
+                - generic [ref=e223]: Segunda
+                - generic [ref=e224]: FECHADO
+              - generic [ref=e225]:
+                - generic [ref=e226]: Ter - Qui
+                - generic [ref=e227]: 18h - 23h
+              - generic [ref=e228]:
+                - generic [ref=e229]: Sex - Sáb
+                - generic [ref=e230]: 18h - 01h
+              - generic [ref=e231]:
+                - generic [ref=e232]: Dom
+                - generic [ref=e233]: 17h - 23h
+            - link "VER NO MAPA →" [ref=e234]:
+              - /url: unidades.html
+      - link "VER TODAS AS UNIDADES →" [ref=e236]:
+        - /url: "#"
+    - generic [ref=e237]:
+      - generic [ref=e238]:
+        - generic [ref=e239]:
+          - generic [ref=e240]: O QUE DIZEM
+          - heading "AVALIAÇÕES REAIS." [level=2] [ref=e241]
+        - generic [ref=e242]:
+          - generic [ref=e243]: ★
+          - generic [ref=e244]:
+            - strong [ref=e245]: "4.8"
+            - text: — 2.4k avaliações no Google
+      - generic [ref=e246]:
+        - generic [ref=e247]:
+          - generic [ref=e248]: ★★★★★
+          - paragraph [ref=e249]: "\"Melhor hambúrguer que já comi em SP. O blend derrete na boca e o pão artesanal é absurdamente bom. Vou toda semana!\""
+          - generic [ref=e250]:
+            - generic [ref=e251]: 👨
+            - generic [ref=e252]:
+              - generic [ref=e253]: Lucas M.
+              - generic [ref=e254]: via Google
+        - generic [ref=e255]:
+          - generic [ref=e256]: ★★★★★
+          - paragraph [ref=e257]: "\"Pedi pelo iFood e chegou quentinho em 30 min! O Duplo Cheddar é viciante. Fritas com cheddar também são obrigatórias.\""
+          - generic [ref=e258]:
+            - generic [ref=e259]: 👩
+            - generic [ref=e260]:
+              - generic [ref=e261]: Fernanda S.
+              - generic [ref=e262]: via iFood
+        - generic [ref=e263]:
+          - generic [ref=e264]: ★★★★★
+          - paragraph [ref=e265]: "\"Ambiente incrível, atendimento rápido e o smash burger é perfeito. Nota 10 pra tudo. Melhor hamburgueria da Vila Madalena!\""
+          - generic [ref=e266]:
+            - generic [ref=e267]: 👨
+            - generic [ref=e268]:
+              - generic [ref=e269]: Rafael P.
+              - generic [ref=e270]: via Google
+        - generic [ref=e271]:
+          - generic [ref=e272]: ★★★★★
+          - paragraph [ref=e273]: "\"Sou vegana e finalmente achei um burger que não é só 'aceitável' — é GOSTOSO de verdade. Vegano da Vila mudou minha vida.\""
+          - generic [ref=e274]:
+            - generic [ref=e275]: 👩
+            - generic [ref=e276]:
+              - generic [ref=e277]: Juliana R.
+              - generic [ref=e278]: via Keeta
+        - generic [ref=e279]:
+          - generic [ref=e280]: ★★★★★
+          - paragraph [ref=e281]: "\"Levei a família inteira e todo mundo amou. As crianças pediram pra voltar no dia seguinte. Preço justo pelo que entregam.\""
+          - generic [ref=e282]:
+            - generic [ref=e283]: 👨
+            - generic [ref=e284]:
+              - generic [ref=e285]: André C.
+              - generic [ref=e286]: via Google
+        - generic [ref=e287]:
+          - generic [ref=e288]: ★★★★★
+          - paragraph [ref=e289]: "\"A Trufa Negra com blend wagyu é nível de restaurante fine dining, mas num preço acessível. Impressionante!\""
+          - generic [ref=e290]:
+            - generic [ref=e291]: 👩
+            - generic [ref=e292]:
+              - generic [ref=e293]: Camila T.
+              - generic [ref=e294]: via Google
+  - text: ● ● ● ● ● ● ● ● ● ● ● ● ● ● ●
+  - contentinfo [ref=e295]:
+    - generic [ref=e297]:
+      - generic [ref=e298]:
+        - heading "FIQUE POR DENTRO." [level=3] [ref=e299]
+        - paragraph [ref=e300]: Promoções, novidades e bastidores direto no seu e-mail.
+      - generic [ref=e301]:
+        - textbox "Seu melhor e-mail" [ref=e302]
+        - button "INSCREVER" [ref=e303]
+    - generic [ref=e304]:
+      - generic [ref=e305]:
+        - generic [ref=e306]:
+          - generic [ref=e307]:
+            - generic [ref=e308]: 🔥
+            - generic [ref=e309]: AURA BURGER
+          - paragraph [ref=e310]:
+            - text: O hambúrguer com alma paulistana.
+            - text: Blend artesanal, ingredientes frescos, sem atalhos.
+          - generic [ref=e311]:
+            - link "Instagram" [ref=e312]:
+              - /url: https://instagram.com/auraburger
+              - img [ref=e313]
+            - link "Facebook" [ref=e316]:
+              - /url: https://facebook.com/auraburger
+              - img [ref=e317]
+        - navigation [ref=e319]:
+          - heading "NAVEGAÇÃO" [level=4] [ref=e320]
+          - list [ref=e321]:
+            - listitem [ref=e322]:
+              - link "Cardápio" [ref=e323]:
+                - /url: "#"
+            - listitem [ref=e324]:
+              - link "Nossa História" [ref=e325]:
+                - /url: "#"
+            - listitem [ref=e326]:
+              - link "Unidades" [ref=e327]:
+                - /url: "#"
+            - listitem [ref=e328]:
+              - link "Delivery" [ref=e329]:
+                - /url: "#"
+            - listitem [ref=e330]:
+              - link "Carreiras" [ref=e331]:
+                - /url: "#"
+        - generic [ref=e332]:
+          - heading "CONTATO" [level=4] [ref=e333]
+          - list [ref=e334]:
+            - listitem [ref=e335]: contato@auraburger.com.br
+            - listitem [ref=e336]: talentos@auraburger.com.br
+            - listitem [ref=e337]: (11) 99999-9999
+        - generic [ref=e338]:
+          - heading "HORÁRIOS" [level=4] [ref=e339]
+          - generic [ref=e340]:
+            - generic [ref=e341]:
+              - generic [ref=e342]: Segunda
+              - generic [ref=e343]: FECHADO
+            - generic [ref=e344]:
+              - generic [ref=e345]: Ter - Qui
+              - generic [ref=e346]: 18h - 23h
+            - generic [ref=e347]:
+              - generic [ref=e348]: Sex - Sáb
+              - generic [ref=e349]: 18h - 01h
+            - generic [ref=e350]:
+              - generic [ref=e351]: Domingo
+              - generic [ref=e352]: 17h - 23h
+      - generic [ref=e354]:
+        - generic [ref=e355]: © 2026 Aura Burger SP. Todos os direitos reservados.
+        - generic [ref=e356]:
+          - link "Termos de Uso" [ref=e357]:
+            - /url: "#"
+          - link "Privacidade" [ref=e358]:
+            - /url: "#"

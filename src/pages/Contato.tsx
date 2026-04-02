@@ -52,7 +52,7 @@ export default function Contato() {
                   </div>
                   <div>
                     <h4 className="text-xl font-oswald font-bold uppercase text-white mb-1">Telefone / Delivery</h4>
-                    <p className="text-gray">(11) 99999-9999<br/>Disponível no iFood e Rappi</p>
+                    <p className="text-gray">(11) 99999-9999<br/>Disponível no iFood e Keeta</p>
                   </div>
                 </li>
               </ul>
