@@ -1403,16 +1403,12 @@
   <section class="assembly-section" id="burgerAssembly" aria-label="Montagem do Burger">
     <div class="assembly-stage" id="assemblyStage">
 
-      <!-- Vídeo controlado por scroll -->
-      <video
+      <!-- Canvas — image sequence Apple-style (zero seeking lag) -->
+      <canvas
         class="assembly-video"
-        id="assemblyVideo"
-        src="assets/burger-assembly.mp4"
-        muted
-        playsinline
-        preload="auto"
+        id="assemblyCanvas"
         aria-hidden="true"
-      ></video>
+      ></canvas>
 
       <!-- Overlay vignette -->
       <div class="assembly-overlay" aria-hidden="true"></div>
@@ -2727,123 +2723,165 @@
     setInterval(updateStoreStatus, 60000); // update every minute
   </script>
 
-  <!-- SCROLL-DRIVEN BURGER ASSEMBLY — ENGINE -->
+  <!-- SCROLL-DRIVEN BURGER ASSEMBLY — ENGINE (image sequence, Apple-style) -->
   <script>
-  (function() {
+  (function () {
     'use strict';
 
-    var section, stage, video, progressBar, entryLabel, labelItems, phases, ctaEl;
-    var rafId = null;
-    var lastProgress = -1;
-    var isIntersecting = false;
+    /* ── Configuração ─────────────────────────────────────────────── */
+    var TOTAL_FRAMES  = 100;
+    var FRAMES_BASE   = 'assets/frames/frame-';   // frame-001.jpg .. frame-100.jpg
+    var PRELOAD_AHEAD = 8;    // precarregar N frames à frente do atual
 
-    function clamp(val, min, max) {
-      return Math.min(max, Math.max(min, val));
+    /* ── Estado ───────────────────────────────────────────────────── */
+    var section, canvas, ctx, progressBar, entryLabel, labelItems, phases, ctaEl;
+    var frames       = new Array(TOTAL_FRAMES); // Image objects
+    var loadedFlags  = new Array(TOTAL_FRAMES).fill(false);
+    var rafId        = null;
+    var lastProgress = -1;
+    var lastFrame    = -1;
+    var isIntersecting = false;
+    var canvasReady  = false;
+    var loadedCount  = 0;
+
+    function clamp(v, mn, mx) { return Math.max(mn, Math.min(mx, v)); }
+
+    /* padeia número: 1 → "001" */
+    function pad(n) { return String(n).padStart(3, '0'); }
+
+    /* ── Carregamento de frames ───────────────────────────────────── */
+    function loadFrame(idx) {
+      if (idx < 0 || idx >= TOTAL_FRAMES || loadedFlags[idx]) return;
+      loadedFlags[idx] = true;
+      var img = new Image();
+      img.onload = function () {
+        frames[idx] = img;
+        loadedCount++;
+        // Se ainda não pintamos nada, pintar o frame 0 assim que estiver pronto
+        if (idx === 0 && canvasReady) drawFrame(0);
+      };
+      img.src = FRAMES_BASE + pad(idx + 1) + '.jpg';
     }
 
+    /* ── Resize do canvas para cobrir o stage ─────────────────────── */
+    function resizeCanvas() {
+      var stage = canvas.parentElement;
+      canvas.width  = stage.offsetWidth  || window.innerWidth;
+      canvas.height = stage.offsetHeight || window.innerHeight;
+      canvasReady = true;
+      // Repintar frame atual
+      if (frames[Math.max(0, lastFrame)]) drawFrame(Math.max(0, lastFrame));
+    }
+
+    /* ── Pintar frame no canvas ───────────────────────────────────── */
+    function drawFrame(idx) {
+      var img = frames[idx];
+      if (!img || !canvasReady) return;
+      var cw = canvas.width, ch = canvas.height;
+      var iw = img.naturalWidth, ih = img.naturalHeight;
+      /* object-fit: cover */
+      var scale = Math.max(cw / iw, ch / ih);
+      var sw = iw * scale, sh = ih * scale;
+      var sx = (cw - sw) / 2, sy = (ch - sh) / 2;
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(img, sx, sy, sw, sh);
+    }
+
+    /* ── Loop principal ───────────────────────────────────────────── */
     function updateAssembly() {
       if (!isIntersecting) return;
 
-      var rect = section.getBoundingClientRect();
+      var rect        = section.getBoundingClientRect();
       var rawProgress = -rect.top / (section.offsetHeight - window.innerHeight);
-      var progress = clamp(rawProgress, 0, 1);
+      var progress    = clamp(rawProgress, 0, 1);
 
-      if (Math.abs(progress - lastProgress) < 0.0008) {
+      // Throttle por diferença mínima
+      if (Math.abs(progress - lastProgress) < 0.0005) {
         rafId = requestAnimationFrame(updateAssembly);
         return;
       }
       lastProgress = progress;
 
-      // — Barra de progresso vertical
+      /* — Frame index */
+      var frameIdx = Math.round(progress * (TOTAL_FRAMES - 1));
+      if (frameIdx !== lastFrame) {
+        lastFrame = frameIdx;
+        drawFrame(frameIdx);
+        // Precarregar frames à frente e atrás
+        for (var k = 1; k <= PRELOAD_AHEAD; k++) {
+          loadFrame(frameIdx + k);
+          loadFrame(frameIdx - k);
+        }
+      }
+
+      /* — Barra de progresso */
       progressBar.style.height = (progress * 100) + '%';
 
-      // — Label entrada desvanece depois de 8% de scroll
+      /* — Label de entrada */
       entryLabel.style.opacity = progress < 0.08 ? (1 - progress / 0.08) : 0;
 
-      // — Video scrubbing
-      if (video.readyState >= 2 && video.duration) {
-        var targetTime = progress * video.duration;
-        if (Math.abs(video.currentTime - targetTime) > 0.05) {
-          video.currentTime = targetTime;
-        }
-      }
-
-      // — Labels dos ingredientes
+      /* — Labels dos ingredientes */
       for (var i = 0; i < labelItems.length; i++) {
-        var item = labelItems[i];
+        var item   = labelItems[i];
         var appear = parseFloat(item.dataset.appear);
-        var vanish  = parseFloat(item.dataset.vanish);
-        if (progress >= appear && progress < vanish) {
-          item.classList.add('visible');
-        } else {
-          item.classList.remove('visible');
-        }
+        var vanish = parseFloat(item.dataset.vanish);
+        item.classList.toggle('visible', progress >= appear && progress < vanish);
       }
 
-      // — Fases de headline
+      /* — Fases de headline */
       for (var j = 0; j < phases.length; j++) {
-        var phase = phases[j];
+        var phase  = phases[j];
         var pStart = parseFloat(phase.dataset.phaseStart);
         var pEnd   = parseFloat(phase.dataset.phaseEnd);
-        if (progress >= pStart && progress < pEnd) {
-          phase.classList.add('active');
-        } else {
-          phase.classList.remove('active');
-        }
+        phase.classList.toggle('active', progress >= pStart && progress < pEnd);
       }
 
-      // — CTA final aparece em 92%
-      if (progress >= 0.92) {
-        ctaEl.classList.add('visible');
-      } else {
-        ctaEl.classList.remove('visible');
-      }
+      /* — CTA final */
+      ctaEl.classList.toggle('visible', progress >= 0.92);
 
       rafId = requestAnimationFrame(updateAssembly);
     }
 
-    function startLoop() {
-      if (!rafId) {
-        rafId = requestAnimationFrame(updateAssembly);
-      }
-    }
+    function startLoop() { if (!rafId) rafId = requestAnimationFrame(updateAssembly); }
+    function stopLoop()  { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
 
-    function stopLoop() {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
-    }
-
+    /* ── Inicialização ────────────────────────────────────────────── */
     function init() {
       section     = document.getElementById('burgerAssembly');
-      stage       = document.getElementById('assemblyStage');
-      video       = document.getElementById('assemblyVideo');
+      canvas      = document.getElementById('assemblyCanvas');
+      ctx         = canvas.getContext('2d');
       progressBar = document.getElementById('assemblyProgressBar');
       entryLabel  = document.getElementById('assemblyEntryLabel');
       ctaEl       = document.getElementById('assemblyCta');
       labelItems  = section.querySelectorAll('.assembly-label-item');
       phases      = section.querySelectorAll('.assembly-phase');
 
-      if (!section || !video) return;
+      if (!section || !canvas) return;
 
-      // Garantir que o vídeo nunca toca sozinho
-      video.pause();
+      /* Ajustar canvas ao tamanho real */
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
 
-      // IntersectionObserver para pausar o loop quando fora da tela
-      var observer = new IntersectionObserver(function(entries) {
+      /* Pré-carregar os primeiros 20 frames imediatamente */
+      for (var i = 0; i < 20; i++) loadFrame(i);
+
+      /* Carregar restantes com delay para não travar o preloader */
+      setTimeout(function () {
+        for (var i = 20; i < TOTAL_FRAMES; i++) loadFrame(i);
+      }, 800);
+
+      /* IntersectionObserver */
+      var observer = new IntersectionObserver(function (entries) {
         isIntersecting = entries[0].isIntersecting;
-        if (isIntersecting) {
-          startLoop();
-        } else {
-          stopLoop();
-        }
+        if (isIntersecting) startLoop(); else stopLoop();
       }, { threshold: 0 });
 
       observer.observe(section);
+
+      /* Pintar frame 0 assim que possível */
+      drawFrame(0);
     }
 
-    // Inicializar após o DOM estar pronto
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
