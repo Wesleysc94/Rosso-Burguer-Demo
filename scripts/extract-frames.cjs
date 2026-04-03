@@ -8,8 +8,8 @@ const fs = require('fs');
 
 const FFMPEG  = path.join(__dirname, '../node_modules/ffmpeg-static/ffmpeg.exe');
 const FFPROBE = path.join(path.dirname(FFMPEG), 'ffprobe.exe');
-const INPUT   = path.join(__dirname, '../assets/burger-assembly.mp4');
-const OUT_DIR = path.join(__dirname, '../assets/frames');
+const INPUT   = path.join(__dirname, '../public/assets/burger-assembly.mp4');
+const OUT_DIR = path.join(__dirname, '../public/assets/frames');
 
 if (!fs.existsSync(INPUT)) { console.error('Video não encontrado:', INPUT); process.exit(1); }
 
