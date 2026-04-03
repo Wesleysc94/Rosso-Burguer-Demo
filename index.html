@@ -172,8 +172,8 @@
       z-index: 2;
     }
     .hero { position: relative; height: 100vh; min-height: 700px; overflow: hidden; display: flex; align-items: center; padding-bottom: 44px; }
-    .hero-bg { position: absolute; inset: -5% 0; z-index: 0; }
-    .hero-bg img, .hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img, .hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: 80% center; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.75) 45%, rgba(8,8,8,0.25) 75%, rgba(8,8,8,0.1) 100%); z-index: 1; }
     .hero-content {
       position: relative;
@@ -289,8 +289,8 @@
     @media (max-width: 768px) {
       .hero-stage::after { bottom: 39px; height: 90px; }
       .hero { min-height: 640px; }
-      .hero-bg { inset: -18% -22% -12% -22%; }
-      .hero-bg img, .hero-bg video { object-position: center 40%; transform: scale(0.78); }
+      .hero-bg { inset: 0; }
+      .hero-bg img, .hero-bg video { object-position: center; transform: none; }
       .hero-overlay { background: linear-gradient(180deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.42) 34%, rgba(8,8,8,0.74) 100%); }
       .hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
       .hero-sub {
@@ -309,8 +309,8 @@
     }
     @media (max-width: 480px) {
       .hero { min-height: 610px; }
-      .hero-bg { inset: -16% -28% -10% -28%; }
-      .hero-bg img, .hero-bg video { object-position: center 38%; transform: scale(0.74); }
+      .hero-bg { inset: 0; }
+      .hero-bg img, .hero-bg video { object-position: center; transform: none; }
       .hero-sub { font-size: 11.7px; }
     }
     .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.5; animation: scrollFade 2s ease-in-out infinite; }
@@ -1606,7 +1606,7 @@
   <!-- HERO -->
   <section class="hero" id="homeHero">
     <div class="hero-bg">
-      <video src="/assets/hero-cinematic-01.mp4" autoplay loop muted playsinline class="hero-bg-media"></video>
+      <video src="/assets/hero-cinematic-02.mp4" autoplay muted playsinline class="hero-bg-media" id="heroMainVideo"></video>
     </div>
     <div class="hero-overlay"></div>
     
@@ -3131,6 +3131,63 @@
       document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
+    }
+  })();
+  </script>
+  <script>
+  /* Hero Cinematic Looping Handler */
+  (function() {
+    function initHeroLoop() {
+      var mainVideo = document.getElementById("heroMainVideo");
+      if (!mainVideo) return;
+      var cloneVideo = document.createElement("video");
+      cloneVideo.src = mainVideo.src;
+      cloneVideo.muted = true;
+      cloneVideo.playsInline = true;
+      cloneVideo.className = mainVideo.className;
+      cloneVideo.style.position = "absolute";
+      cloneVideo.style.top = "0";
+      cloneVideo.style.left = "0";
+      cloneVideo.style.width = "100%";
+      cloneVideo.style.height = "100%";
+      cloneVideo.style.objectFit = "cover";
+      cloneVideo.style.pointerEvents = "none";
+      cloneVideo.style.opacity = "0";
+      cloneVideo.style.transition = "opacity 0.8s ease-in-out";
+      cloneVideo.style.objectPosition = getComputedStyle(mainVideo).objectPosition;
+      
+      mainVideo.parentNode.appendChild(cloneVideo);
+
+      var isMainPlaying = true;
+      var transitionTime = 0.8;
+
+      mainVideo.addEventListener("timeupdate", function() {
+        if (isMainPlaying && mainVideo.duration - mainVideo.currentTime <= transitionTime && mainVideo.duration > 0) {
+          cloneVideo.currentTime = 0;
+          cloneVideo.play();
+          cloneVideo.style.opacity = "1";
+          isMainPlaying = false;
+        }
+      });
+
+      cloneVideo.addEventListener("timeupdate", function() {
+        if (!isMainPlaying && cloneVideo.duration - cloneVideo.currentTime <= transitionTime && cloneVideo.duration > 0) {
+          mainVideo.currentTime = 0;
+          mainVideo.play();
+          cloneVideo.style.opacity = "0";
+          isMainPlaying = true;
+        }
+      });
+      
+      window.addEventListener('resize', function() {
+         cloneVideo.style.objectPosition = getComputedStyle(mainVideo).objectPosition;
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroLoop);
+    } else {
+      initHeroLoop();
     }
   })();
   </script>
