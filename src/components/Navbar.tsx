@@ -1,112 +1,118 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu as MenuIcon, X } from 'lucide-react';
 
-const navItems = [
-  { id: 'home', label: 'Início' },
-  { id: 'menu', label: 'Cardápio' },
-  { id: 'sobre', label: 'Sobre Nós' },
-  { id: 'contato', label: 'Contato' },
-];
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+};
 
-export default function Navbar({ currentPage, setCurrentPage }: { currentPage: string, setCurrentPage: (page: string) => void }) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const handleNav = (id: string) => {
-    setCurrentPage(id);
-    setMobileMenuOpen(false);
-    window.scrollTo(0, 0);
-  };
 
   return (
     <>
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
-          isScrolled ? 'bg-black/90 backdrop-blur-md border-border py-4' : 'bg-transparent border-transparent py-6'
+          isScrolled
+            ? 'bg-black/92 backdrop-blur-md border-border py-3'
+            : 'bg-transparent border-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <div 
-            className="flex items-center gap-3 cursor-pointer group"
-            onClick={() => handleNav('home')}
+          {/* Logo */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex items-center gap-3 group"
+            aria-label="Rosso Burguer — início"
           >
-            <div className="w-12 h-12 bg-red rounded-full flex items-center justify-center text-white font-oswald font-bold text-2xl tracking-tighter group-hover:scale-105 transition-transform">
-              AB
-            </div>
-            <span className="text-3xl font-oswald font-black tracking-tight text-white uppercase">
-              Aura Burger
+            <img
+              src="/assets/rosso/logo-oficial.jpeg"
+              alt="Rosso Burguer"
+              className="w-12 h-12 rounded-full object-cover group-hover:scale-105 transition-transform duration-300 border border-border"
+            />
+            <span className="hidden sm:block text-2xl font-oswald font-bold tracking-tight text-white uppercase">
+              Rosso Burguer
             </span>
-          </div>
+          </button>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNav(item.id)}
-                className={`text-sm font-bold uppercase tracking-widest transition-colors ${
-                  currentPage === item.id ? 'text-orange' : 'text-gray hover:text-white'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-2">
             <button
-              onClick={() => handleNav('menu')}
-              className="bg-red hover:bg-orange text-white px-8 py-3 rounded-none font-oswald font-bold uppercase tracking-widest transition-colors text-sm"
+              onClick={() => scrollTo('unidades')}
+              className="px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-white bg-green hover:bg-green-hover transition-colors"
             >
-              Pedir Agora
+              Lojas
             </button>
+            <a
+              href="mailto:rh@rossoburguer.com.br"
+              className="px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-black bg-white hover:bg-gray/20 hover:text-white border border-white transition-colors"
+            >
+              Trampe no Rosso
+            </a>
+            <a
+              href="mailto:contato@rossoburguer.com.br"
+              className="px-5 py-2.5 text-sm font-bold uppercase tracking-widest text-white bg-red hover:bg-red/80 transition-colors"
+            >
+              Fale Conosco
+            </a>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-white p-1"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Menu"
           >
-            {mobileMenuOpen ? <X size={32} /> : <MenuIcon size={32} />}
+            {mobileOpen ? <X size={30} /> : <MenuIcon size={30} />}
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, y: '-100%' }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '-100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-dark pt-32 px-6 md:hidden border-b border-border"
+            transition={{ type: 'tween', duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-dark flex flex-col items-center justify-center gap-6 md:hidden"
           >
-            <div className="flex flex-col gap-8 text-center">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNav(item.id)}
-                  className={`text-4xl font-oswald font-black uppercase tracking-tight ${
-                    currentPage === item.id ? 'text-orange' : 'text-white'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-              <button
-                onClick={() => handleNav('menu')}
-                className="mt-8 bg-red text-white px-8 py-5 font-oswald font-bold uppercase tracking-widest text-xl"
-              >
-                Fazer Pedido
-              </button>
-            </div>
+            {/* Logo in mobile menu */}
+            <img
+              src="/assets/rosso/logo-oficial.jpeg"
+              alt="Rosso Burguer"
+              className="w-20 h-20 rounded-full object-cover border-2 border-green mb-4"
+            />
+
+            <button
+              onClick={() => { scrollTo('unidades'); setMobileOpen(false); }}
+              className="w-64 py-4 text-xl font-oswald font-bold uppercase tracking-widest text-white bg-green text-center"
+            >
+              Lojas
+            </button>
+            <a
+              href="mailto:rh@rossoburguer.com.br"
+              onClick={() => setMobileOpen(false)}
+              className="w-64 py-4 text-xl font-oswald font-bold uppercase tracking-widest text-black bg-white text-center"
+            >
+              Trampe no Rosso
+            </a>
+            <a
+              href="mailto:contato@rossoburguer.com.br"
+              onClick={() => setMobileOpen(false)}
+              className="w-64 py-4 text-xl font-oswald font-bold uppercase tracking-widest text-white bg-red text-center"
+            >
+              Fale Conosco
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
