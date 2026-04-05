@@ -2049,6 +2049,7 @@
     .item-cta-primary { display: block; padding: 18px 24px; background: var(--red); color: white; font-family: var(--font-display); font-size: 17px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; text-decoration: none; transition: opacity 0.18s, transform 0.15s; }
     .item-cta-primary:hover { opacity: 0.9; transform: translateY(-1px); }
     .item-cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .item-cta-row--3 { grid-template-columns: 1fr 1fr 1fr; }
     .item-cta-secondary { display: block; padding: 14px 16px; font-family: var(--font-display); font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; text-decoration: none; transition: opacity 0.18s; }
     .item-cta-secondary:hover { opacity: 0.85; }
     .item-panel-divider { height: 1px; background: #1a1a1a; margin: 0; }
@@ -2622,6 +2623,7 @@
     <div style="background:var(--red);padding:40px;text-align:center;">
       <p style="font-family:var(--font-display);font-size:24px;font-weight:700;color:white;text-transform:uppercase;margin-bottom:20px;">Prefere pedir pelo app?</p>
       <a href="https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood" class="pill-btn" target="_blank" rel="noopener noreferrer">iFOOD</a>
+      <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" class="pill-btn" target="_blank" rel="noopener noreferrer">RAPPI</a>
       <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.sankuai.sailor.afooddelivery" class="pill-btn" target="_blank" rel="noopener noreferrer">KEETA</a>
       <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.taxis99" class="pill-btn" target="_blank" rel="noopener noreferrer">99FOOD</a>
     </div>
@@ -2734,7 +2736,7 @@
         <div class="partner-name">Rappi</div>
         <div class="partner-sub">Entrega rápida · Cashback em RappiCredits</div>
         <div class="partner-tag">⚡ Turbo entrega em 25 min</div>
-        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.brasil" target="_blank" rel="noopener noreferrer" class="partner-btn"><span>PEDIR NO RAPPI →</span></a>
+        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" target="_blank" rel="noopener noreferrer" class="partner-btn"><span>PEDIR NO RAPPI →</span></a>
       </div>
       <!-- Keeta -->
       <div class="partner-card reveal" data-brand="keeta" data-delay="3">
@@ -3081,11 +3083,6 @@
           <div class="item-panel-section-label">INGREDIENTES</div>
           <div class="ingredient-pills" id="modalIngredients"></div>
         </div>
-        <!-- Extras -->
-        <div class="item-panel-section" id="modalExtrasSection">
-          <div class="item-panel-section-label">ADICIONAIS OPCIONAIS</div>
-          <div class="extras-list" id="modalExtras"></div>
-        </div>
         <!-- Meta info -->
         <div class="item-panel-meta" id="modalMeta"></div>
         <!-- Qty & Price -->
@@ -3103,7 +3100,8 @@
         <!-- CTAs -->
         <div class="item-panel-ctas">
           <a href="https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood" target="_blank" rel="noopener noreferrer" class="item-cta-primary">PEDIR NO IFOOD →</a>
-          <div class="item-cta-row">
+          <div class="item-cta-row item-cta-row--3">
+            <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" target="_blank" rel="noopener noreferrer" class="item-cta-secondary" style="background:#FF441F;color:white">RAPPI</a>
             <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.sankuai.sailor.afooddelivery" target="_blank" rel="noopener noreferrer" class="item-cta-secondary" style="background:linear-gradient(135deg,#42D8CC,#29BDB9);color:#07343A">KEETA</a>
             <a href="https://wa.me/5511999999999?text=Oi%2C%20vim%20pelo%20site%20do%20Aura%20Burger%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener noreferrer" class="item-cta-secondary" style="background:#25D366;color:white">WHATSAPP</a>
           </div>
@@ -3215,17 +3213,6 @@
       document.getElementById('modalIngredients').innerHTML =
         item.ingredients.map(i => `<span class="ingredient-pill">${i}</span>`).join('');
 
-      // Extras
-      const extrasSection = document.getElementById('modalExtrasSection');
-      if (item.extras && item.extras.length > 0) {
-        extrasSection.style.display = '';
-        document.getElementById('modalExtras').innerHTML = item.extras.map(e =>
-          `<label class="extra-item"><input type="checkbox" data-price="${e.price}" onchange="recalcModalTotal()"><span class="extra-check"></span><span class="extra-name">${e.name}</span><span class="extra-price">+ R$ ${e.price}</span></label>`
-        ).join('');
-      } else {
-        extrasSection.style.display = 'none';
-      }
-
       // Meta info
       document.getElementById('modalMeta').innerHTML =
         `<div class="item-panel-meta-item"><div class="item-panel-meta-label">CALORIAS</div><div class="item-panel-meta-val">${item.kcal} kcal</div></div>` +
@@ -3235,7 +3222,7 @@
       // Price & qty
       document.getElementById('modalBasePrice').textContent = 'R$ ' + item.price;
       document.getElementById('qtyCount').textContent = '1';
-      document.getElementById('modalTotal').innerHTML = 'Subtotal: <strong>R$ ' + item.price + '</strong>';
+      document.getElementById('modalTotal').innerHTML = 'Referência de preço · personalize no app ou WhatsApp';
 
       // Open panel
       document.getElementById('itemModal').classList.add('open');
@@ -3249,12 +3236,11 @@
       const item = window._modalItem;
       if (!item) return;
       const qty = parseInt(document.getElementById('qtyCount').textContent) || 1;
-      let extras = 0;
-      document.querySelectorAll('#modalExtras input[type="checkbox"]:checked').forEach(cb => {
-        extras += parseInt(cb.dataset.price) || 0;
-      });
-      const total = (item.price + extras) * qty;
-      document.getElementById('modalTotal').innerHTML = 'Subtotal: <strong>R$ ' + total + '</strong>';
+      const total = item.price * qty;
+      const totalEl = document.getElementById('modalTotal');
+      totalEl.innerHTML = qty > 1
+        ? `${qty}× R$ ${item.price} = <strong>R$ ${total}</strong> · personalize no app ou WhatsApp`
+        : 'Referência de preço · personalize no app ou WhatsApp';
     }
 
     function closeItemModal() {
