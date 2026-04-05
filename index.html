@@ -22,7 +22,9 @@
       --red-hover: #ff1f25;
       --green: #2d6a4f;
       --green-hover: #245c43;
-      --orange: #2d6a4f;  /* verde musgo Rosso */
+      --orange: #2d6a4f;  /* kept as alias */
+      --green: #2d6a4f;
+      --green-hover: #245c43;
       --white: #FFFFFF;
       --gray-1: #888888;
       --gray-2: #555555;
@@ -2088,6 +2090,68 @@
       margin-bottom: 20px;
     }
 
+    
+    /* ═══ ROSSO BURGUER IDENTITY ═══ */
+
+    /* Italian flag accent bar */
+    .italian-bar {
+      display: inline-block;
+      height: 3px;
+      width: 64px;
+      background: linear-gradient(90deg, #009246 33.3%, #ffffff 33.3% 66.6%, #ce2b37 66.6%);
+      margin-bottom: 24px;
+    }
+
+    /* Rosso green button override */
+    .btn--green {
+      background: var(--green, #2d6a4f);
+      color: white;
+      border: none;
+    }
+    .btn--green:hover {
+      background: var(--green-hover, #245c43);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(45,106,79,0.35);
+    }
+
+    /* Unit card action buttons full-width on mobile */
+    @media (max-width: 640px) {
+      .unit-card .unit-actions { flex-direction: column !important; }
+      .unit-card .unit-actions a { justify-content: center; width: 100%; }
+    }
+
+    /* Partner card responsive fix */
+    @media (max-width: 640px) {
+      .partner-card[style*="grid-template-columns:80px"] {
+        grid-template-columns: 60px 1fr !important;
+        gap: 16px !important;
+      }
+      .partner-card[style*="grid-template-columns:80px"] a.btn {
+        grid-column: 1 / -1;
+        justify-content: center;
+      }
+    }
+
+    /* WhatsApp float — Rosso green */
+    .whatsapp-float {
+      background: #25D366;
+    }
+    .whatsapp-float:hover {
+      background: #1ebe5d;
+      transform: scale(1.08);
+    }
+
+    /* Navbar scrolled border → red (was transparent) */
+    .navbar.scrolled {
+      border-bottom-color: var(--red) !important;
+    }
+
+    /* Footer logo image fit */
+    .footer-logo img {
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
     </style>
   <link rel="icon" href="/assets/rosso/logo-oficial.jpeg" type="image/jpeg">
 </head>
@@ -2348,7 +2412,7 @@
       <div class="favorites-grid">
         <article class="card card--featured reveal" data-delay="1" onclick="openItemModal('rosso-classico')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="https://images.unsplash.com//assets/rosso/hero-dois-lanches.jpeg" alt="Rosso Clássico" loading="lazy">
+            <img src="/assets/rosso/hero-dois-lanches.jpeg" alt="Rosso Clássico" loading="lazy">
             <div class="card-overlay"></div>
             <span class="card-badge badge--hot">MAIS PEDIDO</span>
           </div>
@@ -2364,7 +2428,7 @@
 
         <article class="card reveal" data-delay="2" onclick="openItemModal('duplo-cheddar')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="https://images.unsplash.com//assets/rosso/lanche-queijo.jpeg" alt="Duplo Queijo" loading="lazy">
+            <img src="/assets/rosso/lanche-queijo.jpeg" alt="Duplo Queijo" loading="lazy">
             <div class="card-overlay"></div>
           </div>
           <div class="card-body">
@@ -2379,7 +2443,7 @@
 
         <article class="card reveal" data-delay="3" onclick="openItemModal('smash-duplo')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="https://images.unsplash.com//assets/rosso/lanche-01.jpeg" alt="Smash Rosso" loading="lazy">
+            <img src="/assets/rosso/lanche-01.jpeg" alt="Smash Rosso" loading="lazy">
             <div class="card-overlay"></div>
             <span class="card-badge badge--new">NOVO</span>
           </div>
@@ -2395,7 +2459,7 @@
 
         <article class="card reveal" data-delay="4" onclick="openItemModal('vegano-da-vila')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="https://images.unsplash.com//assets/rosso/lanche-02.jpeg" alt="Vegano da Vila" loading="lazy">
+            <img src="/assets/rosso/lanche-02.jpeg" alt="Rosso Especial" loading="lazy">
             <div class="card-overlay"></div>
             <span class="card-badge badge--vegan">VEGANO</span>
           </div>
@@ -2411,7 +2475,7 @@
 
         <article class="card reveal" data-delay="5" onclick="openItemModal('o-classico')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="https://images.unsplash.com//assets/rosso/batata-frita.jpeg" alt="O Clássico" loading="lazy">
+            <img src="/assets/rosso/batata-frita.jpeg" alt="O Clássico" loading="lazy">
             <div class="card-overlay"></div>
           </div>
           <div class="card-body">
@@ -2430,7 +2494,7 @@
   <!-- EDITORIAL -->
   <section class="section editorial">
     <div class="editorial-bg">
-      <img src="https://images.unsplash.com//assets/rosso/hero-dois-lanches.jpeg" alt="Qualidade Rosso Burguer" loading="lazy">
+      <img src="/assets/rosso/hero-dois-lanches.jpeg" alt="Qualidade Rosso Burguer" loading="lazy">
     </div>
     <div class="editorial-bg-overlay"></div>
     
@@ -2615,7 +2679,7 @@
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Sou vegana e finalmente achei um burger que não é só 'aceitável' — é GOSTOSO de verdade. Vegano da Vila mudou minha vida."</p>
+        <p class="testimonial-text">"Sou vegana e finalmente achei um burger que não é só 'aceitável' — é GOSTOSO de verdade. Rosso Especial mudou minha vida."</p>
         <div class="testimonial-author"><div class="testimonial-avatar">👩</div><div class="testimonial-author-info"><span class="testimonial-author-name">Juliana R.</span><span class="testimonial-author-via">via Keeta</span></div></div>
       </div>
       <div class="testimonial-card">
@@ -2686,7 +2750,7 @@
     </div>
     <div class="timeline">
       <div class="timeline-inner">
-        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">O COMEÇO</h3><p class="timeline-card-text">Dois amigos, uma chapa de aço e uma obsessão por carne boa. A primeira Rosso Burguer abriu em Vila Madalena com 4 mesas e uma fila que nunca acabava.</p></div><div class="timeline-year">2017</div><div class="timeline-empty"></div></div>
+        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">O COMEÇO</h3><p class="timeline-card-text">Dois amigos, uma chapa de aço e uma obsessão por carne boa. A primeira Rosso Burguer abriu em São Paulo com 4 mesas e uma fila que nunca acabava.</p></div><div class="timeline-year">2017</div><div class="timeline-empty"></div></div>
         <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">2019</div><div class="timeline-card"><h3 class="timeline-card-title">O MENU SECRETO NASCE</h3><p class="timeline-card-text">Clientes fiéis começaram a pedir combinações fora do cardápio. O Duplo Cheddar com bacon surgiu assim — de um pedido especial que nunca mais saiu da lista.</p></div></div>
         <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">A VIRADA</h3><p class="timeline-card-text">No ano mais difícil, a Rosso Burguer apostou no delivery antes de todo mundo. A fila na porta virou fila no app. Crescemos 300% sem abrir uma segunda loja.</p></div><div class="timeline-year">2020</div><div class="timeline-empty"></div></div>
         <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">2021</div><div class="timeline-card"><h3 class="timeline-card-title">EXPANSÃO SP</h3><p class="timeline-card-text">Com a demanda explodindo, abrimos novas unidades em São Paulo. Mesmo ritmo, mesma qualidade — a receita nunca mudou.</p></div></div>
@@ -2701,7 +2765,7 @@
     </div>
     <div class="stats-bar">
       <div class="stat-item"><div class="stat-number">2017</div><div class="stat-label">ANO DE FUNDAÇÃO</div></div>
-      <div class="stat-item"><div class="stat-number">25+</div><div class="stat-label">UNIDADES</div></div>
+      <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">UNIDADES</div></div>
       <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">ARTESANAL</div></div>
     </div>
     <div class="cta-section" style="background:#111;">
@@ -2710,149 +2774,160 @@
     </div>
   </div><!-- END HISTÓRIA -->
 
-  <!-- PAGE: UNIDADES -->
+    <!-- PAGE: UNIDADES -->
   <div id="page-unidades" class="spa-page">
-    <div class="subpage-hero" style="min-height:35vh;background:radial-gradient(ellipse 60% 60% at 50% 40%,rgba(218,41,28,0.15) 0%,transparent 65%),#111;">
-      <span class="hero-label">NOSSAS UNIDADES</span>
-      <h1 class="hero-title">NOS ENCONTRE.</h1>
-      <p class="hero-subtitle">5 unidades em São Paulo e Jundiaí.</p>
-    </div>
-    <div class="units-controls">
-      <input type="text" class="units-search-input" placeholder="Buscar bairro ou cidade...">
-      <div class="city-tabs">
-        <button class="city-tab active" data-city="todas">TODAS</button>
-        <button class="city-tab" data-city="sp">SÃO PAULO</button>
-        <button class="city-tab" data-city="abc">ABC PAULISTA</button>
-        <button class="city-tab" data-city="grande">GRANDE SP</button>
+    <div class="subpage-hero" style="min-height:40vh;background:linear-gradient(160deg,#0a0a0a 0%,#0f0f0f 60%,#1a0a0a 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;">
+      <div>
+        <span class="eyebrow">NOSSAS LOJAS</span>
+        <h1 class="section-title" style="font-size:clamp(56px,8vw,100px);margin-bottom:16px;">NOS ENCONTRE.</h1>
+        <p style="color:var(--gray-1);font-size:17px;max-width:480px;margin:0 auto;">5 unidades em São Paulo e Jundiaí. Peça direto ou pelo iFood.</p>
       </div>
     </div>
-    <div class="units-page-grid">
-      <div class="ucard unit-card-filter" data-city="sp"><div class="ucard-status open">ABERTO AGORA</div><h3 class="ucard-district">Vila Madalena</h3><div class="ucard-city">São Paulo · SP</div><p class="ucard-address">Rua Fradique Coutinho, 1234</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="sp"><div class="ucard-status open">ABERTO AGORA</div><h3 class="ucard-district">Pinheiros</h3><div class="ucard-city">São Paulo · SP</div><p class="ucard-address">Rua dos Pinheiros, 567</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="sp"><div class="ucard-status open">ABERTO AGORA</div><h3 class="ucard-district">Itaim Bibi</h3><div class="ucard-city">São Paulo · SP</div><p class="ucard-address">Rua Joaquim Floriano, 890</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="sp"><div class="ucard-status open">ABERTO AGORA</div><h3 class="ucard-district">Jardins</h3><div class="ucard-city">São Paulo · SP</div><p class="ucard-address">Rua Oscar Freire, 1100</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="sp"><div class="ucard-status open">ABERTO AGORA</div><h3 class="ucard-district">Moema</h3><div class="ucard-city">São Paulo · SP</div><p class="ucard-address">Av. Ibirapuera, 2500</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="sp"><div class="ucard-status open">ABERTO AGORA</div><h3 class="ucard-district">Brooklin</h3><div class="ucard-city">São Paulo · SP</div><p class="ucard-address">Rua do Rocio, 350</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="abc"><div class="ucard-status closed">FECHADO</div><h3 class="ucard-district">Santo André</h3><div class="ucard-city">Santo André · SP</div><p class="ucard-address">Rua Coronel Oliveira Lima, 500</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="abc"><div class="ucard-status closed">FECHADO</div><h3 class="ucard-district">São Bernardo</h3><div class="ucard-city">São Bernardo do Campo · SP</div><p class="ucard-address">Av. Kennedy, 1200</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="abc"><div class="ucard-status closed">FECHADO</div><h3 class="ucard-district">São Caetano</h3><div class="ucard-city">São Caetano do Sul · SP</div><p class="ucard-address">Av. Goiás, 800</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="grande"><div class="ucard-status open">ABERTO AGORA</div><h3 class="ucard-district">Campinas</h3><div class="ucard-city">Campinas · SP</div><p class="ucard-address">Av. José de Souza Campos, 1200</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="grande"><div class="ucard-status closed">FECHADO</div><h3 class="ucard-district">Guarulhos</h3><div class="ucard-city">Guarulhos · SP</div><p class="ucard-address">Av. Guarulhos, 500</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-      <div class="ucard unit-card-filter" data-city="grande"><div class="ucard-status closed">FECHADO</div><h3 class="ucard-district">Osasco</h3><div class="ucard-city">Osasco · SP</div><p class="ucard-address">Rua Antônio Aggio, 400</p><p class="ucard-hours">Ter–Qui 18h–23h · Sex–Sáb 18h–01h · Dom 17h–23h</p><div class="ucard-btns"><button class="ucard-btn-map">VER NO MAPA →</button><button class="ucard-btn-delivery" onclick="showPage('delivery')">PEDIR DELIVERY</button></div></div>
-    </div>
-    <div class="cta-section" style="background:linear-gradient(135deg,#1a0500,#111);">
-      <h2 class="cta-headline">Sua cidade ainda não tem Rosso Burguer?</h2>
-      <p class="cta-sub">Deixa seu e-mail e avisamos quando chegarmos.</p>
-      <div style="display:flex;max-width:500px;margin:0 auto;">
-        <input type="email" placeholder="Seu melhor e-mail" class="newsletter-input" style="flex:1;">
-        <button class="btn btn--primary" onclick="handleNewsletter(this)">ME AVISAR</button>
+
+    <section class="section" style="background:var(--black);">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:60px;">
+
+          <!-- Unit 1 -->
+          <div class="unit-card reveal" data-delay="1" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:40px;">
+            <div class="unit-content" style="position:relative;z-index:1;">
+              <div class="unit-status" style="margin-bottom:12px;position:static;"><span class="status-dot status--live"></span><span>DISPONÍVEL</span></div>
+              <h3 class="unit-name">SHOPPING ANÁLIA FRANCO</h3>
+              <address class="unit-address">Praça de Alimentação – Av. Reg. Feijó, 1739<br>Vila Reg. Feijó, São Paulo – SP · 03342-900</address>
+            </div>
+            <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">01</div>
+            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+              <a href="https://wa.me/5511947936611?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+An%C3%A1lia+Franco" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---analia-franco-vila-regente-feijo/c0221e7c-ccf1-4d1e-b66f-cf753365a7a0" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+            </div>
+          </div>
+
+          <!-- Unit 2 -->
+          <div class="unit-card reveal" data-delay="2" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:40px;">
+            <div class="unit-content" style="position:relative;z-index:1;">
+              <div class="unit-status" style="margin-bottom:12px;position:static;"><span class="status-dot status--live"></span><span>DISPONÍVEL</span></div>
+              <h3 class="unit-name">PARK SHOPPING SÃO CAETANO SUL</h3>
+              <address class="unit-address">Praça de Alimentação – Alameda Terracota, 545<br>Cerâmica, São Caetano do Sul – SP · 09531-190</address>
+            </div>
+            <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">02</div>
+            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+              <a href="https://wa.me/5511947921707?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+S%C3%A3o+Caetano" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-caetano-do-sul-sp/rosso-burguer---sao-caetano-ceramica/0f8f3a19-8e77-407d-8133-6a48b4295f20" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+            </div>
+          </div>
+
+          <!-- Unit 3 -->
+          <div class="unit-card reveal" data-delay="3" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:40px;">
+            <div class="unit-content" style="position:relative;z-index:1;">
+              <div class="unit-status" style="margin-bottom:12px;position:static;"><span class="status-dot status--live"></span><span>DISPONÍVEL</span></div>
+              <h3 class="unit-name">ROSSO BURGUER SAPOPEMBA</h3>
+              <address class="unit-address">R. Adutora de Rio Claro, 151<br>Vila Primavera, São Paulo – SP · 03374-050</address>
+            </div>
+            <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">03</div>
+            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+              <a href="https://wa.me/5511961809916?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Sapopemba" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer-vila-primavera/55527464-4001-4f67-ae9f-597cfc75ca9b" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+            </div>
+          </div>
+
+          <!-- Unit 4 -->
+          <div class="unit-card reveal" data-delay="4" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:40px;">
+            <div class="unit-content" style="position:relative;z-index:1;">
+              <div class="unit-status" style="margin-bottom:12px;position:static;"><span class="status-dot status--live"></span><span>DISPONÍVEL</span></div>
+              <h3 class="unit-name">JUNDIAÍ SHOPPING</h3>
+              <address class="unit-address">Praça de Alimentação – Av. 9 de Julho, 3333<br>Anhangabaú, Jundiaí – SP</address>
+            </div>
+            <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">04</div>
+            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+              <a href="https://wa.me/5511947925999?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Jundia%C3%AD" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
+              <a href="https://www.ifood.com.br/delivery/jundiai-sp/rosso-burguer---jundiai-anhangabau/16db2830-8f4f-414c-9554-1cafeb46af8b" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+            </div>
+          </div>
+
+          <!-- Unit 5 -->
+          <div class="unit-card reveal" data-delay="5" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:40px;">
+            <div class="unit-content" style="position:relative;z-index:1;">
+              <div class="unit-status" style="margin-bottom:12px;position:static;"><span class="status-dot status--live"></span><span>DISPONÍVEL</span></div>
+              <h3 class="unit-name">ROSSO BURGUER VILA PRUDENTE</h3>
+              <address class="unit-address">São Paulo – SP</address>
+            </div>
+            <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">05</div>
+            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+              <a href="https://wa.me/5511993471000?text=Ol%C3%A1!+Vi+no+site+e+gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Vila+Prudente" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---vila-prudente-vila-prudente/d45b7eaa-a1b5-415e-b802-e73f2617e989" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
+    </section>
   </div><!-- END UNIDADES -->
 
-  <!-- PAGE: DELIVERY -->
-  <div id="page-delivery" class="spa-page">
-    <div class="subpage-hero" style="min-height:50vh;background:radial-gradient(ellipse 50% 70% at 50% 50%,rgba(218,41,28,0.25) 0%,transparent 65%),#0a0a0a;">
-      <span class="subpage-ghost" aria-hidden="true" style="opacity:0.035;">DELIVERY</span>
-      <div class="delivery-hero-particles">
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
-      </div>
-      <span class="hero-label reveal" data-delay="1">PEÇA AGORA</span>
-      <h1 class="hero-title reveal" data-delay="2">ENTREGUE.<br>QUENTE.<br>AGORA.</h1>
-      <p class="hero-subtitle reveal" data-delay="3" style="margin-bottom:0;">Na sua porta em até 45 minutos pelos melhores apps de São Paulo.</p>
-      <div class="delivery-urgency-badge reveal" data-delay="4">⚡ Entrega em até 25 min</div>
-      <button class="delivery-scroll-cta reveal" data-delay="5" onclick="document.getElementById('delivery-partners').scrollIntoView({behavior:'smooth'})">
-        ESCOLHA SUA PLATAFORMA
-        <span class="scroll-arrow">↓</span>
-      </button>
-    </div>
-
-    <div class="delivery-partners-grid" id="delivery-partners">
-      <!-- iFood -->
-      <div class="partner-card reveal" data-brand="ifood" data-delay="1">
-        <div class="partner-status"><span class="dot"></span> DISPONÍVEL AGORA</div>
-        <div class="partner-name">iFood</div>
-        <div class="partner-sub">Entrega em até 45 min · Maior cobertura de SP</div>
-        <div class="partner-tag">🎁 Frete grátis no 1º pedido</div>
-        <a href="https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood" target="_blank" rel="noopener noreferrer" class="partner-btn"><span>PEDIR NO IFOOD →</span></a>
-      </div>
-      <!-- Rappi -->
-      <div class="partner-card reveal" data-brand="rappi" data-delay="2">
-        <div class="partner-status"><span class="dot"></span> DISPONÍVEL AGORA</div>
-        <div class="partner-name">Rappi</div>
-        <div class="partner-sub">Entrega rápida · Cashback em RappiCredits</div>
-        <div class="partner-tag">⚡ Turbo entrega em 25 min</div>
-        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" target="_blank" rel="noopener noreferrer" class="partner-btn"><span>PEDIR NO RAPPI →</span></a>
-      </div>
-      <!-- Keeta -->
-      <div class="partner-card reveal" data-brand="keeta" data-delay="3">
-        <div class="partner-status"><span class="dot"></span> DISPONÍVEL AGORA</div>
-        <div class="partner-name">Keeta</div>
-        <div class="partner-sub">Entrega expressa · Acompanhe em tempo real</div>
-        <div class="partner-tag">📍 Rastreamento ao vivo</div>
-        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.sankuai.sailor.afooddelivery" target="_blank" rel="noopener noreferrer" class="partner-btn"><span>PEDIR NO KEETA →</span></a>
-      </div>
-      <!-- 99Food -->
-      <div class="partner-card reveal" data-brand="99food" data-delay="4">
-        <div class="partner-status"><span class="dot"></span> DISPONÍVEL AGORA</div>
-        <div class="partner-name">99Food</div>
-        <div class="partner-sub">Pagamento fácil · Cashback via Pix</div>
-        <div class="partner-tag">💳 Pix ou cartão</div>
-        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.taxis99" target="_blank" rel="noopener noreferrer" class="partner-btn"><span>PEDIR NO 99FOOD →</span></a>
+    <div id="page-delivery" class="spa-page">
+    <div class="subpage-hero" style="min-height:40vh;background:linear-gradient(160deg,#0a0a0a 0%,#111 60%,#1a0a0a 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;">
+      <div>
+        <span class="eyebrow">DELIVERY</span>
+        <h1 class="section-title" style="font-size:clamp(56px,8vw,100px);margin-bottom:16px;">PEÇA ONDE<br><span class="text-red">ESTIVER.</span></h1>
+        <p style="color:var(--gray-1);font-size:17px;max-width:480px;margin:0 auto;">Rosso Burguer disponível pelo iFood ou direto pelo WhatsApp. Escolha sua unidade.</p>
       </div>
     </div>
 
-    <div class="how-it-works">
-      <h2 class="how-title reveal">COMO FUNCIONA</h2>
-      <p class="how-sub reveal" data-delay="1">Do pedido à sua porta em 4 passos simples.</p>
-      <div class="steps-grid">
-        <div class="step reveal" data-delay="1" data-ghost="01">
-          <div class="step-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
-          <div class="step-num">PASSO 01</div>
-          <h3 class="step-title">ESCOLHA SEU LANCHE</h3>
-          <p class="step-text">Navegue pelo cardápio no app e monte seu pedido do jeito que quiser.</p>
+    <section class="section" style="background:var(--surface-1);">
+      <div class="container">
+        <div class="section-header-center reveal" style="margin-bottom:48px;">
+          <span class="eyebrow">PLATAFORMAS</span>
+          <h2 class="section-title-xl">COMO PEDIR.</h2>
         </div>
-        <div class="step reveal" data-delay="2" data-ghost="02">
-          <div class="step-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="step-num">PASSO 02</div>
-          <h3 class="step-title">CONFIRME O ENDEREÇO</h3>
-          <p class="step-text">Entregamos onde você estiver em São Paulo e região.</p>
-        </div>
-        <div class="step reveal" data-delay="3" data-ghost="03">
-          <div class="step-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div class="step-num">PASSO 03</div>
-          <h3 class="step-title">ACOMPANHE AO VIVO</h3>
-          <p class="step-text">Veja o status em tempo real direto no app do delivery.</p>
-        </div>
-        <div class="step reveal" data-delay="4" data-ghost="04">
-          <div class="step-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-          <div class="step-num">PASSO 04</div>
-          <h3 class="step-title">RECEBA E APROVEITE</h3>
-          <p class="step-text">Quente, fresco e perfeito. Do jeito que saiu da chapa.</p>
-        </div>
-      </div>
-    </div>
 
-    <div class="faq-section">
-      <h2 class="faq-title reveal">PERGUNTAS FREQUENTES</h2>
-      <p class="faq-sub reveal" data-delay="1">Tudo o que você precisa saber sobre o delivery Rosso Burguer.</p>
-      <div class="faq-item"><button class="faq-question"><span>QUAL O PRAZO MÉDIO DE ENTREGA?</span><span class="faq-arrow">▼</span></button><div class="faq-answer">Entre 25 e 45 minutos dependendo da sua localização e horário de pico. Você acompanha em tempo real pelo app.</div></div>
-      <div class="faq-item"><button class="faq-question"><span>EXISTE TAXA DE ENTREGA?</span><span class="faq-arrow">▼</span></button><div class="faq-answer">Depende da plataforma e da distância. Muitos pedidos têm frete grátis em promoções. Recomendamos comparar as quatro plataformas antes de pedir.</div></div>
-      <div class="faq-item"><button class="faq-question"><span>O CARDÁPIO É IGUAL AO DO RESTAURANTE?</span><span class="faq-arrow">▼</span></button><div class="faq-answer">Sim. Mesmo cardápio, mesmos ingredientes frescos, mesma qualidade. O único item que não vai pelo delivery é o pão recém-saído do forno — por isso embalamos com técnica especial.</div></div>
-      <div class="faq-item"><button class="faq-question"><span>POSSO PEDIR COMBOS ESPECIAIS?</span><span class="faq-arrow">▼</span></button><div class="faq-answer">Sim! Adicione suas preferências nas observações do pedido. Nossos atendentes leem todas as notas antes de montar o hambúrguer.</div></div>
-      <div class="faq-item"><button class="faq-question"><span>QUAL PLATAFORMA TEM MELHOR PREÇO?</span><span class="faq-arrow">▼</span></button><div class="faq-answer">Recomendamos comparar as quatro antes de pedir — promoções mudam com frequência. O 99Food oferece cashback via Pix, o Rappi tem RappiCredits e o iFood costuma ter cupons de primeira compra.</div></div>
-    </div>
+        <div style="display:grid;grid-template-columns:1fr;gap:24px;max-width:800px;margin:0 auto 80px;">
+          <!-- iFood -->
+          <div class="partner-card reveal" data-brand="ifood" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
+            <div style="width:80px;height:80px;background:#EA1D2C;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:var(--font-display);font-size:11px;letter-spacing:0.1em;color:white;text-align:center;">iFOOD</div>
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">iFood</h3>
+              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Maior cobertura de São Paulo e Jundiaí · Entrega em até 45 min · Rastreamento em tempo real</p>
+            </div>
+            <a href="#unidades" onclick="showPage('home');setTimeout(()=>document.getElementById('unidades').scrollIntoView({behavior:'smooth'}),100);return false;" class="btn btn--primary" style="white-space:nowrap;">VER LOJAS →</a>
+          </div>
 
-    <div class="delivery-cta-final">
-      <div class="cta-divider"></div>
-      <h2 class="cta-headline reveal">Prefere retirar na loja?</h2>
-      <p class="cta-sub reveal" data-delay="1">Faça seu pedido pelo app e retire em qualquer unidade sem fila.</p>
-      <div class="cta-btns reveal" data-delay="2">
-        <a href="#" onclick="showPage('unidades'); return false;" class="btn btn--primary">VER NOSSAS UNIDADES →</a>
-        <a href="#" onclick="showPage('cardapio'); return false;" class="btn btn--outline">VER CARDÁPIO →</a>
+          <!-- WhatsApp Direto -->
+          <div class="partner-card reveal" data-delay="1" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
+            <div style="width:80px;height:80px;background:#25D366;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">WhatsApp Direto</h3>
+              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Peça diretamente com a nossa equipe · Atendimento personalizado · Resposta rápida</p>
+            </div>
+            <a href="#unidades" onclick="showPage('home');setTimeout(()=>document.getElementById('unidades').scrollIntoView({behavior:'smooth'}),100);return false;" class="btn btn--outline" style="white-space:nowrap;">VER LOJAS →</a>
+          </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="how-it-works reveal" style="border-top:1px solid var(--border);padding-top:60px;">
+          <h2 class="how-title">COMO FUNCIONA.</h2>
+          <p class="how-sub">Do pedido ao seu prato, em minutos.</p>
+          <div class="steps-grid" style="grid-template-columns:repeat(3,1fr);">
+            <div class="step-item">
+              <div class="step-num">01</div>
+              <h3 class="step-title">Escolha a Unidade</h3>
+              <p class="step-body">Clique em "Ver Lojas" e escolha a unidade mais próxima de você.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">02</div>
+              <h3 class="step-title">Faça o Pedido</h3>
+              <p class="step-body">Peça pelo WhatsApp ou acesse nosso iFood direto pela unidade.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">03</div>
+              <h3 class="step-title">Receba em Casa</h3>
+              <p class="step-body">Seu Rosso Burguer preparado na parrilla chega quentinho até você.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
   </div><!-- END DELIVERY -->
 
   <!-- PAGE: CARREIRAS -->
@@ -2860,8 +2935,8 @@
     <div class="subpage-hero careers-hero">
       <span class="subpage-ghost" aria-hidden="true" style="opacity:0.035;">TIME</span>
       <span class="hero-label">TRABALHE CONOSCO</span>
-      <h1 class="hero-title">ENTRE PARA<br>O <span class="text-red">AURA.</span></h1>
-      <p class="hero-subtitle">Se você gosta de operação bem feita, atendimento forte, cozinha viva e ritmo alto, queremos conhecer seu perfil. Preencha sua candidatura, anexe seu currículo e candidate-se para oportunidades no Rosso Burguer.</p>
+      <h1 class="hero-title">TRAMPE NO<br><span class="text-red">ROSSO.</span></h1>
+      <p class="hero-subtitle">Se você gosta de ritmo intenso, parrilla viva e time de verdade, o Rosso é o seu lugar. Preencha sua candidatura e faça parte da família Rosso Burguer.</p>
       <div class="careers-hero-actions">
         <a href="#careersFormAnchor" class="btn btn--primary">PREENCHER CANDIDATURA &rarr;</a>
       </div>
@@ -2935,7 +3010,7 @@
               <h2 class="careers-form-title">MONTE SUA CANDIDATURA</h2>
               <p class="careers-form-sub">Preencha os campos com atenção para que o time consiga avaliar seu perfil com mais rapidez. Quanto mais completo o cadastro, melhor a análise da candidatura.</p>
             </div>
-            <div class="careers-badge">RH ROSSO BURGUER</div>
+            <div class="careers-badge">TRAMPE NO ROSSO</div>
           </div>
 
           <form id="careersForm" class="careers-form" enctype="multipart/form-data" onsubmit="handleCareersSubmit(event)">
@@ -2954,7 +3029,7 @@
 
               <div class="careers-field">
                 <label class="careers-label" for="careerPhone">WhatsApp</label>
-                <input class="careers-input" id="careerPhone" name="phone" type="tel" placeholder="(11) 99999-9999" required>
+                <input class="careers-input" id="careerPhone" name="phone" type="tel" placeholder="contato@rossoburguer.com.br" required>
               </div>
 
               <div class="careers-field">
@@ -3077,7 +3152,7 @@
           <ul>
             <li>contato@rossoburguer.com.br</li>
             <li>rh@rossoburguer.com.br</li>
-            <li>(11) 99999-9999</li>
+            <li>contato@rossoburguer.com.br</li>
           </ul>
         </div>
         
@@ -3175,21 +3250,147 @@
   <!-- JAVASCRIPT -->
   <script>
     /* ── MENU DATA ── */
-    const menuData = [
-      { id:'rosso-classico', category:'hamburguer', catLabel:'HAMBÚRGUER', name:'Rosso Clássico', tagline:'O original que virou lenda.', image:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=85', badge:{label:'MAIS PEDIDO',type:'top'}, desc:'Pão brioche artesanal, blend 160g na parrilla, queijo prato derretido, alface americana, tomate e nossa maionese secreta.', ingredients:['Pão Brioche','Blend 160g Costela','Queijo Prato','Alface Americana','Tomate','Maionese Verde'], extras:[{name:'Bacon Crocante',price:6},{name:'Cheddar Extra',price:4},{name:'Ovo Caipira',price:4}], price:36, kcal:780, prepTime:'12 min', rating:4.9, reviews:2847, popular:true, isNew:false },
-      { id:'duplo-cheddar', category:'hamburguer', catLabel:'HAMBÚRGUER', name:'Duplo Cheddar', tagline:'Dois blends. Cheddar sem limites.', image:'https://images.unsplash.com/photo-1550317138-10000687a72b?w=600&q=80', badge:null, desc:'Pão australiano, dois blends 160g, muito cheddar cremoso, fatias de bacon crocante e cebola caramelizada.', ingredients:['Pão Australiano','2× Blend 160g','Cheddar Cremoso','Bacon Crocante','Cebola Caramelizada'], extras:[{name:'Bacon Extra',price:6},{name:'Cheddar Extra',price:4},{name:'Picles',price:2}], price:48, kcal:1020, prepTime:'14 min', rating:4.8, reviews:1923, popular:false, isNew:false },
-      { id:'smash-duplo', category:'hamburguer', catLabel:'HAMBÚRGUER', name:'Smash Duplo', tagline:'Crocante por fora. Suculento por dentro.', image:'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=600&q=80', badge:{label:'NOVO',type:'novo'}, desc:'Pão de batata, dois smash burgers de 90g, american cheese, picles e mostarda escura.', ingredients:['Pão de Batata','2× Smash 90g','American Cheese','Picles','Mostarda Escura'], extras:[{name:'Bacon Crocante',price:6},{name:'Jalapeño',price:3},{name:'Molho Secreto Extra',price:2}], price:32, kcal:720, prepTime:'10 min', rating:4.7, reviews:842, popular:false, isNew:true },
-      { id:'vegano-da-vila', category:'hamburguer', catLabel:'HAMBÚRGUER', name:'Vegano da Vila', tagline:'Sem carne. Com toda a alma.', image:'https://images.unsplash.com//assets/rosso/lanche-02.jpeg', badge:{label:'VEGANO',type:'vegano'}, desc:'Pão vegano, hambúrguer de grão de bico e cogumelos, queijo vegano, rúcula e maionese de alho assado.', ingredients:['Pão Vegano','Hambúrguer Grão-de-Bico','Queijo Vegano','Rúcula','Maionese de Alho'], extras:[{name:'Cogumelos Extra',price:5},{name:'Abacate',price:4},{name:'Rúcula Extra',price:2}], price:38, kcal:580, prepTime:'12 min', rating:4.6, reviews:514, popular:false, isNew:false },
-      { id:'o-classico', category:'hamburguer', catLabel:'HAMBÚRGUER', name:'O Clássico', tagline:'Simples assim. Perfeito assim.', image:'https://images.unsplash.com//assets/rosso/batata-frita.jpeg', badge:null, desc:'Pão macio, blend 120g, queijo americano, ketchup artesanal, mostarda e picles crocante.', ingredients:['Pão Macio','Blend 120g','Queijo Americano','Ketchup Artesanal','Mostarda','Picles'], extras:[{name:'Bacon Crocante',price:6},{name:'Ovo',price:3},{name:'Cheddar Extra',price:4}], price:28, kcal:650, prepTime:'10 min', rating:4.5, reviews:1102, popular:false, isNew:false },
-      { id:'trufa-negra', category:'hamburguer', catLabel:'HAMBÚRGUER', name:'Trufa Negra', tagline:'O mais premium da nossa cozinha.', image:'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=600&q=80', badge:{label:'ESPECIAL',type:'especial'}, desc:'Pão brioche negro, blend wagyu 180g, brie derretido, cebola crispy e aioli de trufa negra.', ingredients:['Pão Brioche Negro','Blend Wagyu 180g','Brie Derretido','Cebola Crispy','Aioli de Trufa Negra'], extras:[{name:'Foie Gras',price:18},{name:'Trufa Extra',price:12},{name:'Bacon Ibérico',price:10}], price:58, kcal:960, prepTime:'16 min', rating:4.9, reviews:678, popular:false, isNew:false },
-      { id:'fritas-da-casa', category:'acompanhamento', catLabel:'ACOMPANHAMENTO', name:'Fritas da Casa', tagline:'Crocantes. Temperadas. Irresistíveis.', image:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&q=80', badge:{label:'MAIS PEDIDO',type:'top'}, desc:'Batatas rústicas com casca, temperadas com sal grosso e alecrim. Crocantes por fora, macias por dentro.', ingredients:['Batata Rústica com Casca','Sal Grosso','Alecrim','Azeite Extra-virgem'], extras:[{name:'Cheddar Cremoso',price:6},{name:'Bacon Bits',price:4},{name:'Cebola Crispy',price:3}], price:18, kcal:380, prepTime:'8 min', rating:4.8, reviews:3421, popular:true, isNew:false },
-      { id:'fritas-cheddar', category:'acompanhamento', catLabel:'ACOMPANHAMENTO', name:'Fritas com Cheddar', tagline:'Nossa frita favorita, no próximo nível.', image:'https://images.unsplash.com/photo-1585109649139-366815a0d713?w=600&q=80', badge:null, desc:'Nossas fritas da casa cobertas com molho de cheddar cremoso e bacon bits crocante.', ingredients:['Batata Rústica','Molho Cheddar','Bacon Bits','Cebolinha'], extras:[{name:'Jalapeño',price:3},{name:'Bacon Extra',price:4},{name:'Cebola Crispy',price:3}], price:26, kcal:580, prepTime:'10 min', rating:4.7, reviews:1876, popular:false, isNew:false },
-      { id:'onion-rings', category:'acompanhamento', catLabel:'ACOMPANHAMENTO', name:'Onion Rings', tagline:'Empanados na hora, sem perdão.', image:'https://images.unsplash.com/photo-1639024471283-03518883512d?w=600&q=80', badge:null, desc:'Anéis de cebola empanados na hora, servidos com molho ranch da casa.', ingredients:['Cebola Doce','Empanado Artesanal','Molho Ranch da Casa'], extras:[{name:'Molho BBQ',price:3},{name:'Ranch Extra',price:2}], price:22, kcal:420, prepTime:'8 min', rating:4.6, reviews:965, popular:false, isNew:false },
-      { id:'shake-baunilha', category:'bebida', catLabel:'BEBIDA', name:'Shake de Baunilha', tagline:'Feito na hora. Cremoso sem limites.', image:'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&q=80', badge:{label:'MAIS PEDIDO',type:'top'}, desc:'Milkshake cremoso feito na hora com sorvete artesanal de baunilha madagáscar.', ingredients:['Sorvete Baunilha Madagáscar','Leite Integral','Chantilly'], extras:[{name:'Calda de Chocolate',price:3},{name:'Granola',price:2}], price:22, kcal:460, prepTime:'5 min', rating:4.8, reviews:2108, popular:true, isNew:false },
-      { id:'shake-chocolate', category:'bebida', catLabel:'BEBIDA', name:'Shake de Chocolate', tagline:'Intenso. Denso. Memorável.', image:'https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=600&q=80', badge:null, desc:'Milkshake denso de chocolate belga 70% com sorvete artesanal. Intenso e cremoso.', ingredients:['Chocolate Belga 70%','Sorvete Artesanal','Leite Integral','Chantilly'], extras:[{name:'Nutella',price:5},{name:'Granola',price:2}], price:22, kcal:510, prepTime:'5 min', rating:4.7, reviews:1543, popular:false, isNew:false },
-      { id:'limonada', category:'bebida', catLabel:'BEBIDA', name:'Limonada da Casa', tagline:'Fresca. Cremosa. Refrescante.', image:'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600&q=80', badge:null, desc:'Limonada suíça feita na hora, cremosa, no ponto certo de doce e azedo.', ingredients:['Limão Tahiti','Leite Condensado','Água com Gás','Hortelã'], extras:[{name:'Dose de Gim',price:12},{name:'Hortelã Extra',price:2}], price:14, kcal:180, prepTime:'4 min', rating:4.7, reviews:2234, popular:false, isNew:false },
-      { id:'brownie', category:'sobremesa', catLabel:'SOBREMESA', name:'Brownie Quente', tagline:'Quente, derretendo, com sorvete. Ponto.', image:'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=600&q=80', badge:null, desc:'Brownie de chocolate belga aquecido, servido com sorvete de creme e calda de caramelo.', ingredients:['Chocolate Belga','Sorvete de Creme','Calda de Caramelo','Nozes Trituradas'], extras:[{name:'Sorvete Extra',price:6},{name:'Calda de Chocolate',price:3}], price:19, kcal:560, prepTime:'6 min', rating:4.8, reviews:876, popular:false, isNew:false },
-      { id:'sundae', category:'sobremesa', catLabel:'SOBREMESA', name:'Sundae', tagline:'Clássico demais para ser ignorado.', image:'https://images.unsplash.com/photo-1570197782337-ccf3b76adbc6?w=600&q=80', badge:null, desc:'Sorvete artesanal com cobertura quente de chocolate, granola crocante e chantilly.', ingredients:['Sorvete Artesanal','Cobertura de Chocolate Quente','Granola Crocante','Chantilly'], extras:[{name:'Calda de Caramelo',price:3},{name:'Amendoim',price:2}], price:16, kcal:420, prepTime:'5 min', rating:4.6, reviews:621, popular:false, isNew:false },
+        const menuData = [
+      {
+        id:'rosso-classico', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Rosso Clássico', tagline:'O clássico que fez a nossa história.',
+        image:'/assets/rosso/hero-dois-lanches.jpeg',
+        badge:{label:'MAIS PEDIDO',type:'top'},
+        desc:'Pão brioche artesanal, blend 160g na parrilla à lenha, queijo prato derretido, alface americana, tomate e nossa maionese secreta.',
+        ingredients:['Pão Brioche','Blend 160g Parrilla','Queijo Prato','Alface Americana','Tomate','Maionese Secreta'],
+        extras:[{name:'Bacon Crocante',price:6},{name:'Cheddar Extra',price:4},{name:'Ovo Caipira',price:4}],
+        price:36, kcal:780, prepTime:'12 min', rating:4.9, reviews:2847, popular:true, isNew:false
+      },
+      {
+        id:'duplo-cheddar', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Duplo Cheddar', tagline:'Dois blends. Cheddar que escorre.',
+        image:'/assets/rosso/lanche-queijo.jpeg',
+        badge:null,
+        desc:'Pão australiano, dois blends 160g na parrilla, muito cheddar cremoso, fatias de bacon crocante e cebola caramelizada.',
+        ingredients:['Pão Australiano','2× Blend 160g','Cheddar Cremoso','Bacon Crocante','Cebola Caramelizada'],
+        extras:[{name:'Bacon Extra',price:6},{name:'Cheddar Extra',price:4},{name:'Picles',price:2}],
+        price:48, kcal:1020, prepTime:'14 min', rating:4.8, reviews:1923, popular:false, isNew:false
+      },
+      {
+        id:'smash-rosso', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Smash Rosso', tagline:'Crocante por fora. Suculento por dentro.',
+        image:'/assets/rosso/lanche-01.jpeg',
+        badge:{label:'NOVO',type:'novo'},
+        desc:'Pão de batata, dois smash burgers 90g na parrilla, american cheese, picles e mostarda artesanal.',
+        ingredients:['Pão de Batata','2× Smash 90g Parrilla','American Cheese','Picles','Mostarda Artesanal'],
+        extras:[{name:'Bacon Crocante',price:6},{name:'Jalapeño',price:3},{name:'Molho Rosso Extra',price:2}],
+        price:34, kcal:720, prepTime:'10 min', rating:4.7, reviews:842, popular:false, isNew:true
+      },
+      {
+        id:'rosso-especial', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Rosso Especial', tagline:'O mais completo da nossa parrilla.',
+        image:'/assets/rosso/lanche-02.jpeg',
+        badge:{label:'ESPECIAL',type:'especial'},
+        desc:'Pão brioche artesanal, blend 200g wagyu na parrilla, queijo brie, rúcula, cebola caramelizada e molho especial Rosso.',
+        ingredients:['Pão Brioche','Blend 200g Wagyu','Queijo Brie','Rúcula','Cebola Caramelizada','Molho Rosso'],
+        extras:[{name:'Bacon Extra',price:6},{name:'Trufa',price:10},{name:'Ovo Caipira',price:4}],
+        price:54, kcal:960, prepTime:'16 min', rating:4.9, reviews:678, popular:false, isNew:false
+      },
+      {
+        id:'rosso-bacon', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Rosso Bacon', tagline:'Pra quem gosta de intensidade.',
+        image:'/assets/rosso/lanche-queijo.jpeg',
+        badge:null,
+        desc:'Pão rústico, blend 160g na parrilla, creme de cheddar, fatias generosas de bacon e molho defumado.',
+        ingredients:['Pão Rústico','Blend 160g Parrilla','Creme Cheddar','Bacon Generoso','Molho Defumado'],
+        extras:[{name:'Bacon Extra',price:6},{name:'Jalapeño',price:3},{name:'Cheddar Extra',price:4}],
+        price:42, kcal:890, prepTime:'12 min', rating:4.8, reviews:1102, popular:false, isNew:false
+      },
+      {
+        id:'rosso-frango', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Rosso Frango', tagline:'Leveza com a assinatura Rosso.',
+        image:'/assets/rosso/lanche-01.jpeg',
+        badge:null,
+        desc:'Pão brioche, filé de frango empanado artesanal, queijo prato, alface, tomate e maionese de ervas.',
+        ingredients:['Pão Brioche','Frango Empanado Artesanal','Queijo Prato','Alface','Tomate','Maionese de Ervas'],
+        extras:[{name:'Bacon Crocante',price:6},{name:'Cheddar Extra',price:4},{name:'Abacaxi Grelhado',price:3}],
+        price:38, kcal:680, prepTime:'12 min', rating:4.6, reviews:514, popular:false, isNew:false
+      },
+      {
+        id:'fritas-rosso', category:'acompanhamento', catLabel:'ACOMPANHAMENTO',
+        name:'Fritas Rosso', tagline:'Crocantes. Temperadas. Irresistíveis.',
+        image:'/assets/rosso/batata-frita.jpeg',
+        badge:{label:'MAIS PEDIDO',type:'top'},
+        desc:'Batatas rústicas com casca, temperadas com sal grosso e ervas. Crocantes por fora, macias por dentro.',
+        ingredients:['Batata Rústica com Casca','Sal Grosso','Ervas Frescas','Azeite'],
+        extras:[{name:'Cheddar Cremoso',price:6},{name:'Bacon Bits',price:4},{name:'Cebola Crispy',price:3}],
+        price:18, kcal:380, prepTime:'8 min', rating:4.8, reviews:3421, popular:true, isNew:false
+      },
+      {
+        id:'fritas-cheddar', category:'acompanhamento', catLabel:'ACOMPANHAMENTO',
+        name:'Fritas com Cheddar', tagline:'Nossa frita favorita, no próximo nível.',
+        image:'/assets/rosso/batata-cheddar.jpeg',
+        badge:null,
+        desc:'Nossas fritas cobertas com molho de cheddar cremoso e bacon bits crocante.',
+        ingredients:['Batata Rústica','Molho Cheddar','Bacon Bits','Cebolinha'],
+        extras:[{name:'Jalapeño',price:3},{name:'Bacon Extra',price:4},{name:'Cebola Crispy',price:3}],
+        price:26, kcal:580, prepTime:'10 min', rating:4.7, reviews:1876, popular:false, isNew:false
+      },
+      {
+        id:'onion-rings', category:'acompanhamento', catLabel:'ACOMPANHAMENTO',
+        name:'Onion Rings', tagline:'Empanados na hora, sem perdão.',
+        image:'/assets/rosso/batata-frita.jpeg',
+        badge:null,
+        desc:'Anéis de cebola empanados artesanalmente, servidos com molho aioli da casa.',
+        ingredients:['Cebola Doce','Empanado Artesanal','Molho Aioli da Casa'],
+        extras:[{name:'Molho BBQ',price:3},{name:'Aioli Extra',price:2}],
+        price:22, kcal:420, prepTime:'8 min', rating:4.6, reviews:965, popular:false, isNew:false
+      },
+      {
+        id:'shake-baunilha', category:'bebida', catLabel:'BEBIDA',
+        name:'Shake de Baunilha', tagline:'Feito na hora. Cremoso sem limites.',
+        image:'/assets/rosso/batata-cheddar.jpeg',
+        badge:{label:'MAIS PEDIDO',type:'top'},
+        desc:'Milkshake cremoso feito na hora com sorvete artesanal de baunilha madagáscar.',
+        ingredients:['Sorvete Baunilha Madagáscar','Leite Integral','Chantilly'],
+        extras:[{name:'Calda de Chocolate',price:3},{name:'Granola',price:2}],
+        price:22, kcal:460, prepTime:'5 min', rating:4.8, reviews:2108, popular:true, isNew:false
+      },
+      {
+        id:'shake-chocolate', category:'bebida', catLabel:'BEBIDA',
+        name:'Shake de Chocolate', tagline:'Intenso. Denso. Memorável.',
+        image:'/assets/rosso/batata-cheddar.jpeg',
+        badge:null,
+        desc:'Milkshake denso de chocolate belga 70% com sorvete artesanal. Intenso e cremoso.',
+        ingredients:['Chocolate Belga 70%','Sorvete Artesanal','Leite Integral','Chantilly'],
+        extras:[{name:'Nutella',price:5},{name:'Granola',price:2}],
+        price:22, kcal:510, prepTime:'5 min', rating:4.7, reviews:1543, popular:false, isNew:false
+      },
+      {
+        id:'limonada', category:'bebida', catLabel:'BEBIDA',
+        name:'Limonada da Casa', tagline:'Fresca. Cremosa. Refrescante.',
+        image:'/assets/rosso/batata-frita.jpeg',
+        badge:null,
+        desc:'Limonada suíça feita na hora, cremosa, no ponto certo de doce e azedo.',
+        ingredients:['Limão Tahiti','Leite Condensado','Água com Gás','Hortelã'],
+        extras:[{name:'Dose de Gim',price:12},{name:'Hortelã Extra',price:2}],
+        price:14, kcal:180, prepTime:'4 min', rating:4.7, reviews:2234, popular:false, isNew:false
+      },
+      {
+        id:'brownie', category:'sobremesa', catLabel:'SOBREMESA',
+        name:'Brownie Quente', tagline:'Quente, derretendo, com sorvete. Ponto.',
+        image:'/assets/rosso/batata-cheddar.jpeg',
+        badge:null,
+        desc:'Brownie de chocolate belga aquecido, servido com sorvete de creme e calda de caramelo.',
+        ingredients:['Chocolate Belga','Sorvete de Creme','Calda de Caramelo','Nozes Trituradas'],
+        extras:[{name:'Sorvete Extra',price:6},{name:'Calda de Chocolate',price:3}],
+        price:19, kcal:560, prepTime:'6 min', rating:4.8, reviews:876, popular:false, isNew:false
+      },
+      {
+        id:'sundae', category:'sobremesa', catLabel:'SOBREMESA',
+        name:'Sundae Rosso', tagline:'Clássico demais para ser ignorado.',
+        image:'/assets/rosso/batata-cheddar.jpeg',
+        badge:null,
+        desc:'Sorvete artesanal com cobertura quente de chocolate, granola crocante e chantilly.',
+        ingredients:['Sorvete Artesanal','Cobertura de Chocolate Quente','Granola Crocante','Chantilly'],
+        extras:[{name:'Calda de Caramelo',price:3},{name:'Amendoim',price:2}],
+        price:16, kcal:420, prepTime:'5 min', rating:4.6, reviews:621, popular:false, isNew:false
+      },
     ];
 
     function getCurrentLanguage() {
