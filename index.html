@@ -4194,7 +4194,12 @@
     }
   })();
   </script>
-  <script type="module" src="i18n.js"></script>
+  <!-- i18n removed: PT-only -->
+  <script>
+    // Minimal shim: tr(key) returns key (PT), window.t = null
+    window.i18n = null;
+    window.t = null;
+  </script>
   <script>
   /* Floating Particles for Hero */
   (function() {
