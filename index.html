@@ -216,16 +216,15 @@
     }
 
     .hero-split-left {
-      width: 52%;
-      max-width: 680px;
+      width: 50%;
       height: 100%;
       position: relative;
       z-index: 4;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-left: max(5%, calc((100vw - 1280px) / 2));
-      padding-right: 40px;
+      padding-left: clamp(28px, 5vw, 80px);
+      padding-right: 32px;
     }
 
     .hero-split-right {
@@ -397,11 +396,11 @@
     .hero-headline {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(88px, 11vw, 168px);
-      line-height: 0.82;
+      font-size: clamp(58px, 5.8vw, 94px);
+      line-height: 0.84;
       text-transform: uppercase;
-      margin: 0 0 28px;
-      letter-spacing: -0.03em;
+      margin: 0 0 26px;
+      letter-spacing: -0.02em;
       position: relative;
       z-index: 2;
     }
@@ -538,38 +537,34 @@
     @media (max-width: 768px) {
       .hero-split-left {
         width: 100%;
-        max-width: 100%;
         padding-left: 24px;
-        padding-right: 24px;
         padding-right: 24px;
         align-items: center;
         text-align: center;
       }
-      .hero-split-right {
-        left: 0;
-        right: 0;
-        width: 100%;
-      }
-      .hero-media {
-        object-position: 65% center !important;
-      }
+      .hero-split-right { left: 0; right: 0; width: 100%; }
+      .hero-media { object-position: 60% center !important; }
       .hero-gradient-overlay {
         background:
-          linear-gradient(180deg, rgba(7,6,6,0.72) 0%, rgba(7,6,6,0.28) 30%, rgba(7,6,6,0.85) 100%),
-          radial-gradient(ellipse at 58% 20%, rgba(200,16,46,0.2) 0%, transparent 36%);
+          linear-gradient(180deg, rgba(7,6,6,0.78) 0%, rgba(7,6,6,0.32) 28%, rgba(7,6,6,0.88) 100%);
       }
-      .hero-bottom-shadow { height: 200px; }
-      .hero { min-height: 620px; }
-      .hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; padding-top: 82px; padding-bottom: 32px; }
-      .hero-sub { font-size: 13px; line-height: 1.55; max-width: 300px; }
-      .hero-ctas { justify-content: center; }
-      .hero-pills { justify-content: center; }
+      .hero-bottom-shadow { height: 160px; }
+      .hero { min-height: 100svh; min-height: 620px; }
+      .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 90px;
+        padding-bottom: 24px;
+        gap: 0;
+      }
+      .hero-badge { margin-bottom: 14px; }
+      .hero-headline { font-size: clamp(44px, 11.5vw, 68px); margin-bottom: 18px; }
+      .hero-sub { font-size: 13px; line-height: 1.58; max-width: 290px; margin-bottom: 24px; }
+      .hero-ctas { justify-content: center; margin-bottom: 0; }
+      .hero-pills { display: none; }
       .scroll-indicator { display: none; }
-    }
-    @media (max-width: 480px) {
-      .hero { min-height: 640px; }
-      .hero-headline { font-size: clamp(80px, 22vw, 120px); }
-      .hero-sub { font-size: 13px; max-width: 280px; }
     }
 
     .scroll-indicator { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 12; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.5; animation: scrollFade 2s ease-in-out infinite; }
@@ -2365,13 +2360,13 @@
       <div class="hero-content">
         <span class="hero-badge reveal" data-delay="1">São Paulo &amp; Jundiaí &nbsp;·&nbsp; Desde 2017</span>
         <h1 class="hero-headline">
-          <span class="line reveal" data-delay="2">BLEND.</span>
-          <span class="line reveal" data-delay="3">BRASA.</span>
+          <span class="line reveal" data-delay="2">BLEND BOVINO.</span>
+          <span class="line reveal" data-delay="3">BRASA À LENHA.</span>
           <span class="line line--red reveal" data-delay="4">ROSSO.</span>
         </h1>
         <p class="hero-sub reveal" data-delay="5">
-          Blend bovino artesanal, brasa à lenha, tradição italiana.<br>
-          Hambúrguer feito com identidade própria desde 2017.
+          Hambúrguer artesanal na parrilla à lenha.<br>
+          Tradição italiana em cada pedido, desde 2017.
         </p>
         <div class="hero-ctas reveal" data-delay="5">
           <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--primary">ESCOLHER LOJA &rarr;</a>
