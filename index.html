@@ -22,9 +22,7 @@
       --red-hover: #ff1f25;
       --green: #2d6a4f;
       --green-hover: #245c43;
-      --orange: #2d6a4f;  /* kept as alias */
-      --green: #2d6a4f;
-      --green-hover: #245c43;
+      --orange: #E85D16;  /* Aura accent — kept for canvas compat */
       --white: #FFFFFF;
       --gray-1: #888888;
       --gray-2: #555555;
@@ -149,55 +147,7 @@
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 300ms var(--ease-smooth); }
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-8px); }
-    .reveal[data-delay="1"] { transition-delay: 100ms; }
-    .reveal[data-delay="2"] { transition-delay: 200ms; }
-    .reveal[data-delay="3"] { transition-delay: 300ms; }
-    .reveal[data-delay="4"] { transition-delay: 400ms; }
-    .reveal[data-delay="5"] { transition-delay: 500ms; }
 
-    /* BUTTONS */
-    .btn {
-      font-family: var(--font-display); font-weight: 700; font-size: 14px;
-      letter-spacing: 0.15em; text-transform: uppercase; padding: 16px 32px;
-      border: none; display: inline-flex; align-items: center; gap: 8px;
-      transition: all var(--dur-fast) var(--ease-smooth); position: relative; overflow: hidden;
-    }
-    .btn::after {
-      content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.1);
-      transform: translateX(-100%); transition: transform 300ms var(--ease-smooth);
-    }
-    .btn:hover::after { transform: translateX(0); }
-    .btn--primary { background: var(--red); color: var(--white); }
-    .btn--primary:hover { background: var(--red-hover); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(232, 22, 27, 0.4); }
-    .btn--outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.4); }
-    .btn--outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
-
-    /* NAVBAR */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0;
-      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent; transition: border-color var(--dur-med), background var(--dur-med);
-      height: 72px; display: flex; align-items: center;
-    }
-    .navbar.scrolled { background: rgba(8,8,8,0.97); border-bottom-color: var(--red); box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
-    .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .navbar-logo { font-family: var(--font-display); font-weight: 900; font-size: 20px; text-transform: uppercase; color: var(--white); display: flex; align-items: center; gap: 10px; letter-spacing: 0.05em; }
-    .navbar-links { display: flex; gap: 40px; }
-    .nav-link { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-1); transition: color var(--dur-fast); position: relative; padding-bottom: 4px; }
-    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--red); transition: width var(--dur-fast) var(--ease-smooth); }
-    .nav-link:hover { color: var(--white); }
-    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-    .nav-link.active { color: var(--white); }
-    .navbar-actions { display: flex; align-items: center; gap: 20px; }
-    .lang-switcher { display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 4px; border-radius: 4px !important; z-index: 99; }
-    .lang-btn { background: transparent; border: none; color: var(--gray-1); font-family: var(--font-display); font-size: 13px; font-weight: 700; cursor: pointer; padding: 4px 8px; transition: all var(--dur-fast); border-radius: 2px !important; }
-    .lang-btn:hover { color: var(--white); }
-    .lang-btn.active { background: var(--red); color: var(--white); }
-    @media (max-width: 1024px) { .lang-switcher.hide-mobile { display: none !important; } }
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 300ms var(--ease-smooth); }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-8px); }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
     
     @media (max-width: 1024px) {
@@ -265,7 +215,7 @@
     .hero-lamp-pulse {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(255, 180, 100, 0.35) 0%, rgba(252, 140, 50, 0.1) 35%, transparent 60%);
+      background: radial-gradient(circle at center, rgba(200, 16, 46, 0.18) 0%, rgba(200, 16, 46, 0.05) 35%, transparent 60%);
       mix-blend-mode: color-dodge;
       animation: lamp-breathe 3.8s ease-in-out infinite alternate;
       z-index: 2;
@@ -290,7 +240,7 @@
     }
     .particle {
       position: absolute;
-      background: rgba(255, 140, 50, 0.4);
+      background: rgba(232, 22, 27, 0.35);
       border-radius: 50%;
       pointer-events: none;
       animation: particle-float linear infinite;
@@ -425,7 +375,7 @@
       position: relative;
       z-index: 50;
       margin-top: -1px;
-      background: var(--red);
+      background: var(--green);
     }
     .ticker-bridge::before {
       display: none;
@@ -435,7 +385,7 @@
       position: absolute;
       bottom: -32px; left: 0; right: 0;
       height: 32px;
-      background: linear-gradient(180deg, var(--red) 0%, #050505 100%);
+      background: linear-gradient(180deg, var(--green) 0%, #050505 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -494,7 +444,7 @@
     @keyframes scrollDrop { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 
     /* TICKER */
-    .ticker { background: var(--red); height: 40px; overflow: hidden; display: flex; align-items: center; }
+    .ticker { background: var(--green); height: 40px; overflow: hidden; display: flex; align-items: center; }
     .ticker-track { display: flex; gap: 0; white-space: nowrap; animation: ticker 20s linear infinite; will-change: transform; }
     .ticker-track span { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; padding: 0 20px; line-height: 40px; }
     .ticker-track .dot { padding: 0; opacity: 0.6; }
@@ -633,8 +583,8 @@
     .careers-hero {
       min-height: 46vh;
       background:
-        radial-gradient(circle at 50% 30%, rgba(232,22,27,0.16) 0%, rgba(232,22,27,0.02) 34%, transparent 58%),
-        linear-gradient(180deg, #1b0907 0%, #0f0f0f 42%, #080808 100%);
+        radial-gradient(circle at 50% 30%, rgba(45,106,79,0.18) 0%, rgba(45,106,79,0.03) 34%, transparent 58%),
+        linear-gradient(180deg, #071209 0%, #0f0f0f 42%, #080808 100%);
     }
     .careers-hero .hero-subtitle { max-width: 680px; }
     .careers-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 28px; position: relative; z-index: 1; }
@@ -958,10 +908,10 @@
     .filter-tabs { display: flex; gap: 0; overflow-x: auto; padding: 0 clamp(20px, 5vw, 80px); scrollbar-width: none; }
     .filter-tabs::-webkit-scrollbar { display: none; }
     .filter-tab { padding: 16px 20px; font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; background: transparent; border: none; border-bottom: 3px solid transparent; cursor: pointer; white-space: nowrap; transition: color 0.2s, border-color 0.2s; display: flex; align-items: center; gap: 6px; }
-    .filter-tab.active { color: #fff; border-bottom-color: var(--red); }
+    .filter-tab.active { color: #fff; border-bottom-color: var(--green); }
     .filter-tab:hover { color: #ccc; }
     .filter-count { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 4px; background: #1a1a1a; color: #444; font-size: 10px; font-weight: 700; letter-spacing: 0; border-radius: 0 !important; transition: background 0.2s, color 0.2s; }
-    .filter-tab.active .filter-count { background: var(--red); color: white; }
+    .filter-tab.active .filter-count { background: var(--green); color: white; }
     .filter-actions { display: flex; gap: 10px; align-items: center; padding: 8px clamp(20px, 5vw, 80px); border-top: 1px solid #181818; flex-wrap: wrap; }
     .filter-search-wrap { position: relative; display: flex; align-items: center; flex: 1; min-width: 180px; max-width: 320px; }
     .filter-search-icon { position: absolute; left: 11px; color: #3a3a3a; pointer-events: none; width: 14px; height: 14px; }
@@ -1027,7 +977,7 @@
     .value-text { font-size: 14px; color: #666; line-height: 1.7; }
 
     /* STATS BAR */
-    .stats-bar { background: var(--red); display: flex; justify-content: space-evenly; padding: 40px 24px; flex-wrap: wrap; gap: 24px; }
+    .stats-bar { background: var(--green); display: flex; justify-content: space-evenly; padding: 40px 24px; flex-wrap: wrap; gap: 24px; }
     .stat-item { text-align: center; }
     .stat-number { font-family: var(--font-display); font-weight: 700; font-size: 52px; color: white; line-height: 1; }
     .stat-label { font-family: var(--font-body); font-weight: 500; font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 8px; }
@@ -1039,7 +989,7 @@
     .units-search-input::placeholder { color: #444; }
     .city-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
     .city-tab { padding: 10px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #222; background: transparent; color: #555; cursor: pointer; transition: all 0.2s; }
-    .city-tab.active { background: var(--red); border-color: var(--red); color: white; }
+    .city-tab.active { background: var(--green); border-color: var(--green); color: white; }
     .city-tab:hover:not(.active) { border-color: #555; color: #ccc; }
     .units-page-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; background: #0a0a0a; }
     @media (max-width: 1024px) { .units-page-grid { grid-template-columns: repeat(2,1fr); } }
@@ -1052,7 +1002,7 @@
     .ucard-status.closed { color: var(--red); }
     .ucard-status.closed::before { content: '● '; }
     .ucard-district { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-transform: uppercase; color: white; }
-    .ucard-city { font-size: 12px; color: var(--red); font-weight: 600; margin: 4px 0 14px; }
+    .ucard-city { font-size: 12px; color: var(--green); font-weight: 600; margin: 4px 0 14px; }
     .ucard-address { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 12px; }
     .ucard-hours { font-size: 12px; color: #444; margin-bottom: 20px; line-height: 1.8; }
     .ucard-hours span { color: #666; }
@@ -1817,7 +1767,7 @@
       left: 0;
       width: 3px;
       height: 0%;
-      background: linear-gradient(180deg, var(--red) 0%, var(--orange) 100%);
+      background: var(--green);
       z-index: 10;
       will-change: height;
     }
@@ -2182,7 +2132,7 @@
   <nav class="navbar" id="navbar">
     <div class="container navbar-inner">
       <a href="#" onclick="showPage('home'); return false;" class="navbar-logo">
-        <img src="/assets/rosso/logo-transparente.png" alt="Rosso Burguer" style="height:44px;width:44px;object-fit:contain;">
+        <img src="/assets/rosso/logo-transparente.png" alt="Rosso Burguer" style="height:58px;width:58px;object-fit:contain;">
         <span>ROSSO BURGUER</span>
       </a>
       <div class="navbar-links" style="display:flex;gap:8px;align-items:center;">
@@ -2324,8 +2274,8 @@
 
           <div class="assembly-label-item" data-appear="0.30" data-vanish="0.60">
             <span class="assembly-label-num">03</span>
-            <span class="assembly-label-name">Blend 160g</span>
-            <span class="assembly-label-desc">Costela + fraldinha, moído na hora</span>
+            <span class="assembly-label-name">Blend na Parrilla</span>
+            <span class="assembly-label-desc">Costela + fraldinha, selado na brasa</span>
           </div>
 
           <div class="assembly-label-item" data-appear="0.44" data-vanish="0.72">
@@ -2348,8 +2298,8 @@
 
           <div class="assembly-label-item" data-appear="0.78" data-vanish="1.00">
             <span class="assembly-label-num">07</span>
-            <span class="assembly-label-name">Maionese Verde</span>
-            <span class="assembly-label-desc">Receita secreta desde 2017</span>
+            <span class="assembly-label-name">Molho Rosso</span>
+            <span class="assembly-label-desc">Receita exclusiva da casa, desde 2017</span>
           </div>
 
         </div>
@@ -2370,9 +2320,9 @@
           </div>
 
           <div class="assembly-phase" data-phase-start="0.35" data-phase-end="0.62">
-            <span class="assembly-phase-eyebrow">O coração</span>
-            <span class="assembly-phase-title">160g de costela<br>e fraldinha.</span>
-            <span class="assembly-phase-body">Blend exclusivo moído na hora. A diferença que você sente na primeira mordida.</span>
+            <span class="assembly-phase-eyebrow">A parrilla</span>
+            <span class="assembly-phase-title">Na parrilla<br>à lenha.</span>
+            <span class="assembly-phase-body">Blend selado na brasa. O calor da parrilla forma a crosta que você sente na primeira mordida.</span>
           </div>
 
           <div class="assembly-phase" data-phase-start="0.62" data-phase-end="0.84">
@@ -2699,7 +2649,7 @@
 
   <!-- PAGE: CARDÁPIO -->
   <div id="page-cardapio" class="spa-page">
-    <div class="subpage-hero" style="min-height:35vh;background:linear-gradient(to bottom,#1a0500,#111);">
+    <div class="subpage-hero" style="min-height:35vh;background:linear-gradient(to bottom,#091609,#111);">
       <span class="hero-label">NOSSO CARDÁPIO</span>
       <h1 class="hero-title">FEITO À MÃO.</h1>
       <p class="hero-subtitle">Ingredientes que você reconhece. Sabor que você nunca esquece.</p>
@@ -2731,7 +2681,7 @@
       <div class="filter-empty-title">NENHUM ITEM ENCONTRADO</div>
       <div class="filter-empty-sub">Tente outro filtro ou busca.</div>
     </div>
-    <div style="background:var(--red);padding:40px;text-align:center;">
+    <div style="background:var(--green);padding:40px;text-align:center;">
       <p style="font-family:var(--font-display);font-size:24px;font-weight:700;color:white;text-transform:uppercase;margin-bottom:20px;">Prefere pedir pelo app?</p>
       <a href="https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood" class="pill-btn" target="_blank" rel="noopener noreferrer">iFOOD</a>
       <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" class="pill-btn" target="_blank" rel="noopener noreferrer">RAPPI</a>
@@ -2742,7 +2692,7 @@
 
   <!-- PAGE: HISTÓRIA -->
   <div id="historia" id="page-historia" class="spa-page">
-    <div class="subpage-hero" style="min-height:50vh;background:linear-gradient(160deg,#1a0500 0%,#111 60%);position:relative;">
+    <div class="subpage-hero" style="min-height:50vh;background:linear-gradient(160deg,#091609 0%,#111 60%);position:relative;">
       <span class="subpage-ghost" aria-hidden="true" style="opacity:0.03;">2017</span>
       <span class="hero-label" style="position:relative;z-index:1;">NOSSA HISTÓRIA</span>
       <h1 class="hero-title" style="position:relative;z-index:1;">TUDO COMEÇOU<br>COM UMA<br>CHAPA QUENTE.</h1>
@@ -3150,9 +3100,8 @@
         <div class="footer-contact">
           <h4 class="footer-col-title">CONTATO</h4>
           <ul>
-            <li>contato@rossoburguer.com.br</li>
-            <li>rh@rossoburguer.com.br</li>
-            <li>contato@rossoburguer.com.br</li>
+            <li><a href="mailto:contato@rossoburguer.com.br" style="color:var(--gray-1);">contato@rossoburguer.com.br</a></li>
+            <li><a href="mailto:rh@rossoburguer.com.br" style="color:var(--gray-1);">rh@rossoburguer.com.br</a></li>
           </ul>
         </div>
         
@@ -3236,14 +3185,14 @@
   <div class="lead-popup-overlay" id="leadPopup">
     <div class="lead-popup">
       <button class="lead-popup-close" onclick="document.getElementById('leadPopup').classList.remove('open')">&times;</button>
-      <div class="lead-popup-icon">🔥</div>
+      <div class="lead-popup-icon">🍔</div>
       <h3 class="lead-popup-title">10% OFF NO PRIMEIRO PEDIDO</h3>
       <p class="lead-popup-sub">Inscreva-se e receba um cupom exclusivo direto no seu e-mail. Promoções semanais e novidades do cardápio.</p>
       <div class="lead-popup-form">
         <input type="email" class="lead-popup-input" id="leadEmail" placeholder="Seu melhor e-mail">
         <button class="lead-popup-btn" onclick="handleLeadPopup(this)">QUERO!</button>
       </div>
-      <p class="lead-popup-disclaimer">Sem spam. Só hambúrguer. 🍔</p>
+      <p class="lead-popup-disclaimer">Sem spam. Só hambúrguer.</p>
     </div>
   </div>
 
