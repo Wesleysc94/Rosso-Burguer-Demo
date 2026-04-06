@@ -640,7 +640,7 @@
     /* DELIVERY */
     .delivery-section { background: var(--surface-1); }
     .delivery-grid { display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center; }
-    @media (min-width: 1024px) { .delivery-grid { grid-template-columns: 1fr 1fr; gap: 80px; } }
+    @media (min-width: 1024px) { .delivery-grid { grid-template-columns: 1fr 1.4fr; gap: 60px; } }
     .eyebrow { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 0.3em; color: var(--red); text-transform: uppercase; display: block; margin-bottom: 16px; }
     .delivery-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(56px, 6vw, 88px); line-height: 0.9; text-transform: uppercase; margin: 0 0 24px; }
     .delivery-sub { font-size: 16px; color: var(--gray-1); line-height: 1.6; max-width: 380px; margin-bottom: 40px; }
@@ -668,8 +668,11 @@
       color: var(--gray-1);
     }
     
-    .delivery-section .delivery-partners-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; background: transparent; padding: 0; }
-    @media (max-width: 900px) {
+    .delivery-section .delivery-partners-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; background: transparent; padding: 0; }
+    @media (max-width: 1024px) {
+      .delivery-section .delivery-partners-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
       .delivery-section .delivery-partners-grid { grid-template-columns: 1fr; }
     }
     .status-dot { width: 8px; height: 8px; border-radius: 50% !important; }
@@ -1254,7 +1257,7 @@
     @media (max-width: 640px) { .delivery-partners-grid { grid-template-columns: 1fr; } }
 
     .partner-card {
-      padding: 36px 28px; display: flex; flex-direction: column; gap: 14px; min-height: 280px;
+      padding: 32px 24px; display: flex; flex-direction: column; gap: 12px; min-height: 260px;
       background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255,255,255,0.07);
@@ -1309,9 +1312,8 @@
     }
 
     .partner-name {
-      font-family: var(--font-display); font-size: clamp(32px, 3.5vw, 48px);
+      font-family: var(--font-display); font-size: clamp(24px, 2.5vw, 36px);
       font-weight: 900; line-height: 1; transition: text-shadow 0.4s;
-      word-break: break-word; overflow-wrap: break-word;
     }
     .partner-card[data-brand="ifood"] .partner-name { color: #EA1D2C; }
     .partner-card[data-brand="rappi"] .partner-name { color: #FF441F; }
@@ -1326,7 +1328,7 @@
     .partner-card[data-brand="instagram"] .partner-name { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .partner-card[data-brand="instagram"]:hover .partner-name { filter: brightness(1.2); }
 
-    .partner-sub { font-size: 14px; color: var(--gray-1); line-height: 1.5; }
+    .partner-sub { font-size: 13px; color: var(--gray-1); line-height: 1.5; }
     .partner-tag {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 8px 16px; font-size: 12px; font-weight: 600; width: fit-content;
@@ -1336,8 +1338,8 @@
     .partner-card:hover .partner-tag { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); }
 
     .partner-btn {
-      margin-top: auto; padding: 14px 28px; font-family: var(--font-display);
-      font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: auto; padding: 12px 20px; font-family: var(--font-display);
+      font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
       cursor: pointer; border: 1px solid rgba(255,255,255,0.15); background: transparent;
       color: var(--white); width: fit-content;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
