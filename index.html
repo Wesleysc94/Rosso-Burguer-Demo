@@ -2318,7 +2318,7 @@
         <span class="navbar-logo-mark"><span>ROSSO BURGUER</span><small>SINCE 2017</small></span>
       </a>
       <div class="navbar-links">
-        <a href="#manifesto" onclick="goToHomeSection('manifesto'); return false;" class="nav-link">A Rosso</a>
+        <a href="#" onclick="showPage('historia'); return false;" class="nav-link">A Rosso</a>
         <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly'); return false;" class="nav-link">Processo</a>
         <a href="#assinaturas" onclick="goToHomeSection('assinaturas'); return false;" class="nav-link">Cardápio</a>
         <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="nav-link">Lojas</a>
@@ -2339,7 +2339,7 @@
     <button class="drawer-close" id="drawerClose">✕</button>
     
     <nav class="drawer-nav">
-      <a href="#manifesto" onclick="goToHomeSection('manifesto');toggleMenu(false);return false;">A ROSSO</a>
+      <a href="#" onclick="showPage('historia');toggleMenu(false);return false;">A ROSSO</a>
       <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly');toggleMenu(false);return false;">PROCESSO</a>
       <a href="#assinaturas" onclick="goToHomeSection('assinaturas');toggleMenu(false);return false;">CARDÁPIO</a>
       <a href="#unidades" onclick="goToHomeSection('unidades');toggleMenu(false);return false;">LOJAS</a>
@@ -2882,34 +2882,110 @@
 
   <!-- PAGE: HISTÓRIA -->
   <div id="page-historia" class="spa-page">
-    <div class="subpage-hero" style="min-height:50vh;background:linear-gradient(160deg,#090807 0%,#141010 46%,#1b271d 100%);position:relative;">
-      <span class="subpage-ghost" aria-hidden="true" style="opacity:0.03;">2017</span>
-      <span class="hero-label" style="position:relative;z-index:1;">NOSSA HISTÓRIA</span>
-      <h1 class="hero-title" style="position:relative;z-index:1;">TUDO COMEÇOU<br>COM UMA<br>PARRILLA ACESA.</h1>
-      <p class="hero-subtitle" style="position:relative;z-index:1;">São Paulo, 2017.</p>
-    </div>
-    <div class="timeline">
-      <div class="timeline-inner">
-        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">A ORIGEM</h3><p class="timeline-card-text">A Rosso nasce em 2017 com uma proposta clara: hambúrguer artesanal, parrilla à lenha e tradição italiana em cada pedido.</p></div><div class="timeline-year">2017</div><div class="timeline-empty"></div></div>
-        <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">PROCESSO</div><div class="timeline-card"><h3 class="timeline-card-title">A ASSINATURA DA CASA</h3><p class="timeline-card-text">Mais do que receita, a construção da marca passa pelo processo: brasa, montagem limpa, contraste de textura e atenção ao ponto em cada pedido.</p></div></div>
-        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">A EXPANSÃO</h3><p class="timeline-card-text">Com a operação amadurecida, a Rosso amplia presença sem perder a direção central: experiência consistente, leitura forte de produto e serviço prático para o dia a dia.</p></div><div class="timeline-year">SP + JUNDIAÍ</div><div class="timeline-empty"></div></div>
-        <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">HOJE</div><div class="timeline-card"><h3 class="timeline-card-title">5 UNIDADES, MESMA ESSÊNCIA</h3><p class="timeline-card-text">Hoje a marca atende São Paulo e Jundiaí com cinco operações e múltiplos canais de pedido, mantendo como eixo o hambúrguer artesanal com tradição italiana.</p></div></div>
+
+    <!-- HERO DA HISTÓRIA -->
+    <div style="position:relative;min-height:60vh;background:#070606;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+      <!-- imagem de fundo em grayscale -->
+      <div style="position:absolute;inset:0;z-index:0;">
+        <img src="/assets/rosso/hero-dois-lanches.jpeg" alt="" aria-hidden="true"
+          style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(100%) brightness(0.28) contrast(1.1);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,6,0.2) 0%,rgba(7,6,6,0.1) 30%,rgba(7,6,6,0.72) 78%,rgba(7,6,6,0.96) 100%);"></div>
+      </div>
+      <!-- conteúdo -->
+      <div style="position:relative;z-index:1;text-align:center;padding:160px 24px 100px;max-width:900px;margin:0 auto;">
+        <div style="display:inline-flex;height:3px;width:56px;background:linear-gradient(90deg,#009246 33%,#fff 33% 66%,#ce2b37 66%);margin-bottom:32px;"></div>
+        <span style="display:block;font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:0.3em;color:var(--red);text-transform:uppercase;margin-bottom:20px;">NOSSA HISTÓRIA</span>
+        <h1 style="font-family:var(--font-display);font-weight:900;font-size:clamp(52px,8vw,110px);line-height:0.88;text-transform:uppercase;letter-spacing:-0.02em;color:var(--white);margin-bottom:28px;">
+          TUDO COMEÇOU<br><span style="color:var(--red);">COM UMA PARRILLA.</span>
+        </h1>
+        <p style="font-size:17px;color:rgba(244,237,228,0.7);line-height:1.7;max-width:520px;margin:0 auto;">
+          São Paulo, 2017. Uma brasa acessa, um blend artesanal e a convicção de que hambúrguer de verdade tem identidade própria.
+        </p>
       </div>
     </div>
-    <div class="values-grid">
-      <div class="value-card"><div class="value-icon">🔥</div><h3 class="value-title">PARRILLA À LENHA</h3><p class="value-text">O discurso da marca gira em torno da brasa e da forma de preparo. É isso que sustenta a memória de sabor e diferencia a experiência Rosso.</p></div>
-      <div class="value-card"><div class="value-icon">🍔</div><h3 class="value-title">BLEND ARTESANAL</h3><p class="value-text">A Rosso se posiciona como burger artesanal de assinatura forte: textura, queijo, molho e montagem pensados para leitura premium e apetite imediato.</p></div>
-      <div class="value-card"><div class="value-icon">📍</div><h3 class="value-title">OPERAÇÃO MULTIUNIDADE</h3><p class="value-text">Cinco unidades, canais oficiais organizados e presença consistente em shopping, rua e delivery, sem perder clareza de marca no digital.</p></div>
+
+    <!-- MANIFESTO TEXTUAL -->
+    <div style="background:var(--surface-1);padding:clamp(60px,8vw,96px) 0;border-top:1px solid var(--border);">
+      <div style="max-width:820px;margin:0 auto;padding:0 clamp(24px,5vw,80px);">
+        <div style="display:grid;gap:32px;">
+          <p style="font-family:var(--font-display);font-size:clamp(22px,3vw,32px);font-weight:700;line-height:1.28;color:var(--white);letter-spacing:-0.01em;">
+            "A Rosso não nasceu de franquia nem de tendência.<br>
+            Nasceu da convicção de que brasa, blend e tradição italiana<br>
+            fazem o hambúrguer mais honesto de São Paulo."
+          </p>
+          <div style="width:48px;height:2px;background:var(--red);"></div>
+          <p style="font-size:15px;color:var(--gray-1);line-height:1.75;max-width:620px;">
+            Em 2017, a primeira unidade abriu com um objetivo simples: servir hambúrguer artesanal com a intensidade da parrilla à lenha e o cuidado de quem leva gastronomia a sério. Desde então, crescemos para 5 unidades em São Paulo e Jundiaí sem abrir mão do que nos diferencia — a identidade.
+          </p>
+        </div>
+      </div>
     </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline" style="background:var(--black);">
+      <div class="timeline-inner">
+        <div class="timeline-entry">
+          <div class="timeline-card"><h3 class="timeline-card-title">A ORIGEM</h3><p class="timeline-card-text">A Rosso nasce com uma proposta clara: hambúrguer artesanal, parrilla à lenha e tradição italiana em cada pedido. Sem concessões.</p></div>
+          <div class="timeline-year">2017</div>
+          <div class="timeline-empty"></div>
+        </div>
+        <div class="timeline-entry">
+          <div class="timeline-empty"></div>
+          <div class="timeline-year">2019</div>
+          <div class="timeline-card"><h3 class="timeline-card-title">A ASSINATURA DA CASA</h3><p class="timeline-card-text">O processo vira marca. Brasa, montagem limpa, contraste de textura e atenção ao ponto — cada pedido carrega a assinatura Rosso.</p></div>
+        </div>
+        <div class="timeline-entry">
+          <div class="timeline-card"><h3 class="timeline-card-title">A EXPANSÃO</h3><p class="timeline-card-text">Com a operação amadurecida, a Rosso amplia presença em SP e Jundiaí mantendo o eixo central: produto com identidade e serviço consistente.</p></div>
+          <div class="timeline-year">2021</div>
+          <div class="timeline-empty"></div>
+        </div>
+        <div class="timeline-entry">
+          <div class="timeline-empty"></div>
+          <div class="timeline-year">HOJE</div>
+          <div class="timeline-card"><h3 class="timeline-card-title">5 UNIDADES, MESMA ESSÊNCIA</h3><p class="timeline-card-text">Cinco operações, múltiplos canais, mesma convicção. A Rosso segue crescendo com a brasa como norte e a tradição italiana como base.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILARES — sem emoji, tipografia -->
+    <div style="background:var(--surface-1);border-top:1px solid var(--border);">
+      <div class="values-grid">
+        <div class="value-card">
+          <div style="font-family:var(--font-display);font-size:42px;font-weight:900;color:rgba(var(--red-rgb),0.18);line-height:1;margin-bottom:20px;letter-spacing:-0.04em;">I</div>
+          <h3 class="value-title">PARRILLA À LENHA</h3>
+          <p class="value-text">A brasa não é detalhe — é o argumento central da marca. Calor lateral, crosta precisa e o aroma que já vende antes da primeira mordida.</p>
+        </div>
+        <div class="value-card">
+          <div style="font-family:var(--font-display);font-size:42px;font-weight:900;color:rgba(var(--red-rgb),0.18);line-height:1;margin-bottom:20px;letter-spacing:-0.04em;">II</div>
+          <h3 class="value-title">BLEND ARTESANAL</h3>
+          <p class="value-text">Carne selecionada, ponto correto, montagem com intenção. Cada ingrediente tem função — o resultado é um hambúrguer com personalidade real.</p>
+        </div>
+        <div class="value-card">
+          <div style="font-family:var(--font-display);font-size:42px;font-weight:900;color:rgba(var(--red-rgb),0.18);line-height:1;margin-bottom:20px;letter-spacing:-0.04em;">III</div>
+          <h3 class="value-title">TRADIÇÃO ITALIANA</h3>
+          <p class="value-text">Cinco unidades, canais organizados e presença em shopping, rua e delivery — sem perder o que faz a Rosso ser a Rosso.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
     <div class="stats-bar">
       <div class="stat-item"><div class="stat-number">2017</div><div class="stat-label">ANO DE FUNDAÇÃO</div></div>
       <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">UNIDADES</div></div>
-      <div class="stat-item"><div class="stat-number">SP + JD</div><div class="stat-label">PRESENÇA ATUAL</div></div>
+      <div class="stat-item"><div class="stat-number">2</div><div class="stat-label">CIDADES</div></div>
+      <div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">BRASAS ACESAS</div></div>
     </div>
-    <div class="cta-section" style="background:#111;">
-      <p class="cta-sub">Escolha a unidade mais próxima e peça do jeito que preferir.</p>
-      <a href="#" onclick="showPage('unidades'); return false;" class="btn btn--primary">VER LOJAS &rarr;</a>
+
+    <!-- CTA FINAL -->
+    <div class="cta-section" style="background:var(--surface-2);border-top:1px solid var(--border);">
+      <span style="display:block;font-family:var(--font-display);font-size:11px;font-weight:800;letter-spacing:0.28em;color:var(--red);text-transform:uppercase;margin-bottom:16px;">PRONTO PARA PEDIR?</span>
+      <p class="cta-sub" style="color:var(--gray-1);max-width:440px;margin:0 auto 32px;">Escolha a unidade mais próxima e peça do jeito que preferir — iFood ou WhatsApp direto.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="#" onclick="showPage('unidades'); return false;" class="btn btn--primary">VER LOJAS &rarr;</a>
+        <a href="#" onclick="showPage('cardapio'); return false;" class="btn btn--outline">VER CARDÁPIO</a>
+      </div>
     </div>
+
   </div><!-- END HISTÓRIA -->
 
     <!-- PAGE: UNIDADES -->
