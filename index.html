@@ -668,7 +668,7 @@
       color: var(--gray-1);
     }
     
-    .delivery-section .delivery-partners-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; background: transparent; padding: 0; }
+    .delivery-section .delivery-partners-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; background: transparent; padding: 0; }
     @media (max-width: 900px) {
       .delivery-section .delivery-partners-grid { grid-template-columns: 1fr; }
     }
@@ -1254,7 +1254,7 @@
     @media (max-width: 640px) { .delivery-partners-grid { grid-template-columns: 1fr; } }
 
     .partner-card {
-      padding: 40px 32px; display: flex; flex-direction: column; gap: 16px; min-height: 300px;
+      padding: 36px 28px; display: flex; flex-direction: column; gap: 14px; min-height: 280px;
       background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255,255,255,0.07);
@@ -1287,6 +1287,12 @@
     .partner-card[data-brand="99food"]::before { background: linear-gradient(90deg, #FFD54F, #F5A623); }
     .partner-card[data-brand="99food"]:hover { box-shadow: 0 12px 40px rgba(245, 166, 35, 0.12); border-color: rgba(245, 166, 35, 0.25); }
     .partner-card[data-brand="99food"]::after { background: radial-gradient(ellipse at 50% 0%, rgba(245, 166, 35, 0.06), transparent 70%); }
+    .partner-card[data-brand="whatsapp"]::before { background: linear-gradient(90deg, #25D366, #128C7E); }
+    .partner-card[data-brand="whatsapp"]:hover { box-shadow: 0 12px 40px rgba(37, 211, 102, 0.15); border-color: rgba(37, 211, 102, 0.25); }
+    .partner-card[data-brand="whatsapp"]::after { background: radial-gradient(ellipse at 50% 0%, rgba(37, 211, 102, 0.08), transparent 70%); }
+    .partner-card[data-brand="instagram"]::before { background: linear-gradient(90deg, #F58529, #DD2A7B, #8134AF, #515BD4); }
+    .partner-card[data-brand="instagram"]:hover { box-shadow: 0 12px 40px rgba(221, 42, 123, 0.15); border-color: rgba(221, 42, 123, 0.25); }
+    .partner-card[data-brand="instagram"]::after { background: radial-gradient(ellipse at 50% 0%, rgba(221, 42, 123, 0.08), transparent 70%); }
 
     .partner-status {
       display: flex; align-items: center; gap: 8px;
@@ -1303,8 +1309,9 @@
     }
 
     .partner-name {
-      font-family: var(--font-display); font-size: clamp(42px, 4vw, 56px);
+      font-family: var(--font-display); font-size: clamp(32px, 3.5vw, 48px);
       font-weight: 900; line-height: 1; transition: text-shadow 0.4s;
+      word-break: break-word; overflow-wrap: break-word;
     }
     .partner-card[data-brand="ifood"] .partner-name { color: #EA1D2C; }
     .partner-card[data-brand="rappi"] .partner-name { color: #FF441F; }
@@ -1314,6 +1321,10 @@
     .partner-card[data-brand="rappi"]:hover .partner-name { text-shadow: 0 0 30px rgba(255, 68, 31, 0.4); }
     .partner-card[data-brand="keeta"]:hover .partner-name { text-shadow: 0 0 30px rgba(66, 216, 204, 0.4); }
     .partner-card[data-brand="99food"]:hover .partner-name { text-shadow: 0 0 30px rgba(245, 166, 35, 0.4); }
+    .partner-card[data-brand="whatsapp"] .partner-name { color: #25D366; }
+    .partner-card[data-brand="whatsapp"]:hover .partner-name { text-shadow: 0 0 30px rgba(37, 211, 102, 0.4); }
+    .partner-card[data-brand="instagram"] .partner-name { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .partner-card[data-brand="instagram"]:hover .partner-name { filter: brightness(1.2); }
 
     .partner-sub { font-size: 14px; color: var(--gray-1); line-height: 1.5; }
     .partner-tag {
@@ -1339,6 +1350,8 @@
     .partner-card[data-brand="rappi"] .partner-btn::after { background: #FF441F; }
     .partner-card[data-brand="keeta"] .partner-btn::after { background: #42D8CC; }
     .partner-card[data-brand="99food"] .partner-btn::after { background: #F5A623; }
+    .partner-card[data-brand="whatsapp"] .partner-btn::after { background: #25D366; }
+    .partner-card[data-brand="instagram"] .partner-btn::after { background: linear-gradient(90deg, #F58529, #DD2A7B, #8134AF); }
     .partner-btn:hover::after { transform: translateX(0); }
     .partner-btn:hover { border-color: transparent; transform: translateY(-2px); }
     .partner-btn span { position: relative; z-index: 1; }
@@ -3110,7 +3123,7 @@
           </div>
 
           <!-- Instagram -->
-          <div class="partner-card reveal" data-delay="2" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
+          <div class="partner-card reveal" data-brand="instagram" data-delay="2" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
             <div style="width:80px;height:80px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);display:flex;align-items:center;justify-content:center;">
               <svg viewBox="0 0 24 24" width="36" height="36" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </div>
