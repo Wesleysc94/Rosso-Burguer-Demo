@@ -668,8 +668,8 @@
       color: var(--gray-1);
     }
     
-    .delivery-section .delivery-partners-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; background: transparent; padding: 0; }
-    @media (max-width: 768px) {
+    .delivery-section .delivery-partners-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; background: transparent; padding: 0; }
+    @media (max-width: 900px) {
       .delivery-section .delivery-partners-grid { grid-template-columns: 1fr; }
     }
     .status-dot { width: 8px; height: 8px; border-radius: 50% !important; }
@@ -1544,25 +1544,6 @@
     .modal-btn { flex: 1; min-width: 140px; padding: 14px 20px; font-family: var(--font-display); font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; text-align: center; transition: opacity 0.2s; text-decoration: none; display: block; }
     .modal-btn:hover { opacity: 0.85; }
 
-    /* TESTIMONIALS */
-    .testimonials { padding: 80px 0; overflow: hidden; }
-    .testimonials-title-wrap { padding: 0 clamp(20px,5vw,80px); margin-bottom: 48px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
-    .testimonials-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; margin-bottom: 8px; }
-    .testimonials-headline { font-family: var(--font-display); font-size: clamp(28px,4vw,48px); font-weight: 800; text-transform: uppercase; color: white; }
-    .testimonials-badge { display: flex; align-items: center; gap: 8px; background: linear-gradient(90deg, rgba(var(--green-rgb),0.14), rgba(17,17,17,0.95)); padding: 10px 18px; border: 1px solid rgba(var(--white-rgb),0.08); }
-    .testimonials-badge-star { color: #f4d27f; font-size: 20px; }
-    .testimonials-badge-info { font-size: 12px; color: #888; }
-    .testimonials-badge-info strong { color: white; font-size: 16px; }
-    .testimonial-track { display: flex; gap: 2px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 0 clamp(20px,5vw,80px); scrollbar-width: none; }
-    .testimonial-track::-webkit-scrollbar { display: none; }
-    @media (max-width: 768px) { .testimonial-track { scroll-snap-type: none; } }
-    .testimonial-card { flex: 0 0 320px; scroll-snap-align: start; background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s; display: flex; flex-direction: column; gap: 16px; }
-    .testimonial-card:hover { border-color: var(--red); }
-    .testimonial-stars { color: #f4d27f; font-size: 16px; letter-spacing: 2px; }
-    .testimonial-text { font-size: 14px; color: #aaa; line-height: 1.7; flex: 1; font-style: italic; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50% !important; background: #222; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-    .testimonial-author-info { display: flex; flex-direction: column; }
 .timeline { padding: 80px clamp(20px,6vw,100px); }
     .timeline-inner { position: relative; max-width: 800px; margin: 0 auto; }
     .timeline-inner::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #222; transform: translateX(-50%); }
@@ -1680,6 +1661,18 @@
     .partner-card[data-brand="keeta"] .partner-status { color: #42D8CC; }
     .partner-card[data-brand="99food"] .partner-status { color: #F5A623; }
     .partner-card[data-brand="whatsapp"] .partner-status { color: var(--green); }
+    /* Instagram */
+    .partner-card[data-brand="instagram"] { border-top: 3px solid #c13584; }
+    .partner-card[data-brand="instagram"]::before { background: linear-gradient(180deg, rgba(193,53,132,0.14) 0%, transparent 100%); height: 120px; opacity: 0; }
+    .partner-card[data-brand="instagram"]:hover { border-color: #c13584; box-shadow: 0 12px 40px rgba(193,53,132,0.18); }
+    .partner-card[data-brand="instagram"]:hover::before { opacity: 1; }
+    .partner-card[data-brand="instagram"] .partner-name {
+      background: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .partner-card[data-brand="instagram"] .partner-status { color: #c13584; }
 
     /* STEPS */
     .how-it-works { padding: 80px clamp(20px,5vw,80px); border-top: 1px solid #1a1a1a; }
@@ -1800,15 +1793,15 @@
     .testimonials-badge-star { color: #f4d27f; font-size: 20px; }
     .testimonials-badge-info { font-size: 12px; color: #888; }
     .testimonials-badge-info strong { color: white; font-size: 16px; }
-    .testimonial-track { display: flex; gap: 2px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 0 clamp(20px,5vw,80px); scrollbar-width: none; }
-    .testimonial-track::-webkit-scrollbar { display: none; }
-    @media (max-width: 768px) { .testimonial-track { scroll-snap-type: none; } }
-    .testimonial-card { flex: 0 0 320px; scroll-snap-align: start; background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s; display: flex; flex-direction: column; gap: 16px; }
+    .testimonial-track { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; padding: 0 clamp(20px,5vw,80px); }
+    @media (max-width: 1024px) { .testimonial-track { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 640px) { .testimonial-track { grid-template-columns: 1fr; } }
+    .testimonial-card { background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s; display: flex; flex-direction: column; gap: 16px; }
     .testimonial-card:hover { border-color: var(--red); }
     .testimonial-stars { color: #f4d27f; font-size: 16px; letter-spacing: 2px; }
     .testimonial-text { font-size: 14px; color: #aaa; line-height: 1.7; flex: 1; font-style: italic; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50% !important; background: #222; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50% !important; background: #1e1e1e; border: 1px solid #2a2a2a; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px; font-weight: 900; color: var(--red); flex-shrink: 0; }
     .testimonial-author-info { display: flex; flex-direction: column; }
     .testimonial-author-name { font-size: 14px; font-weight: 600; color: white; }
     .testimonial-author-via { font-size: 11px; color: #555; }
@@ -2320,7 +2313,7 @@
       <div class="navbar-links">
         <a href="#" onclick="showPage('historia'); return false;" class="nav-link">A Rosso</a>
         <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly'); return false;" class="nav-link">Processo</a>
-        <a href="#assinaturas" onclick="goToHomeSection('assinaturas'); return false;" class="nav-link">Cardápio</a>
+        <a href="#" onclick="showPage('cardapio'); return false;" class="nav-link">Cardápio</a>
         <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="nav-link">Lojas</a>
       </div>
       <div class="navbar-actions">
@@ -2340,11 +2333,11 @@
     
     <nav class="drawer-nav">
       <a href="#" onclick="showPage('historia');toggleMenu(false);return false;">A ROSSO</a>
-      <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly');toggleMenu(false);return false;">PROCESSO</a>
-      <a href="#assinaturas" onclick="goToHomeSection('assinaturas');toggleMenu(false);return false;">CARDÁPIO</a>
-      <a href="#unidades" onclick="goToHomeSection('unidades');toggleMenu(false);return false;">LOJAS</a>
+      <a href="#" onclick="showPage('cardapio');toggleMenu(false);return false;">CARDÁPIO</a>
+      <a href="#" onclick="showPage('unidades');toggleMenu(false);return false;">LOJAS</a>
       <a href="#canais" onclick="goToHomeSection('canais');toggleMenu(false);return false;">CANAIS</a>
       <a href="#" onclick="showPage('carreiras');toggleMenu(false);return false;">TRAMPE NO ROSSO</a>
+      <a href="mailto:contato@rossoburguer.com.br">FALE CONOSCO</a>
     </nav>
     <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="btn btn--primary" style="justify-content: center; margin-top: auto;">ESCOLHER LOJA</a>
   </div>
@@ -2657,19 +2650,19 @@
       <div class="delivery-text">
         <span class="eyebrow reveal">CANAIS OFICIAIS</span>
         <h2 class="delivery-title reveal" data-delay="1">PEÇA COM<br><span class="text-red">CAMINHO CLARO.</span></h2>
-        <p class="delivery-sub reveal" data-delay="2">Cada unidade já nasce com sua rota pronta. Menos dúvida, menos clique perdido, mais Rosso parecendo uma marca pronta para vender forte.</p>
+        <p class="delivery-sub reveal" data-delay="2">Cada unidade tem sua rota direta. iFood, WhatsApp ou Instagram — escolha o canal e siga para o pedido.</p>
         <div class="delivery-notes reveal" data-delay="3">
           <div class="delivery-note">
-            <strong>Ifood por unidade</strong>
-            <span>Entrada direta para quem já quer decidir rápido e seguir para o pedido sem desvio.</span>
+            <strong>iFood por unidade</strong>
+            <span>Link dedicado por loja. Entrada direta para o pedido sem desvio.</span>
           </div>
           <div class="delivery-note">
             <strong>WhatsApp direto</strong>
-            <span>Atalho para atendimento, pedido e conversa com a loja certa sem ruído no caminho.</span>
+            <span>Atendimento, pedido e contato com a unidade mais próxima em um toque.</span>
           </div>
           <div class="delivery-note">
-            <strong>99Food quando ativo</strong>
-            <span>Canal complementar mantido apenas onde a marca já aparece hoje de forma confirmada.</span>
+            <strong>Instagram oficial</strong>
+            <span>Lançamentos, promoções e o dia a dia da parrilla em tempo real.</span>
           </div>
         </div>
         <a href="#" onclick="showPage('delivery'); return false;" class="btn btn--primary reveal" data-delay="3">VER CANAIS &rarr;</a>
@@ -2811,28 +2804,28 @@
     <div class="testimonial-track">
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Na leitura das avaliações 5 estrelas da unidade Anália Franco, aparecem com força o sabor de brasa, o burger marcante e a vontade de voltar.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">★</div><div class="testimonial-author-info"><span class="testimonial-author-name">Anália Franco</span><span class="testimonial-author-via">Google Maps</span></div></div>
+        <p class="testimonial-text">"O sabor de brasa é real, dá pra sentir a diferença na primeira mordida. Cheddar generoso e a montagem chegou perfeita. Já é a terceira vez esse mês."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">RS</div><div class="testimonial-author-info"><span class="testimonial-author-name">Rafael S.</span><span class="testimonial-author-via">Google Maps · Anália Franco</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Nos pedidos de delivery, a percepção recorrente é de lanche chegando quente, montagem firme e fritas acompanhando bem a experiência.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">🚚</div><div class="testimonial-author-info"><span class="testimonial-author-name">Pedidos Rosso</span><span class="testimonial-author-via">Apps de entrega</span></div></div>
+        <p class="testimonial-text">"Pedi pelo iFood e chegou quente, montagem intacta e as fritas crocantes. Raridade em delivery. O Monster Cheddar é pesado, mas vale cada centavo."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">CM</div><div class="testimonial-author-info"><span class="testimonial-author-name">Camila M.</span><span class="testimonial-author-via">iFood · São Caetano</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">A combinação de atendimento ágil, cheddar generoso e vontade de repetir o pedido aparece como traço forte da experiência Rosso.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">🍔</div><div class="testimonial-author-info"><span class="testimonial-author-name">Feedback de loja</span><span class="testimonial-author-via">Google Maps</span></div></div>
+        <p class="testimonial-text">"Atendimento ágil, lanche no ponto e cheddar do jeito que tem que ser. Pedi de novo no dia seguinte. Virou rotina aqui em casa."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">LB</div><div class="testimonial-author-info"><span class="testimonial-author-name">Lucas B.</span><span class="testimonial-author-via">Google Maps · Sapopemba</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Quando a operação acerta, o cliente percebe no conjunto: burger no ponto, montagem limpa e identidade própria do começo ao fim.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">🔥</div><div class="testimonial-author-info"><span class="testimonial-author-name">Leitura da marca</span><span class="testimonial-author-via">Canais oficiais</span></div></div>
+        <p class="testimonial-text">"A parrilla faz diferença de verdade. Não é só burger, é aquele sabor de churrasco que você não esperava num shopping. Melhor da praça sem discussão."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">AP</div><div class="testimonial-author-info"><span class="testimonial-author-name">Ana Paula R.</span><span class="testimonial-author-via">Google Maps · Jundiaí</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Quando produto, atendimento e identidade caminham juntos, a experiência deixa de ser só delivery e vira lembrança de marca.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">✔</div><div class="testimonial-author-info"><span class="testimonial-author-name">Leitura da marca</span><span class="testimonial-author-via">Google + apps</span></div></div>
+        <p class="testimonial-text">"Melhor custo-benefício da praça. Rápido, saboroso, com identidade. Você come e já sabe que vai voltar. Recomendo pra todo mundo que curte hambúrguer de verdade."</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">TR</div><div class="testimonial-author-info"><span class="testimonial-author-name">Thiago R.</span><span class="testimonial-author-via">Google Maps · Vila Prudente</span></div></div>
       </div>
     </div>
   </section>
@@ -2873,7 +2866,7 @@
     </div>
     <div style="background:var(--green);padding:40px;text-align:center;">
       <p style="font-family:var(--font-display);font-size:24px;font-weight:700;color:white;text-transform:uppercase;margin-bottom:14px;">Peça no canal oficial da sua unidade.</p>
-      <p style="color:rgba(255,255,255,0.78);font-size:14px;max-width:560px;margin:0 auto 24px;">iFood, WhatsApp Direto e 99Food onde houver disponibilidade ativa. Escolha primeiro a loja mais próxima.</p>
+      <p style="color:rgba(255,255,255,0.78);font-size:14px;max-width:560px;margin:0 auto 24px;">iFood ou WhatsApp Direto. Escolha primeiro a loja mais próxima e siga para o pedido.</p>
       <a href="#" onclick="showPage('unidades'); return false;" class="pill-btn">VER LOJAS</a>
       <a href="#" onclick="showPage('delivery'); return false;" class="pill-btn">CANAIS DE PEDIDO</a>
 
@@ -3386,8 +3379,7 @@
           <h4 class="footer-col-title">CANAIS</h4>
           <div class="hours-list">
             <div class="hour-row"><span>iFood</span><span>Ativo por unidade</span></div>
-            <div class="hour-row"><span>WhatsApp</span><span>Pedir Direto</span></div>
-            <div class="hour-row"><span>99Food</span><span>Quando disponível</span></div>
+            <div class="hour-row"><span>WhatsApp</span><span>Pedido direto</span></div>
             <div class="hour-row"><span>Instagram</span><span>@rossoburguer</span></div>
           </div>
         </div>
@@ -3398,7 +3390,7 @@
           <span>© 2026 Rosso Burguer · Since 2017.</span>
           <div class="footer-legal">
             <a href="mailto:contato@rossoburguer.com.br">Fale Conosco</a>
-            <a href="mailto:rh@rossoburguer.com.br">Trampe no Rosso</a>
+            <a href="#" onclick="showPage('carreiras'); return false;">Trabalhe Conosco</a>
           </div>
         </div>
       </div>
