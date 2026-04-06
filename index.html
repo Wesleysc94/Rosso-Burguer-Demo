@@ -1257,12 +1257,12 @@
     @media (max-width: 640px) { .delivery-partners-grid { grid-template-columns: 1fr; } }
 
     .partner-card {
-      padding: 32px 24px; display: flex; flex-direction: column; gap: 12px; min-height: 260px;
+      padding: 32px 20px; display: flex; flex-direction: column; gap: 12px; min-height: 260px;
       background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255,255,255,0.07);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 0 transparent;
-      position: relative; overflow: hidden;
+      position: relative; overflow: visible;
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
     }
     .partner-card::before {
@@ -1312,9 +1312,9 @@
     }
 
     .partner-name {
-      font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 32px);
+      font-family: var(--font-display); font-size: clamp(14px, 1.4vw, 24px);
       font-weight: 900; line-height: 1; transition: text-shadow 0.4s;
-      white-space: nowrap; word-break: keep-all;
+      white-space: nowrap; word-break: keep-all; letter-spacing: -0.02em;
     }
     .partner-card[data-brand="ifood"] .partner-name { color: #EA1D2C; }
     .partner-card[data-brand="rappi"] .partner-name { color: #FF441F; }
@@ -1486,11 +1486,11 @@
     /* PRELOADER */
     .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.9s; }
     .preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-    .preloader-icon { font-size: 48px; animation: preloaderPulse 1s ease-in-out infinite; }
+    .preloader-icon { font-size: 48px; animation: preloaderPulse 2.5s ease-in-out infinite; }
     .preloader-text { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 20px; opacity: 0; animation: preloaderFadeIn 0.6s 0.3s forwards; }
     .preloader-bar { width: 200px; height: 3px; background: #1a1a1a; margin-top: 24px; overflow: hidden; }
     .preloader-bar-fill { width: 0; height: 100%; background: var(--red); animation: preloaderFill 2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-    @keyframes preloaderPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    @keyframes preloaderPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     @keyframes preloaderFadeIn { to { opacity: 1; } }
     @keyframes preloaderFill { to { width: 100%; } }
 
@@ -1749,11 +1749,11 @@
     .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; animation: preloaderAutoHide 0.5s 3.5s forwards; }
     .preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
     @keyframes preloaderAutoHide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-    .preloader-icon { font-size: 48px; animation: preloaderPulse 1s ease-in-out infinite; }
+    .preloader-icon { font-size: 48px; animation: preloaderPulse 2.8s ease-in-out infinite; }
     .preloader-text { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 20px; opacity: 0; animation: preloaderFadeIn 0.6s 0.3s forwards; }
     .preloader-bar { width: 200px; height: 3px; background: #1a1a1a; margin-top: 24px; overflow: hidden; }
     .preloader-bar-fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--red), var(--green)); animation: preloaderFill 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-    @keyframes preloaderPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    @keyframes preloaderPulse { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.06); opacity: 1; } }
     @keyframes preloaderFadeIn { to { opacity: 1; } }
     @keyframes preloaderFill { to { width: 100%; } }
 
@@ -1836,7 +1836,14 @@
     .testimonial-track:active { cursor: grabbing; }
     .testimonial-card { min-width: 300px; max-width: 340px; flex-shrink: 0; scroll-snap-align: start; }
     @media (max-width: 640px) { .testimonial-card { min-width: 280px; max-width: 300px; } }
-    .testimonial-card { background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s; display: flex; flex-direction: column; gap: 16px; }
+    .testimonial-card { background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s, opacity 0.8s ease; display: flex; flex-direction: column; gap: 16px; }
+
+    @media (max-width: 768px) {
+      .testimonial-track { display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr; padding: 0 20px; overflow: hidden; cursor: default; }
+      .testimonial-card { grid-area: 1 / 1; width: 100%; min-width: 0; max-width: none; opacity: 0; pointer-events: none; z-index: 1; }
+      .testimonial-card.active { opacity: 1; pointer-events: auto; z-index: 2; border-color: var(--red); }
+      .testimonial-controls { display: flex !important; }
+    }
     .testimonial-card:hover { border-color: var(--red); }
     .testimonial-stars { color: #f4d27f; font-size: 16px; letter-spacing: 2px; }
     .testimonial-text { font-size: 14px; color: #aaa; line-height: 1.7; flex: 1; font-style: italic; }
@@ -2347,7 +2354,7 @@
 
   <!-- PRELOADER -->
   <div class="preloader" id="preloader">
-    <div class="preloader-icon"><img src="/assets/rosso/logo-transparente.png" alt="Rosso Burguer" style="height:80px;width:auto;object-fit:contain;filter:brightness(0) invert(1);"></div>
+    <div class="preloader-icon"><img src="/assets/rosso/logo-transparente.png" alt="Rosso Burguer" style="height:80px;width:auto;object-fit:contain;"></div>
     <div class="preloader-text">ROSSO BURGUER</div>
     <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
   </div>
@@ -2875,7 +2882,7 @@
         <div class="testimonials-badge-info"><strong>Google Maps + pedidos</strong> — percepção real usada como tom de marca, sem depoimento inventado.</div>
       </div>
     </div>
-    <div class="testimonial-track">
+    <div class="testimonial-track" id="testimonialTrack">
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
         <p class="testimonial-text">"O sabor de brasa é real, dá pra sentir a diferença na primeira mordida. Cheddar generoso e a montagem chegou perfeita. Já é a terceira vez esse mês."</p>
@@ -2901,6 +2908,10 @@
         <p class="testimonial-text">"Melhor custo-benefício da praça. Rápido, saboroso, com identidade. Você come e já sabe que vai voltar. Recomendo pra todo mundo que curte hambúrguer de verdade."</p>
         <div class="testimonial-author"><div class="testimonial-avatar">TR</div><div class="testimonial-author-info"><span class="testimonial-author-name">Thiago R.</span><span class="testimonial-author-via">Google Maps · Vila Prudente</span></div></div>
       </div>
+    </div>
+    <div class="testimonial-controls" id="testimonialControls" style="display:none; justify-content:center; gap:16px; margin-top:24px; padding: 0 20px;">
+        <button class="testimonial-control" id="testiPrev" aria-label="Anterior" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.1);cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)';this.style.color='var(--red)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color='white'">←</button>
+        <button class="testimonial-control" id="testiNext" aria-label="Próximo" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.1);cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)';this.style.color='var(--red)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color='white'">→</button>
     </div>
   </section>
 
@@ -4268,7 +4279,7 @@
           if (!entry.isIntersecting && !ctaBtn.dataset.pulsed) {
             ctaBtn.classList.add('pulse');
             ctaBtn.dataset.pulsed = "true";
-            setTimeout(() => ctaBtn.classList.remove('pulse'), 600);
+            setTimeout(() => ctaBtn.classList.remove('pulse'), 1500);
           } else if (entry.isIntersecting) {
             ctaBtn.dataset.pulsed = "";
           }
@@ -4321,35 +4332,64 @@
       document.getElementById('leadPopup').classList.remove('open');
     }
 
-    // Testimonial Auto-scroll (Mobile)
-    const testimonialTrack = document.querySelector('.testimonial-track');
-    if (testimonialTrack) {
-      let isScrolling = true;
-      let scrollPos = 0;
-      
-      const autoScroll = () => {
-        if (window.innerWidth <= 768 && isScrolling) {
-          scrollPos += 0.5;
-          if (scrollPos >= testimonialTrack.scrollWidth - testimonialTrack.clientWidth) {
-            scrollPos = 0;
-          }
-          testimonialTrack.scrollLeft = scrollPos;
+    // Testimonials Carousel (Fade on Mobile, native scroll on Desktop)
+    const trackEl = document.getElementById('testimonialTrack');
+    const testiCards = document.querySelectorAll('.testimonial-card');
+    const testiPrev = document.getElementById('testiPrev');
+    const testiNext = document.getElementById('testiNext');
+    if (trackEl && testiCards.length > 0) {
+      let currentTesti = 0;
+      let testiTimer = null;
+      let swipeStartX = 0;
+      let swipeEndX = 0;
+
+      function showTesti(index) {
+        if(window.innerWidth > 768) return; 
+        if(index >= testiCards.length) currentTesti = 0;
+        else if(index < 0) currentTesti = testiCards.length - 1;
+        else currentTesti = index;
+        
+        testiCards.forEach(c => c.classList.remove('active'));
+        testiCards[currentTesti].classList.add('active');
+      }
+
+      function resetTestiTimer() {
+        clearInterval(testiTimer);
+        testiTimer = setInterval(() => { showTesti(currentTesti + 1); }, 10000);
+      }
+
+      function initTesti() {
+        if(window.innerWidth <= 768) {
+          showTesti(0);
+          resetTestiTimer();
+        } else {
+          clearInterval(testiTimer);
+          testiCards.forEach(c => c.classList.remove('active')); 
         }
-        requestAnimationFrame(autoScroll);
-      };
+      }
 
-      requestAnimationFrame(autoScroll);
+      initTesti();
+      window.addEventListener('resize', initTesti);
 
-      testimonialTrack.addEventListener('touchstart', () => { isScrolling = false; });
-      testimonialTrack.addEventListener('touchend', () => {
-        scrollPos = testimonialTrack.scrollLeft;
-        isScrolling = true;
-      });
-      testimonialTrack.addEventListener('mouseenter', () => { isScrolling = false; });
-      testimonialTrack.addEventListener('mouseleave', () => {
-        scrollPos = testimonialTrack.scrollLeft;
-        isScrolling = true;
-      });
+      if (testiPrev && testiNext) {
+        testiPrev.addEventListener('click', () => { showTesti(currentTesti - 1); resetTestiTimer(); });
+        testiNext.addEventListener('click', () => { showTesti(currentTesti + 1); resetTestiTimer(); });
+      }
+
+      trackEl.addEventListener('touchstart', (e) => {
+        swipeStartX = e.changedTouches[0].screenX;
+        clearInterval(testiTimer);
+      }, {passive: true});
+      
+      trackEl.addEventListener('touchend', (e) => {
+        swipeEndX = e.changedTouches[0].screenX;
+        if (swipeEndX < swipeStartX - 40) showTesti(currentTesti + 1);
+        if (swipeEndX > swipeStartX + 40) showTesti(currentTesti - 1);
+        resetTestiTimer();
+      }, {passive: true});
+      
+      trackEl.addEventListener('mouseenter', () => clearInterval(testiTimer));
+      trackEl.addEventListener('mouseleave', () => { if(window.innerWidth <= 768) resetTestiTimer(); });
     }
 
     // Counter Animation (stats on História page)
