@@ -138,30 +138,27 @@
     .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .navbar-logo { font-family: var(--font-display); font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--white); display: flex; align-items: center; gap: 14px; letter-spacing: 0.08em; }
     .navbar-logo-badge {
-      width: 62px;
-      height: 62px;
-      padding: 6px;
+      width: 56px;
+      height: 56px;
+      padding: 4px;
       border-radius: 50% !important;
       display: flex;
       align-items: center;
       justify-content: center;
       flex: 0 0 auto;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(var(--white-rgb),0.16), transparent 46%),
-        linear-gradient(135deg, rgba(var(--red-rgb),0.22), rgba(var(--green-rgb),0.12) 68%, rgba(7,6,6,0.94));
-      border: 1px solid rgba(var(--white-rgb),0.1);
+      background: rgba(var(--red-rgb), 0.12);
+      border: 1.5px solid rgba(var(--red-rgb), 0.55);
       box-shadow:
-        0 14px 32px rgba(0,0,0,0.35),
-        inset 0 0 0 1px rgba(var(--white-rgb),0.03);
+        0 0 18px rgba(var(--red-rgb), 0.22),
+        0 4px 16px rgba(0,0,0,0.5);
       overflow: hidden;
     }
     .navbar-logo-badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 88%;
+      height: 88%;
+      object-fit: contain;
       object-position: center;
-      border-radius: 50% !important;
-      filter: saturate(1.05) contrast(1.04);
+      filter: brightness(0) invert(1);
     }
     .navbar-logo-mark { display:flex; flex-direction:column; line-height:0.9; }
     .navbar-logo-mark span { display:block; }
@@ -400,11 +397,11 @@
     .hero-headline {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(92px, 10.5vw, 156px);
-      line-height: 0.78;
+      font-size: clamp(76px, 9vw, 130px);
+      line-height: 0.82;
       text-transform: uppercase;
       margin: 0 0 28px;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       position: relative;
       z-index: 2;
     }
@@ -423,29 +420,62 @@
       z-index: 2;
     }
     .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; position: relative; z-index: 2; }
-    /* Pills — substitui stats grid */
+    /* Pills — ingredientes com cor */
     .hero-pills {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       position: relative;
       z-index: 2;
+      margin-top: 4px;
     }
     .hero-pill {
+      display: inline-flex;
+      align-items: center;
       font-family: var(--font-display);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.46);
+      padding: 5px 13px;
+      border: 1px solid;
+      transition: transform 0.28s var(--ease-smooth), box-shadow 0.28s, background 0.28s;
+      cursor: default;
+      user-select: none;
     }
-    .hero-pill-dot {
-      width: 3px; height: 3px;
-      border-radius: 50% !important;
-      background: rgba(255,255,255,0.22);
-      flex-shrink: 0;
+    .hero-pill:hover { transform: translateY(-2px); }
+    .hero-pill--beef {
+      color: #e8a87c;
+      border-color: rgba(232,168,124,0.32);
+      background: rgba(232,168,124,0.07);
     }
+    .hero-pill--beef:hover { background: rgba(232,168,124,0.14); box-shadow: 0 4px 16px rgba(232,168,124,0.18); }
+    .hero-pill--fire {
+      color: #e8283c;
+      border-color: rgba(200,16,46,0.4);
+      background: rgba(200,16,46,0.08);
+    }
+    .hero-pill--fire:hover { background: rgba(200,16,46,0.16); box-shadow: 0 4px 16px rgba(200,16,46,0.22); }
+    .hero-pill--bread {
+      color: #d4a96a;
+      border-color: rgba(212,169,106,0.32);
+      background: rgba(212,169,106,0.07);
+    }
+    .hero-pill--bread:hover { background: rgba(212,169,106,0.14); box-shadow: 0 4px 16px rgba(212,169,106,0.16); }
+    .hero-pill--cheese {
+      color: #f0c040;
+      border-color: rgba(240,192,64,0.30);
+      background: rgba(240,192,64,0.06);
+    }
+    .hero-pill--cheese:hover { background: rgba(240,192,64,0.13); box-shadow: 0 4px 16px rgba(240,192,64,0.18); }
+    .hero-pill--sauce {
+      color: #7ecb8a;
+      border-color: rgba(45,106,79,0.38);
+      background: rgba(45,106,79,0.08);
+    }
+    .hero-pill--sauce:hover { background: rgba(45,106,79,0.16); box-shadow: 0 4px 16px rgba(45,106,79,0.18); }
+    .hero-pill-dot { display: none; }
     /* Elementos removidos ou ocultos */
     .hero-brand-ghost { display: none; }
     .hero-kicker { display: none; }
@@ -2292,15 +2322,15 @@
   <nav class="navbar" id="navbar">
     <div class="container navbar-inner">
       <a href="#" onclick="showPage('home'); return false;" class="navbar-logo">
-        <span class="navbar-logo-badge"><img src="/assets/rosso/logo-transparente.png" alt="Rosso Burguer" style="filter:brightness(0) invert(1);"></span>
+        <span class="navbar-logo-badge"><img src="/assets/rosso/logo-transparente.png" alt="Rosso Burguer"></span>
         <span class="navbar-logo-mark"><span>ROSSO BURGUER</span><small>SINCE 2017</small></span>
       </a>
       <div class="navbar-links">
         <a href="#manifesto" onclick="goToHomeSection('manifesto'); return false;" class="nav-link">Manifesto</a>
         <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly'); return false;" class="nav-link">Processo</a>
-        <a href="#assinaturas" onclick="goToHomeSection('assinaturas'); return false;" class="nav-link">Assinaturas</a>
         <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="nav-link">Lojas</a>
         <a href="#canais" onclick="goToHomeSection('canais'); return false;" class="nav-link">Canais</a>
+        <a href="mailto:contato@rossoburguer.com.br" class="nav-link">Fale Conosco</a>
       </div>
       <div class="navbar-actions">
         <a href="#" onclick="showPage('carreiras'); return false;" class="navbar-utility">Trampe no Rosso</a>
@@ -2320,7 +2350,6 @@
     <nav class="drawer-nav">
       <a href="#manifesto" onclick="goToHomeSection('manifesto');toggleMenu(false);return false;">MANIFESTO</a>
       <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly');toggleMenu(false);return false;">PROCESSO</a>
-      <a href="#assinaturas" onclick="goToHomeSection('assinaturas');toggleMenu(false);return false;">ASSINATURAS</a>
       <a href="#unidades" onclick="goToHomeSection('unidades');toggleMenu(false);return false;">LOJAS</a>
       <a href="#canais" onclick="goToHomeSection('canais');toggleMenu(false);return false;">CANAIS</a>
       <a href="#" onclick="showPage('carreiras');toggleMenu(false);return false;">TRAMPE NO ROSSO</a>
@@ -2340,8 +2369,8 @@
       <div class="hero-content">
         <span class="hero-badge reveal" data-delay="1">São Paulo &amp; Jundiaí &nbsp;·&nbsp; Desde 2017</span>
         <h1 class="hero-headline">
-          <span class="line reveal" data-delay="2">BLEND.</span>
-          <span class="line reveal" data-delay="3">BRASA.</span>
+          <span class="line reveal" data-delay="2">BLEND BOVINO.</span>
+          <span class="line reveal" data-delay="3">BRASA À LENHA.</span>
           <span class="line line--red reveal" data-delay="4">ROSSO.</span>
         </h1>
         <p class="hero-sub reveal" data-delay="5">
@@ -2352,12 +2381,12 @@
           <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--primary">ESCOLHER LOJA &rarr;</a>
           <a href="#assinaturas" onclick="goToHomeSection('assinaturas');return false;" class="btn btn--outline">VER CARDÁPIO</a>
         </div>
-        <div class="hero-pills reveal" data-delay="5">
-          <span class="hero-pill">5 Unidades</span>
-          <span class="hero-pill-dot"></span>
-          <span class="hero-pill">iFood</span>
-          <span class="hero-pill-dot"></span>
-          <span class="hero-pill">WhatsApp Direto</span>
+        <div class="hero-pills reveal" data-delay="6">
+          <span class="hero-pill hero-pill--beef">BLEND BOVINO</span>
+          <span class="hero-pill hero-pill--fire">PARRILLA LENHA</span>
+          <span class="hero-pill hero-pill--bread">BRIOCHE</span>
+          <span class="hero-pill hero-pill--cheese">QUEIJO ESPECIAL</span>
+          <span class="hero-pill hero-pill--sauce">MOLHO ROSSO</span>
         </div>
       </div>
     </div>
@@ -2389,12 +2418,12 @@
       <span>TRADIÇÃO ITALIANA EM CHAMA ALTA</span><span class="dot">•</span>
       <span>PARRILLA À LENHA · ASSINATURA ROSSO</span><span class="dot">•</span>
       <span>5 UNIDADES · SP + JUNDIAÍ</span><span class="dot">•</span>
-      <span>IFOOD · WHATSAPP · 99FOOD QUANDO ATIVO</span><span class="dot">•</span>
+      <span>IFOOD · WHATSAPP · 5 UNIDADES SP + JUNDIAÍ</span><span class="dot">•</span>
       <span>BENVENUTI ALLA ROSSO</span><span class="dot">•</span>
       <span>TRADIÇÃO ITALIANA EM CHAMA ALTA</span><span class="dot">•</span>
       <span>PARRILLA À LENHA · ASSINATURA ROSSO</span><span class="dot">•</span>
       <span>5 UNIDADES · SP + JUNDIAÍ</span><span class="dot">•</span>
-      <span>IFOOD · WHATSAPP · 99FOOD QUANDO ATIVO</span><span class="dot">•</span>
+      <span>IFOOD · WHATSAPP · 5 UNIDADES SP + JUNDIAÍ</span><span class="dot">•</span>
       <span>BENVENUTI ALLA ROSSO</span><span class="dot">•</span>
     </div>
   </div>
@@ -3364,16 +3393,46 @@
 
   <!-- LEAD CAPTURE POP-UP -->
   <div class="lead-popup-overlay" id="leadPopup">
-    <div class="lead-popup">
+    <div class="lead-popup" style="text-align:center;padding:52px 36px 40px;">
       <button class="lead-popup-close" onclick="document.getElementById('leadPopup').classList.remove('open')">&times;</button>
-      <div class="lead-popup-icon"><img src="/assets/rosso/logo-oficial.jpeg" alt="Rosso Burguer" style="height:66px;width:66px;object-fit:cover;border-radius:50%;border:1px solid rgba(255,255,255,0.12);"></div>
-      <h3 class="lead-popup-title">ESCOLHA SUA UNIDADE</h3>
-      <p class="lead-popup-sub">Peça pelo iFood ou fale direto no WhatsApp da sua unidade mais próxima.</p>
-      <div class="lead-popup-form">
-        <a href="#" class="lead-popup-btn" style="text-decoration:none;text-align:center;" onclick="document.getElementById('leadPopup').classList.remove('open');showPage('unidades');return false;">VER LOJAS</a>
 
+      <!-- Logo / eyebrow -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:22px;">
+        <img src="/assets/rosso/logo-transparente.png" alt="Rosso" style="height:48px;width:48px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.88;">
+        <div style="text-align:left;">
+          <div style="font-family:var(--font-display);font-size:10px;font-weight:800;letter-spacing:0.22em;color:var(--gray-2);text-transform:uppercase;">Desde 2017</div>
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:900;letter-spacing:0.12em;color:var(--white);text-transform:uppercase;line-height:1;">ROSSO BURGUER</div>
+        </div>
       </div>
-      <p class="lead-popup-disclaimer">Demo premium orientada pelos canais oficiais da marca.</p>
+
+      <!-- Red divider line -->
+      <div style="width:40px;height:2px;background:var(--red);margin:0 auto 22px;"></div>
+
+      <h3 class="lead-popup-title" style="font-size:clamp(22px,5vw,28px);margin-bottom:12px;">HOJE NA PARRILLA</h3>
+      <p class="lead-popup-sub" style="font-size:13px;line-height:1.7;max-width:320px;margin:0 auto 30px;">
+        Blend bovino artesanal, brasa à lenha e sabor de tradição italiana.<br>Siga e fique por dentro de lançamentos e promoções exclusivas.
+      </p>
+
+      <!-- CTAs -->
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto;">
+        <a href="https://instagram.com/rossoburguerr" target="_blank" rel="noopener"
+           class="lead-popup-btn"
+           style="display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:white;border-color:transparent;font-size:12px;letter-spacing:0.18em;"
+           onclick="document.getElementById('leadPopup').classList.remove('open')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @ROSSOBURGUERR
+        </a>
+        <a href="#" onclick="document.getElementById('leadPopup').classList.remove('open');goToHomeSection('assinaturas');return false;"
+           class="lead-popup-btn"
+           style="display:flex;align-items:center;justify-content:center;text-decoration:none;background:var(--red);border-color:var(--red);font-size:12px;letter-spacing:0.18em;">
+          VER CARDÁPIO &rarr;
+        </a>
+        <a href="#" onclick="document.getElementById('leadPopup').classList.remove('open');goToHomeSection('unidades');return false;"
+           style="display:block;font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-2);text-decoration:none;padding:8px;transition:color 0.2s;"
+           onmouseover="this.style.color='var(--gray-1)'" onmouseout="this.style.color='var(--gray-2)'">
+          Escolher loja &rarr;
+        </a>
+      </div>
     </div>
   </div>
 
