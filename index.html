@@ -210,10 +210,10 @@
     .drawer-nav a:hover { color: var(--white); padding-left: 12px; }
 
     /* HERO */
-    .hero-stage { position: relative; background: #080808; }
-    
-    .hero { position: relative; height: 100vh; min-height: 700px; overflow: hidden; display: flex; align-items: center; }
-    
+    .hero-stage { position: relative; background: #070606; }
+
+    .hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; display: flex; align-items: center; }
+
     .hero--split {
       display: flex;
       align-items: center;
@@ -221,7 +221,7 @@
     }
 
     .hero-split-left {
-      width: 56%;
+      width: 48%;
       height: 100%;
       position: relative;
       z-index: 4;
@@ -251,28 +251,36 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 74% center;
+      object-position: center center;
     }
 
     /* Lighting & Overlays */
     .hero-lamp-pulse {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(200, 16, 46, 0.18) 0%, rgba(200, 16, 46, 0.05) 35%, transparent 60%);
+      background: radial-gradient(ellipse at 68% 38%, rgba(200,16,46,0.24) 0%, rgba(200,16,46,0.07) 32%, transparent 56%);
       mix-blend-mode: color-dodge;
-      animation: lamp-breathe 3.8s ease-in-out infinite alternate;
+      animation: lamp-breathe 4s ease-in-out infinite alternate;
       z-index: 2;
       pointer-events: none;
     }
 
+    /* Gradient bleed: video vivo na direita, texto limpo na esquerda */
     .hero-gradient-overlay {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(8,8,8,1) 0%, rgba(8,8,8,0.95) 24%, rgba(8,8,8,0.74) 45%, rgba(8,8,8,0.18) 72%, rgba(8,8,8,0.08) 100%),
-        radial-gradient(circle at 68% 26%, rgba(200,16,46,0.26) 0%, rgba(200,16,46,0.08) 22%, transparent 52%),
-        radial-gradient(circle at 82% 74%, rgba(45,106,79,0.18) 0%, transparent 34%),
-        linear-gradient(180deg, rgba(8,8,8,0.18) 0%, rgba(8,8,8,0.04) 28%, rgba(8,8,8,0.62) 100%);
+        linear-gradient(90deg,
+          rgba(7,6,6,1) 0%,
+          rgba(7,6,6,0.97) 18%,
+          rgba(7,6,6,0.82) 36%,
+          rgba(7,6,6,0.42) 54%,
+          rgba(7,6,6,0.1) 76%,
+          rgba(7,6,6,0.0) 100%),
+        linear-gradient(180deg,
+          rgba(7,6,6,0.18) 0%,
+          transparent 22%,
+          rgba(7,6,6,0.58) 100%);
       z-index: 3;
       pointer-events: none;
     }
@@ -389,105 +397,61 @@
       position: relative;
       z-index: 2;
     }
-    .hero-headline { font-family: var(--font-display); font-weight: 900; font-size: clamp(88px, 10vw, 148px); line-height: 0.82; text-transform: uppercase; margin: 0 0 24px; letter-spacing: -0.025em; position: relative; z-index: 2; }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(92px, 10.5vw, 156px);
+      line-height: 0.78;
+      text-transform: uppercase;
+      margin: 0 0 28px;
+      letter-spacing: -0.03em;
+      position: relative;
+      z-index: 2;
+    }
     .hero-headline .line { display: block; }
     .hero-headline .line--red { color: var(--red); }
     .hero-sub {
       font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 600;
-      color: rgba(236, 236, 236, 0.82);
-      line-height: 1.72;
-      max-width: 520px;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.3);
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(244, 237, 228, 0.72);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 32px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
       position: relative;
       z-index: 2;
     }
-    .hero-sub-line {
-      display: block;
-      font-weight: 600;
-    }
-    .hero-accent {
-      max-width: 520px;
-      font-family: var(--font-accent);
-      font-size: clamp(24px, 2.1vw, 34px);
-      line-height: 1.12;
-      color: rgba(245,239,232,0.92);
-      margin-bottom: 34px;
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; position: relative; z-index: 2; }
+    /* Pills — substitui stats grid */
+    .hero-pills {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
       position: relative;
       z-index: 2;
     }
-    .keep-together { white-space: nowrap; }
-    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 38px; position: relative; z-index: 2; }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      max-width: 760px;
-      position: relative;
-      z-index: 2;
-    }
-    .hero-stat {
-      padding: 14px 16px 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-      backdrop-filter: blur(12px);
-    }
-    .hero-stat strong {
-      display:block;
+    .hero-pill {
       font-family: var(--font-display);
-      font-size: 28px;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-    .hero-stat span {
-      display:block;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.4;
-      color: rgba(255,255,255,0.58);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .hero-side-rail {
-      position: absolute;
-      right: max(4vw, calc((100vw - 1440px) / 2 + 28px));
-      bottom: 88px;
-      z-index: 5;
-      display: grid;
-      gap: 12px;
-      width: min(260px, 24vw);
-    }
-    .hero-side-label {
-      font-family: var(--font-display);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: rgba(255,255,255,0.46);
-      text-transform: uppercase;
     }
-    .hero-side-item {
-      display:flex;
-      justify-content:space-between;
-      gap: 18px;
-      padding: 14px 0;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      font-family: var(--font-display);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.9);
+    .hero-pill-dot {
+      width: 3px; height: 3px;
+      border-radius: 50% !important;
+      background: rgba(255,255,255,0.22);
+      flex-shrink: 0;
     }
-    .hero-side-item small {
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
-      text-transform: none;
-      letter-spacing: 0;
-    }
+    /* Elementos removidos ou ocultos */
+    .hero-brand-ghost { display: none; }
+    .hero-kicker { display: none; }
+    .hero-accent { display: none; }
+    .hero-stats { display: none; }
+    .hero-side-rail { display: none; }
     
     .navbar-cta.pulse { animation: pulseCta 0.6s ease-out; }
     @keyframes pulseCta {
@@ -559,24 +523,15 @@
       }
       .hero-gradient-overlay {
         background:
-          linear-gradient(180deg, rgba(8,8,8,0.7) 0%, rgba(8,8,8,0.34) 28%, rgba(8,8,8,0.82) 100%),
-          radial-gradient(circle at 60% 18%, rgba(200,16,46,0.18) 0%, transparent 32%);
+          linear-gradient(180deg, rgba(7,6,6,0.72) 0%, rgba(7,6,6,0.28) 30%, rgba(7,6,6,0.85) 100%),
+          radial-gradient(ellipse at 58% 20%, rgba(200,16,46,0.2) 0%, transparent 36%);
       }
-      .hero-bottom-shadow { height: 250px; }
-      .hero { min-height: 640px; }
+      .hero-bottom-shadow { height: 200px; }
+      .hero { min-height: 620px; }
       .hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
-      .hero-brand-ghost { left: 50%; top: 32px; transform: translateX(-50%); font-size: clamp(110px, 28vw, 160px); }
-      .hero-kicker { font-size: 22px; max-width: 320px; margin-bottom: 8px; }
-      .hero-sub {
-        font-size: 13px;
-        line-height: 1.52;
-        max-width: none;
-      }
-      .hero-accent { font-size: 22px; max-width: 320px; margin-bottom: 24px; }
+      .hero-sub { font-size: 13px; line-height: 1.55; max-width: 300px; }
       .hero-ctas { justify-content: center; }
-      .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; max-width: 380px; }
-      .hero-stat strong { font-size: 24px; }
-      .hero-side-rail { display: none; }
+      .hero-pills { justify-content: center; }
       .scroll-indicator { bottom: 16px; }
     }
     @media (max-width: 480px) {
@@ -2383,26 +2338,26 @@
     <!-- Left side (Text) -->
     <div class="hero-split-left">
       <div class="hero-content">
-        <span class="hero-brand-ghost" aria-hidden="true">ROSSO</span>
-        <span class="hero-badge reveal" data-delay="1">SÃO PAULO · JUNDIAÍ · DESDE 2017</span>
+        <span class="hero-badge reveal" data-delay="1">São Paulo &amp; Jundiaí &nbsp;·&nbsp; Desde 2017</span>
         <h1 class="hero-headline">
-          <span class="line reveal" data-delay="2">HAMBÚRGUER</span>
-          <span class="line reveal" data-delay="2">ARTESANAL</span>
-          <span class="line line--red reveal" data-delay="3">NA PARRILLA.</span>
+          <span class="line reveal" data-delay="2">BLEND.</span>
+          <span class="line reveal" data-delay="3">BRASA.</span>
+          <span class="line line--red reveal" data-delay="4">ROSSO.</span>
         </h1>
-        <p class="hero-sub reveal" data-delay="4">
-          <span class="hero-sub-line">Blend de carne, brasa à lenha e tradição italiana.</span>
-          <span class="hero-sub-line">Feito com cuidado em cada unidade, pedido a pedido.</span>
+        <p class="hero-sub reveal" data-delay="5">
+          Hambúrguer artesanal na parrilla à lenha.<br>
+          Tradição italiana em cada pedido, desde 2017.
         </p>
-        <div class="hero-ctas reveal" data-delay="4">
+        <div class="hero-ctas reveal" data-delay="5">
           <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--primary">ESCOLHER LOJA &rarr;</a>
           <a href="#assinaturas" onclick="goToHomeSection('assinaturas');return false;" class="btn btn--outline">VER CARDÁPIO</a>
         </div>
-        <div class="hero-stats reveal" data-delay="5">
-          <div class="hero-stat"><strong>5</strong><span>unidades em SP e Jundiaí</span></div>
-          <div class="hero-stat"><strong>2017</strong><span>tradição artesanal desde</span></div>
-          <div class="hero-stat"><strong>100%</strong><span>blend próprio na parrilla</span></div>
-          <div class="hero-stat"><strong>iFood</strong><span>e WhatsApp por unidade</span></div>
+        <div class="hero-pills reveal" data-delay="5">
+          <span class="hero-pill">5 Unidades</span>
+          <span class="hero-pill-dot"></span>
+          <span class="hero-pill">iFood</span>
+          <span class="hero-pill-dot"></span>
+          <span class="hero-pill">WhatsApp Direto</span>
         </div>
       </div>
     </div>
@@ -2420,12 +2375,6 @@
     <!-- Ticker visual integration shadow -->
     <div class="hero-bottom-shadow"></div>
 
-    <div class="hero-side-rail reveal" data-delay="5">
-      <span class="hero-side-label">ASSINATURA ROSSO</span>
-      <div class="hero-side-item"><span>PARRILLA À LENHA</span><small>brasa viva em cada pedido</small></div>
-      <div class="hero-side-item"><span>BLEND ARTESANAL</span><small>carne própria, ponto certo</small></div>
-      <div class="hero-side-item"><span>IFOOD + WHATSAPP</span><small>peça pela sua unidade</small></div>
-    </div>
 
     <div class="scroll-indicator" aria-hidden="true">
       <span>SCROLL</span>
@@ -2721,12 +2670,12 @@
           <div class="partner-tag">Escolha a unidade mais próxima</div>
           <button class="partner-btn"><span>ABRIR WHATSAPP</span></button>
         </a>
-        <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" class="partner-card reveal" data-brand="99food" data-delay="3" target="_blank" rel="noopener noreferrer">
-          <div class="partner-status"><div class="dot"></div> 3 unidades ativas</div>
-          <h3 class="partner-name">99Food</h3>
-          <p class="partner-sub">Canal disponível no Linktree oficial da marca para Anália Franco, São Caetano e Sapopemba.</p>
-          <div class="partner-tag">Abrir Linktree oficial</div>
-          <button class="partner-btn"><span>VER NO 99FOOD</span></button>
+        <a href="https://www.instagram.com/rossoburguer" target="_blank" rel="noopener" class="partner-card reveal" data-brand="instagram" data-delay="3">
+          <div class="partner-status"><div class="dot"></div> Canal oficial</div>
+          <h3 class="partner-name">Instagram</h3>
+          <p class="partner-sub">Acompanhe o que sai da parrilla, os lançamentos e a vida da marca no dia a dia.</p>
+          <div class="partner-tag">@rossoburguer</div>
+          <button class="partner-btn"><span>ABRIR INSTAGRAM</span></button>
         </a>
       </div>
     </div>
@@ -2907,7 +2856,7 @@
       <p style="color:rgba(255,255,255,0.78);font-size:14px;max-width:560px;margin:0 auto 24px;">iFood, WhatsApp Direto e 99Food onde houver disponibilidade ativa. Escolha primeiro a loja mais próxima.</p>
       <a href="#" onclick="showPage('unidades'); return false;" class="pill-btn">VER LOJAS</a>
       <a href="#" onclick="showPage('delivery'); return false;" class="pill-btn">CANAIS DE PEDIDO</a>
-      <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" class="pill-btn" target="_blank" rel="noopener noreferrer">99FOOD</a>
+
     </div>
   </div><!-- END CARDÁPIO -->
 
@@ -3071,14 +3020,16 @@
             <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--outline" style="white-space:nowrap;">VER LOJAS →</a>
           </div>
 
-          <!-- 99Food -->
+          <!-- Instagram -->
           <div class="partner-card reveal" data-delay="2" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
-            <div style="width:80px;height:80px;background:linear-gradient(135deg,#ffde59,#f6b900);display:flex;align-items:center;justify-content:center;font-weight:900;font-family:var(--font-display);font-size:11px;letter-spacing:0.1em;color:#111;text-align:center;">99FOOD</div>
-            <div>
-              <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">99Food</h3>
-              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Algumas unidades aparecem com rota ativa no Linktree oficial da Rosso. Use como canal complementar quando disponível.</p>
+            <div style="width:80px;height:80px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </div>
-            <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener" class="btn btn--outline" style="white-space:nowrap;">ABRIR LINKTREE →</a>
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">Instagram</h3>
+              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Acompanhe lançamentos, a parrilla em ação e o dia a dia da marca no Instagram oficial da Rosso Burguer.</p>
+            </div>
+            <a href="https://www.instagram.com/rossoburguer" target="_blank" rel="noopener" class="btn btn--outline" style="white-space:nowrap;">@ROSSOBURGUER →</a>
           </div>
         </div>
 
@@ -3100,7 +3051,7 @@
             <div class="step-item">
               <div class="step-num">03</div>
               <h3 class="step-title">Finalize no Canal Oficial</h3>
-              <p class="step-body">Siga para iFood, WhatsApp ou 99Food quando houver disponibilidade ativa para concluir o pedido com segurança.</p>
+              <p class="step-body">Siga para o iFood ou WhatsApp da unidade escolhida e conclua o pedido com segurança.</p>
             </div>
           </div>
         </div>
@@ -3291,11 +3242,11 @@
       <div class="container newsletter-inner">
         <div class="newsletter-text reveal">
           <h3 class="newsletter-title">ACOMPANHE O ROSSO.</h3>
-          <p>Instagram oficial, Linktree com canais ativos e contato institucional em um bloco mais fiel à operação real da marca.</p>
+          <p>Instagram oficial e contato institucional da marca.</p>
         </div>
         <div class="newsletter-form reveal" data-delay="2">
           <a href="https://www.instagram.com/rossoburguer" target="_blank" rel="noopener" class="btn btn--primary newsletter-btn" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">INSTAGRAM</a>
-          <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener" class="btn btn--outline newsletter-btn" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">LINKTREE</a>
+
         </div>
       </div>
     </div>
@@ -3404,7 +3355,7 @@
           <div class="item-cta-row item-cta-row--3">
             <a href="#" onclick="closeItemModal();showPage('delivery');return false;" class="item-cta-secondary" style="background:#EA1D2C;color:white">IFOOD</a>
             <a href="#" onclick="closeItemModal();showPage('unidades');return false;" class="item-cta-secondary" style="background:#25D366;color:#062d16">WHATSAPP</a>
-            <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener noreferrer" class="item-cta-secondary item-cta--99food">99FOOD</a>
+
           </div>
         </div>
       </div>
@@ -3417,10 +3368,10 @@
       <button class="lead-popup-close" onclick="document.getElementById('leadPopup').classList.remove('open')">&times;</button>
       <div class="lead-popup-icon"><img src="/assets/rosso/logo-oficial.jpeg" alt="Rosso Burguer" style="height:66px;width:66px;object-fit:cover;border-radius:50%;border:1px solid rgba(255,255,255,0.12);"></div>
       <h3 class="lead-popup-title">ESCOLHA SUA UNIDADE</h3>
-      <p class="lead-popup-sub">Peça pelo iFood, fale direto no WhatsApp da loja ou abra o Linktree oficial para ver os canais ativos da Rosso.</p>
+      <p class="lead-popup-sub">Peça pelo iFood ou fale direto no WhatsApp da sua unidade mais próxima.</p>
       <div class="lead-popup-form">
         <a href="#" class="lead-popup-btn" style="text-decoration:none;text-align:center;" onclick="document.getElementById('leadPopup').classList.remove('open');showPage('unidades');return false;">VER LOJAS</a>
-        <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener" class="lead-popup-btn" style="text-decoration:none;text-align:center;background:#0f0f0f;color:white;border:1px solid #2a2a2a;">ABRIR LINKTREE</a>
+
       </div>
       <p class="lead-popup-disclaimer">Demo premium orientada pelos canais oficiais da marca.</p>
     </div>
