@@ -150,13 +150,13 @@
       height: 100%;
       object-fit: contain;
       object-position: center;
-      filter: brightness(0) invert(1);
-      opacity: 0.9;
-      transition: opacity 0.25s, filter 0.25s;
+      opacity: 0.95;
+      transition: opacity 0.25s, filter 0.25s, transform 0.3s;
     }
     .navbar-logo:hover .navbar-logo-badge img {
       opacity: 1;
-      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(200,16,46,0.65));
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 12px rgba(200,16,46,0.45));
     }
     .navbar-logo-mark { display:flex; flex-direction:column; line-height:0.9; }
     .navbar-logo-mark span { display:block; }
@@ -1312,8 +1312,9 @@
     }
 
     .partner-name {
-      font-family: var(--font-display); font-size: clamp(24px, 2.5vw, 36px);
+      font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 32px);
       font-weight: 900; line-height: 1; transition: text-shadow 0.4s;
+      white-space: nowrap; word-break: keep-all;
     }
     .partner-card[data-brand="ifood"] .partner-name { color: #EA1D2C; }
     .partner-card[data-brand="rappi"] .partner-name { color: #FF441F; }
@@ -1483,16 +1484,38 @@
     .pill-btn:hover { background: white; color: var(--red); }
 
     /* PRELOADER */
-    .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; animation: preloaderAutoHide 0.5s 3.5s forwards; }
+    .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.9s; }
     .preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-    @keyframes preloaderAutoHide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
     .preloader-icon { font-size: 48px; animation: preloaderPulse 1s ease-in-out infinite; }
     .preloader-text { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 20px; opacity: 0; animation: preloaderFadeIn 0.6s 0.3s forwards; }
     .preloader-bar { width: 200px; height: 3px; background: #1a1a1a; margin-top: 24px; overflow: hidden; }
-    .preloader-bar-fill { width: 0; height: 100%; background: var(--red); animation: preloaderFill 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .preloader-bar-fill { width: 0; height: 100%; background: var(--red); animation: preloaderFill 2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     @keyframes preloaderPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
     @keyframes preloaderFadeIn { to { opacity: 1; } }
     @keyframes preloaderFill { to { width: 100%; } }
+
+    /* HERO CINEMATIC INTRO */
+    .hero-cinematic-hidden .hero-media { opacity: 0; transform: scale(1.06); transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .hero-cinematic-hidden .hero-content .reveal,
+    .hero-cinematic-hidden .hero-content .hero-badge,
+    .hero-cinematic-hidden .hero-content .hero-headline,
+    .hero-cinematic-hidden .hero-content .hero-sub,
+    .hero-cinematic-hidden .hero-content .hero-ctas,
+    .hero-cinematic-hidden .hero-content .hero-pills { opacity: 0; transform: translateY(30px); }
+    .hero-cinematic-reveal .hero-media { opacity: 1; transform: scale(1); }
+    .hero-cinematic-reveal .hero-content .reveal,
+    .hero-cinematic-reveal .hero-content .hero-badge,
+    .hero-cinematic-reveal .hero-content .hero-headline,
+    .hero-cinematic-reveal .hero-content .hero-sub,
+    .hero-cinematic-reveal .hero-content .hero-ctas,
+    .hero-cinematic-reveal .hero-content .hero-pills { transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; transform: translateY(0); }
+    .hero-cinematic-reveal .hero-content .hero-badge { transition-delay: 0.15s; }
+    .hero-cinematic-reveal .hero-content .hero-headline .line:nth-child(1) { transition-delay: 0.3s; }
+    .hero-cinematic-reveal .hero-content .hero-headline .line:nth-child(2) { transition-delay: 0.45s; }
+    .hero-cinematic-reveal .hero-content .hero-headline .line:nth-child(3) { transition-delay: 0.6s; }
+    .hero-cinematic-reveal .hero-content .hero-sub { transition-delay: 0.75s; }
+    .hero-cinematic-reveal .hero-content .hero-ctas { transition-delay: 0.9s; }
+    .hero-cinematic-reveal .hero-content .hero-pills { transition-delay: 1.05s; }
 
     /* MENU E WHATSAPP FLOAT */
     .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 9990; width: 60px; height: 60px; background: #25D366; border-radius: 50% !important; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
@@ -1656,7 +1679,7 @@
     .partner-card[data-brand="whatsapp"]:hover::before { opacity: 1; }
     .partner-status { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
     .partner-status .dot { width: 6px; height: 6px; border-radius: 50% !important; background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.5); animation: pulse 2s infinite; }
-    .partner-name { font-family: var(--font-display); font-size: 48px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
+    .partner-name { font-family: var(--font-display); font-size: 48px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; word-break: normal; overflow-wrap: break-word; }
     .partner-sub { font-size: 13px; color: #666; line-height: 1.5; }
     .partner-tag { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; width: fit-content; border: 1px solid #222; color: #999; background: rgba(255,255,255,0.03); }
     .partner-btn {
@@ -1808,9 +1831,11 @@
     .testimonials-badge-star { color: #f4d27f; font-size: 20px; }
     .testimonials-badge-info { font-size: 12px; color: #888; }
     .testimonials-badge-info strong { color: white; font-size: 16px; }
-    .testimonial-track { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; padding: 0 clamp(20px,5vw,80px); }
-    @media (max-width: 1024px) { .testimonial-track { grid-template-columns: repeat(3,1fr); } }
-    @media (max-width: 640px) { .testimonial-track { grid-template-columns: 1fr; } }
+    .testimonial-track { display: flex; gap: 2px; padding: 0 clamp(20px,5vw,80px); overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab; }
+    .testimonial-track::-webkit-scrollbar { display: none; }
+    .testimonial-track:active { cursor: grabbing; }
+    .testimonial-card { min-width: 300px; max-width: 340px; flex-shrink: 0; scroll-snap-align: start; }
+    @media (max-width: 640px) { .testimonial-card { min-width: 280px; max-width: 300px; } }
     .testimonial-card { background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s; display: flex; flex-direction: column; gap: 16px; }
     .testimonial-card:hover { border-color: var(--red); }
     .testimonial-stars { color: #f4d27f; font-size: 16px; letter-spacing: 2px; }
@@ -1842,8 +1867,13 @@
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       padding: 16px;
+      cursor: pointer;
     }
     .lead-popup-overlay.open { display: flex; animation: modalFadeIn 0.35s cubic-bezier(0.16,1,0.3,1); }
+    .lead-popup-overlay.open .lead-popup { cursor: default; }
+    .lead-popup-overlay.open .lead-popup * { cursor: auto; }
+    .lead-popup-overlay.open .lead-popup a,
+    .lead-popup-overlay.open .lead-popup button { cursor: pointer; }
     .lead-popup {
       background: #111;
       max-width: 440px;
@@ -2262,6 +2292,8 @@
 
     /* Partner card responsive fix */
     @media (max-width: 640px) {
+      .partner-name { font-size: 36px; }
+      .partner-card { padding: 36px 28px; min-height: 260px; }
       .partner-card[style*="grid-template-columns:80px"] {
         grid-template-columns: 60px 1fr !important;
         gap: 16px !important;
@@ -2290,6 +2322,22 @@
     .footer-logo img {
       border-radius: 0 !important;
       border: none;
+    }
+
+    /* Hero mobile: texto mais acima para mostrar o lanche */
+    @media (max-width: 768px) {
+      .hero-content {
+        padding-top: 82px;
+        padding-bottom: 20px;
+      }
+      .hero-split-left {
+        justify-content: flex-start;
+        padding-top: 80px;
+      }
+      .hero-headline { font-size: clamp(42px, 10vw, 58px); margin-bottom: 16px; }
+      .hero-sub { font-size: 13px; margin-bottom: 20px; max-width: 300px; }
+      .hero-ctas { margin-bottom: 20px; }
+      .hero-kicker { font-size: clamp(18px, 4vw, 22px); margin-bottom: 10px; }
     }
 
     </style>
@@ -2329,11 +2377,11 @@
         <a href="#" onclick="showPage('historia'); return false;" class="nav-link">A Rosso</a>
         <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly'); return false;" class="nav-link">Processo</a>
         <a href="#" onclick="showPage('cardapio'); return false;" class="nav-link">Cardápio</a>
-        <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="nav-link">Lojas</a>
+        <a href="#" onclick="showPage('unidades'); return false;" class="nav-link">Lojas</a>
       </div>
       <div class="navbar-actions">
         <a href="#" onclick="showPage('carreiras'); return false;" class="navbar-utility">Trampe no Rosso</a>
-        <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="btn btn--primary navbar-cta">ESCOLHER LOJA</a>
+        <a href="#" onclick="showPage('unidades'); return false;" class="btn btn--primary navbar-cta">ESCOLHER LOJA</a>
         <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -2347,6 +2395,7 @@
     <button class="drawer-close" id="drawerClose">✕</button>
     
     <nav class="drawer-nav">
+      <a href="#" onclick="showPage('home');toggleMenu(false);window.scrollTo({top:0,behavior:'smooth'});return false;">INÍCIO</a>
       <a href="#" onclick="showPage('historia');toggleMenu(false);return false;">A ROSSO</a>
       <a href="#" onclick="showPage('cardapio');toggleMenu(false);return false;">CARDÁPIO</a>
       <a href="#" onclick="showPage('unidades');toggleMenu(false);return false;">LOJAS</a>
@@ -2362,7 +2411,7 @@
 
   <div class="hero-stage">
   <!-- HERO -->
-  <section class="hero hero--split" id="homeHero">
+  <section class="hero hero--split hero-cinematic-hidden" id="homeHero">
     <!-- Left side (Text) -->
     <div class="hero-split-left">
       <div class="hero-content">
@@ -2698,7 +2747,14 @@
           <div class="partner-tag">Escolha a unidade mais próxima</div>
           <button class="partner-btn"><span>ABRIR WHATSAPP</span></button>
         </a>
-        <a href="https://www.instagram.com/rossoburguer" target="_blank" rel="noopener" class="partner-card reveal" data-brand="instagram" data-delay="3">
+        <a href="#" onclick="showPage('unidades'); return false;" class="partner-card reveal" data-brand="99food" data-delay="3">
+          <div class="partner-status"><div class="dot"></div> Parceiro logístico</div>
+          <h3 class="partner-name">99Food</h3>
+          <p class="partner-sub">Pedidos com cupons e promoções nas unidades Anália Franco, São Caetano e Sapopemba.</p>
+          <div class="partner-tag">Veja unidades com 99Food</div>
+          <button class="partner-btn"><span>PEDIR NO 99FOOD</span></button>
+        </a>
+        <a href="https://www.instagram.com/rossoburguer" target="_blank" rel="noopener" class="partner-card reveal" data-brand="instagram" data-delay="4">
           <div class="partner-status"><div class="dot"></div> Canal oficial</div>
           <h3 class="partner-name">Instagram</h3>
           <p class="partner-sub">Acompanhe o que sai da parrilla, os lançamentos e a vida da marca no dia a dia.</p>
@@ -2731,7 +2787,8 @@
             <address class="unit-address">Praça de Alimentação – Av. Reg. Feijó, 1739<br>Vila Reg. Feijó, São Paulo – SP, 03342-900</address>
             <div class="unit-actions" style="display:flex;flex-direction:column;gap:10px;margin-top:24px;">
               <a href="https://wa.me/5511947936611?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+An%C3%A1lia+Franco" target="_blank" rel="noopener" class="btn btn--primary" style="justify-content:center;font-size:13px;padding:14px 20px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---analia-franco-vila-regente-feijo/c0221e7c-ccf1-4d1e-b66f-cf753365a7a0" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---analia-franco-vila-regente-feijo/c0221e7c-ccf1-4d1e-b66f-cf753365a7a0" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
+              <a href="https://oia.99app.com/dlp9/XVIfSr" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(245, 166, 35, 0.4); color: #F5A623;" onmouseover="this.style.background='rgba(245, 166, 35, 0.1)';this.style.borderColor='rgba(245, 166, 35, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245, 166, 35, 0.4)'">99FOOD →</a>
             </div>
           </div>
         </article>
@@ -2747,7 +2804,8 @@
             <address class="unit-address">Praça de Alimentação – Alameda Terracota, 545<br>Cerâmica, São Caetano do Sul – SP, 09531-190</address>
             <div class="unit-actions" style="display:flex;flex-direction:column;gap:10px;margin-top:24px;">
               <a href="https://wa.me/5511947921707?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+S%C3%A3o+Caetano" target="_blank" rel="noopener" class="btn btn--primary" style="justify-content:center;font-size:13px;padding:14px 20px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-caetano-do-sul-sp/rosso-burguer---sao-caetano-ceramica/0f8f3a19-8e77-407d-8133-6a48b4295f20" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-caetano-do-sul-sp/rosso-burguer---sao-caetano-ceramica/0f8f3a19-8e77-407d-8133-6a48b4295f20" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
+              <a href="https://oia.99app.com/dlp9/XVIfSr" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(245, 166, 35, 0.4); color: #F5A623;" onmouseover="this.style.background='rgba(245, 166, 35, 0.1)';this.style.borderColor='rgba(245, 166, 35, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245, 166, 35, 0.4)'">99FOOD →</a>
             </div>
           </div>
         </article>
@@ -2763,7 +2821,8 @@
             <address class="unit-address">R. Adutora de Rio Claro, 151<br>Vila Primavera, São Paulo – SP, 03374-050</address>
             <div class="unit-actions" style="display:flex;flex-direction:column;gap:10px;margin-top:24px;">
               <a href="https://wa.me/5511961809916?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Sapopemba" target="_blank" rel="noopener" class="btn btn--primary" style="justify-content:center;font-size:13px;padding:14px 20px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer-vila-primavera/55527464-4001-4f67-ae9f-597cfc75ca9b" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer-vila-primavera/55527464-4001-4f67-ae9f-597cfc75ca9b" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
+              <a href="https://oia.99app.com/dlp9/ALwCDO" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(245, 166, 35, 0.4); color: #F5A623;" onmouseover="this.style.background='rgba(245, 166, 35, 0.1)';this.style.borderColor='rgba(245, 166, 35, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245, 166, 35, 0.4)'">99FOOD →</a>
             </div>
           </div>
         </article>
@@ -2779,7 +2838,7 @@
             <address class="unit-address">Praça de Alimentação – Av. 9 de Julho, 3333<br>Anhangabaú, Jundiaí – SP</address>
             <div class="unit-actions" style="display:flex;flex-direction:column;gap:10px;margin-top:24px;">
               <a href="https://wa.me/5511947925999?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Jundia%C3%AD" target="_blank" rel="noopener" class="btn btn--primary" style="justify-content:center;font-size:13px;padding:14px 20px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/jundiai-sp/rosso-burguer---jundiai-anhangabau/16db2830-8f4f-414c-9554-1cafeb46af8b" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/jundiai-sp/rosso-burguer---jundiai-anhangabau/16db2830-8f4f-414c-9554-1cafeb46af8b" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
             </div>
           </div>
         </article>
@@ -2795,7 +2854,7 @@
             <address class="unit-address">São Paulo – SP</address>
             <div class="unit-actions" style="display:flex;flex-direction:column;gap:10px;margin-top:24px;">
               <a href="https://wa.me/5511993471000?text=Ol%C3%A1!+Vi+no+site+e+gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Vila+Prudente" target="_blank" rel="noopener" class="btn btn--primary" style="justify-content:center;font-size:13px;padding:14px 20px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---vila-prudente-vila-prudente/d45b7eaa-a1b5-415e-b802-e73f2617e989" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---vila-prudente-vila-prudente/d45b7eaa-a1b5-415e-b802-e73f2617e989" target="_blank" rel="noopener" class="btn btn--outline" style="justify-content:center;font-size:13px;padding:14px 20px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
             </div>
           </div>
         </article>
@@ -3018,9 +3077,10 @@
               <address class="unit-address">Praça de Alimentação – Av. Reg. Feijó, 1739<br>Vila Reg. Feijó, São Paulo – SP · 03342-900</address>
             </div>
             <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">01</div>
-            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
               <a href="https://wa.me/5511947936611?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+An%C3%A1lia+Franco" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---analia-franco-vila-regente-feijo/c0221e7c-ccf1-4d1e-b66f-cf753365a7a0" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---analia-franco-vila-regente-feijo/c0221e7c-ccf1-4d1e-b66f-cf753365a7a0" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
+              <a href="https://oia.99app.com/dlp9/XVIfSr" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(245, 166, 35, 0.4); color: #F5A623;" onmouseover="this.style.background='rgba(245, 166, 35, 0.1)';this.style.borderColor='rgba(245, 166, 35, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245, 166, 35, 0.4)'">99FOOD →</a>
             </div>
           </div>
 
@@ -3032,9 +3092,10 @@
               <address class="unit-address">Praça de Alimentação – Alameda Terracota, 545<br>Cerâmica, São Caetano do Sul – SP · 09531-190</address>
             </div>
             <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">02</div>
-            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
               <a href="https://wa.me/5511947921707?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+S%C3%A3o+Caetano" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-caetano-do-sul-sp/rosso-burguer---sao-caetano-ceramica/0f8f3a19-8e77-407d-8133-6a48b4295f20" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-caetano-do-sul-sp/rosso-burguer---sao-caetano-ceramica/0f8f3a19-8e77-407d-8133-6a48b4295f20" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
+              <a href="https://oia.99app.com/dlp9/XVIfSr" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(245, 166, 35, 0.4); color: #F5A623;" onmouseover="this.style.background='rgba(245, 166, 35, 0.1)';this.style.borderColor='rgba(245, 166, 35, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245, 166, 35, 0.4)'">99FOOD →</a>
             </div>
           </div>
 
@@ -3046,9 +3107,10 @@
               <address class="unit-address">R. Adutora de Rio Claro, 151<br>Vila Primavera, São Paulo – SP · 03374-050</address>
             </div>
             <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">03</div>
-            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
               <a href="https://wa.me/5511961809916?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Sapopemba" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer-vila-primavera/55527464-4001-4f67-ae9f-597cfc75ca9b" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer-vila-primavera/55527464-4001-4f67-ae9f-597cfc75ca9b" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
+              <a href="https://oia.99app.com/dlp9/ALwCDO" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(245, 166, 35, 0.4); color: #F5A623;" onmouseover="this.style.background='rgba(245, 166, 35, 0.1)';this.style.borderColor='rgba(245, 166, 35, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245, 166, 35, 0.4)'">99FOOD →</a>
             </div>
           </div>
 
@@ -3060,9 +3122,9 @@
               <address class="unit-address">Praça de Alimentação – Av. 9 de Julho, 3333<br>Anhangabaú, Jundiaí – SP</address>
             </div>
             <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">04</div>
-            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
               <a href="https://wa.me/5511947925999?text=Ol%C3%A1!+Gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Jundia%C3%AD" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/jundiai-sp/rosso-burguer---jundiai-anhangabau/16db2830-8f4f-414c-9554-1cafeb46af8b" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/jundiai-sp/rosso-burguer---jundiai-anhangabau/16db2830-8f4f-414c-9554-1cafeb46af8b" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
             </div>
           </div>
 
@@ -3074,9 +3136,9 @@
               <address class="unit-address">São Paulo – SP</address>
             </div>
             <div class="unit-number" aria-hidden="true" style="position:static;font-size:80px;opacity:0.04;">05</div>
-            <div style="display:flex;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;grid-column:1/-1;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);">
               <a href="https://wa.me/5511993471000?text=Ol%C3%A1!+Vi+no+site+e+gostaria+de+informa%C3%A7%C3%B5es+sobre+a+Rosso+Burguer+Vila+Prudente" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:12px;padding:12px 24px;">PEDIR DIRETO →</a>
-              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---vila-prudente-vila-prudente/d45b7eaa-a1b5-415e-b802-e73f2617e989" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px;">IFOOD →</a>
+              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/rosso-burguer---vila-prudente-vila-prudente/d45b7eaa-a1b5-415e-b802-e73f2617e989" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:12px;padding:12px 24px; border-color: rgba(234, 29, 44, 0.4); color: #EA1D2C;" onmouseover="this.style.background='rgba(234, 29, 44, 0.1)';this.style.borderColor='rgba(234, 29, 44, 0.8)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(234, 29, 44, 0.4)'">IFOOD →</a>
             </div>
           </div>
 
@@ -3124,8 +3186,18 @@
             <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--outline" style="white-space:nowrap;">VER LOJAS →</a>
           </div>
 
+          <!-- 99food -->
+          <div class="partner-card reveal" data-brand="99food" data-delay="2" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
+            <div style="width:80px;height:80px;background:#F5A623;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:var(--font-display);font-size:11px;letter-spacing:0.1em;color:#111;text-align:center;">99FOOD</div>
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">99Food</h3>
+              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Aproveite promoções exclusivas e cupons na plataforma 99 nas unidades Anália Franco, São Caetano e Sapopemba.</p>
+            </div>
+            <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--outline" style="white-space:nowrap;">VER LOJAS →</a>
+          </div>
+
           <!-- Instagram -->
-          <div class="partner-card reveal" data-brand="instagram" data-delay="2" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
+          <div class="partner-card reveal" data-brand="instagram" data-delay="3" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
             <div style="width:80px;height:80px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);display:flex;align-items:center;justify-content:center;">
               <svg viewBox="0 0 24 24" width="36" height="36" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </div>
@@ -3395,6 +3467,7 @@
           <div class="hours-list">
             <div class="hour-row"><span>iFood</span><span>Ativo por unidade</span></div>
             <div class="hour-row"><span>WhatsApp</span><span>Pedido direto</span></div>
+            <div class="hour-row"><span>99Food</span><span>Ativo por unidade</span></div>
             <div class="hour-row"><span>Instagram</span><span>@rossoburguer</span></div>
           </div>
         </div>
@@ -3457,8 +3530,8 @@
           <a href="#" onclick="closeItemModal();showPage('unidades');return false;" class="item-cta-primary">ESCOLHER UNIDADE →</a>
           <div class="item-cta-row item-cta-row--3">
             <a href="#" onclick="closeItemModal();showPage('delivery');return false;" class="item-cta-secondary" style="background:#EA1D2C;color:white">IFOOD</a>
+            <a href="#" onclick="closeItemModal();showPage('delivery');return false;" class="item-cta-secondary" style="background:#F5A623;color:#111">99FOOD</a>
             <a href="#" onclick="closeItemModal();showPage('unidades');return false;" class="item-cta-secondary" style="background:#25D366;color:#062d16">WHATSAPP</a>
-
           </div>
         </div>
       </div>
@@ -3489,12 +3562,12 @@
 
       <!-- CTAs -->
       <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto;">
-        <a href="https://instagram.com/rossoburguerr" target="_blank" rel="noopener"
+        <a href="https://www.instagram.com/rossoburguer" target="_blank" rel="noopener"
            class="lead-popup-btn"
            style="display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:white;border-color:transparent;font-size:12px;letter-spacing:0.18em;"
            onclick="document.getElementById('leadPopup').classList.remove('open')">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          @ROSSOBURGUERR
+          @ROSSOBURGUER
         </a>
         <a href="#" onclick="document.getElementById('leadPopup').classList.remove('open');goToHomeSection('assinaturas');return false;"
            class="lead-popup-btn"
@@ -4204,9 +4277,14 @@
       ctaObserver.observe(heroSectionForPulse);
     }
 
-    // Preloader
+    // Preloader and Hero Cinematic Seq
     setTimeout(() => {
       document.getElementById('preloader').classList.add('done');
+      const homeHero = document.getElementById('homeHero');
+      if (homeHero) {
+        homeHero.classList.remove('hero-cinematic-hidden');
+        homeHero.classList.add('hero-cinematic-reveal');
+      }
       armHeroScene();
     }, 2200);
 
