@@ -7,28 +7,32 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
-      --black: #080808;
-      --surface-1: #0f0f0f;
-      --surface-2: #141414;
-      --surface-3: #1a1a1a;
-      --border: #222222;
-      --border-hover: #333333;
-      --red: #E8161B;
-      --red-hover: #ff1f25;
+      --black: #070606;
+      --surface-1: #100b0b;
+      --surface-2: #171010;
+      --surface-3: #201616;
+      --border: #2b1b1b;
+      --border-hover: #3a2424;
+      --red: #c8102e;
+      --red-rgb: 200, 16, 46;
+      --red-hover: #df183a;
       --green: #2d6a4f;
+      --green-rgb: 45, 106, 79;
       --green-hover: #245c43;
-      --orange: #E85D16;  /* Aura accent — kept for canvas compat */
-      --white: #FFFFFF;
-      --gray-1: #888888;
-      --gray-2: #555555;
-      --gray-3: #333333;
+      --orange: #b85a1b;
+      --white: #f4ede4;
+      --white-rgb: 244, 237, 228;
+      --gray-1: #b2a79b;
+      --gray-2: #7a6f65;
+      --gray-3: #4b403b;
       
       --font-display: 'Barlow Condensed', sans-serif;
+      --font-accent: 'Cormorant Garamond', serif;
       --font-body: 'Inter', sans-serif;
       
       --section-pad: clamp(60px, 8vw, 80px);
@@ -82,7 +86,7 @@
     }
     .custom-cursor.hovered {
       top: -24px; left: -24px; width: 48px; height: 48px;
-      background: rgba(232, 22, 27, 0.15);
+      background: rgba(var(--red-rgb), 0.15);
     }
     @media (max-width: 768px) { .custom-cursor { display: none; } }
 
@@ -116,28 +120,61 @@
       transform: translateX(-100%); transition: transform 300ms var(--ease-smooth);
     }
     .btn:hover::after { transform: translateX(0); }
-    .btn--primary { background: var(--red); color: var(--white); }
-    .btn--primary:hover { background: var(--red-hover); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(232, 22, 27, 0.4); }
-    .btn--outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.4); }
-    .btn--outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+    .btn--primary { background: var(--green); color: var(--white); }
+    .btn--primary:hover { background: var(--green-hover); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(45,106,79,0.35); }
+    .btn--outline { background: transparent; color: var(--white); border: 1px solid rgba(244,237,228,0.28); }
+    .btn--outline:hover { border-color: rgba(244,237,228,0.7); background: rgba(244,237,228,0.05); transform: translateY(-2px); }
 
     /* NAVBAR */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0;
-      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent; transition: border-color var(--dur-med), background var(--dur-med);
-      height: 72px; display: flex; align-items: center;
+      background: linear-gradient(180deg, rgba(7,7,7,0.88) 0%, rgba(7,7,7,0.64) 72%, rgba(7,7,7,0.18) 100%);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05); transition: border-color var(--dur-med), background var(--dur-med), box-shadow var(--dur-med);
+      height: 82px; display: flex; align-items: center;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
     }
-    .navbar.scrolled { background: rgba(8,8,8,0.97); border-bottom-color: var(--red); box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
+    .navbar.scrolled { background: rgba(8,8,8,0.96); border-bottom-color: rgba(var(--red-rgb),0.38); box-shadow: 0 10px 38px rgba(0,0,0,0.55); }
     .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .navbar-logo { font-family: var(--font-display); font-weight: 900; font-size: 20px; text-transform: uppercase; color: var(--white); display: flex; align-items: center; gap: 10px; letter-spacing: 0.05em; }
-    .navbar-links { display: flex; gap: 40px; }
-    .nav-link { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-1); transition: color var(--dur-fast); position: relative; padding-bottom: 4px; }
+    .navbar-logo { font-family: var(--font-display); font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--white); display: flex; align-items: center; gap: 14px; letter-spacing: 0.08em; }
+    .navbar-logo-badge {
+      width: 62px;
+      height: 62px;
+      padding: 6px;
+      border-radius: 50% !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(var(--white-rgb),0.16), transparent 46%),
+        linear-gradient(135deg, rgba(var(--red-rgb),0.22), rgba(var(--green-rgb),0.12) 68%, rgba(7,6,6,0.94));
+      border: 1px solid rgba(var(--white-rgb),0.1);
+      box-shadow:
+        0 14px 32px rgba(0,0,0,0.35),
+        inset 0 0 0 1px rgba(var(--white-rgb),0.03);
+      overflow: hidden;
+    }
+    .navbar-logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50% !important;
+      filter: saturate(1.05) contrast(1.04);
+    }
+    .navbar-logo-mark { display:flex; flex-direction:column; line-height:0.9; }
+    .navbar-logo-mark span { display:block; }
+    .navbar-logo-mark small { font-family: var(--font-body); font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: rgba(var(--white-rgb),0.56); margin-top: 7px; }
+    .navbar-links { display: flex; gap: 28px; align-items:center; }
+    .nav-link { font-family: var(--font-display); font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.62); transition: color var(--dur-fast), opacity var(--dur-fast); position: relative; padding-bottom: 4px; }
     .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--red); transition: width var(--dur-fast) var(--ease-smooth); }
-    .nav-link:hover { color: var(--white); }
+    .nav-link:hover { color: var(--white); opacity: 1; }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
     .nav-link.active { color: var(--white); }
-    .navbar-actions { display: flex; align-items: center; gap: 20px; }
+    .navbar-actions { display: flex; align-items: center; gap: 16px; }
+    .navbar-utility { font-family: var(--font-display); font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.54); }
+    .navbar-utility:hover { color: var(--white); }
     .lang-switcher { display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 4px; border-radius: 4px !important; z-index: 99; }
     .lang-btn { background: transparent; border: none; color: var(--gray-1); font-family: var(--font-display); font-size: 13px; font-weight: 700; cursor: pointer; padding: 4px 8px; transition: all var(--dur-fast); border-radius: 2px !important; }
     .lang-btn:hover { color: var(--white); }
@@ -151,19 +188,25 @@
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
     
     @media (max-width: 1024px) {
-      .navbar-links, .navbar-cta { display: none; }
+      .navbar-links, .navbar-utility, .navbar-cta { display: none; }
       .hamburger { display: flex; }
+    }
+    @media (max-width: 640px) {
+      .navbar-logo { gap: 12px; }
+      .navbar-logo-badge { width: 54px; height: 54px; }
+      .navbar-logo-mark span { font-size: 16px; }
+      .navbar-logo-mark small { font-size: 9px; letter-spacing: 0.18em; }
     }
 
     /* MOBILE DRAWER */
     .mobile-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 998; opacity: 0; pointer-events: none; transition: opacity var(--dur-med); }
     .mobile-overlay.active { opacity: 1; pointer-events: all; }
-    .mobile-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: min(320px, 85vw); background: var(--surface-1); border-right: 1px solid var(--border); z-index: 999; padding: 80px 40px 40px; display: flex; flex-direction: column; gap: 40px; transform: translateX(-100%); transition: transform var(--dur-med) var(--ease-smooth); }
+    .mobile-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: min(360px, 88vw); background: linear-gradient(180deg,#0d0d0d 0%, #080808 100%); border-right: 1px solid var(--border); z-index: 999; padding: 96px 32px 32px; display: flex; flex-direction: column; gap: 40px; transform: translateX(-100%); transition: transform var(--dur-med) var(--ease-smooth); }
     .mobile-drawer.active { transform: translateX(0); }
     .drawer-close { position: absolute; top: 24px; right: 24px; background: none; border: 1px solid var(--border); color: var(--white); width: 40px; height: 40px; font-size: 16px; transition: border-color var(--dur-fast); }
     .drawer-close:hover { border-color: var(--red); }
     .drawer-nav { display: flex; flex-direction: column; gap: 8px; }
-    .drawer-nav a { font-family: var(--font-display); font-size: 28px; font-weight: 900; text-transform: uppercase; color: var(--gray-1); padding: 12px 0; border-bottom: 1px solid var(--border); transition: color var(--dur-fast), padding-left var(--dur-fast); }
+    .drawer-nav a { font-family: var(--font-display); font-size: 26px; font-weight: 900; text-transform: uppercase; color: rgba(255,255,255,0.72); padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color var(--dur-fast), padding-left var(--dur-fast); }
     .drawer-nav a:hover { color: var(--white); padding-left: 12px; }
 
     /* HERO */
@@ -178,7 +221,7 @@
     }
 
     .hero-split-left {
-      width: 52%;
+      width: 56%;
       height: 100%;
       position: relative;
       z-index: 4;
@@ -208,7 +251,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 75% center; /* Trazendo levemente mais para o centro */
+      object-position: 74% center;
     }
 
     /* Lighting & Overlays */
@@ -225,8 +268,11 @@
     .hero-gradient-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, #080808 0%, #080808 30%, rgba(8,8,8,0.85) 50%, rgba(8,8,8,0) 90%),
-                  linear-gradient(to top, #080808 0%, rgba(8,8,8,0.4) 15%, transparent 40%);
+      background:
+        linear-gradient(90deg, rgba(8,8,8,1) 0%, rgba(8,8,8,0.95) 24%, rgba(8,8,8,0.74) 45%, rgba(8,8,8,0.18) 72%, rgba(8,8,8,0.08) 100%),
+        radial-gradient(circle at 68% 26%, rgba(200,16,46,0.26) 0%, rgba(200,16,46,0.08) 22%, transparent 52%),
+        radial-gradient(circle at 82% 74%, rgba(45,106,79,0.18) 0%, transparent 34%),
+        linear-gradient(180deg, rgba(8,8,8,0.18) 0%, rgba(8,8,8,0.04) 28%, rgba(8,8,8,0.62) 100%);
       z-index: 3;
       pointer-events: none;
     }
@@ -240,7 +286,7 @@
     }
     .particle {
       position: absolute;
-      background: rgba(232, 22, 27, 0.35);
+      background: rgba(var(--red-rgb), 0.35);
       border-radius: 50%;
       pointer-events: none;
       animation: particle-float linear infinite;
@@ -274,7 +320,7 @@
     .hero-content {
       position: relative;
       z-index: 12;
-      padding-top: 80px;
+      padding-top: 94px;
       padding-bottom: 44px;
       width: 100%;
       transform: translate3d(0, 0, 0);
@@ -296,7 +342,7 @@
       font-weight: 800;
       letter-spacing: 0.25em;
       padding: 7px 16px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       text-transform: uppercase;
       text-shadow: 0 2px 10px rgba(0,0,0,0.28);
       transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease, text-shadow 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
@@ -307,7 +353,7 @@
       height: 8px;
       border-radius: 50% !important;
       background: var(--red);
-      box-shadow: 0 0 10px rgba(232,22,27,0.55);
+      box-shadow: 0 0 10px rgba(var(--red-rgb),0.55);
       flex: 0 0 auto;
     }
     .hero-badge:hover {
@@ -316,34 +362,132 @@
       border-color: rgba(255, 255, 255, 0.24);
       background: linear-gradient(90deg, rgba(16,16,16,0.62), rgba(16,16,16,0.22));
       text-shadow: 0 2px 14px rgba(0,0,0,0.34);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 0 18px rgba(232,22,27,0.08);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 0 18px rgba(var(--red-rgb),0.08);
     }
-    .hero-headline { font-family: var(--font-display); font-weight: 900; font-size: clamp(72px, 9vw, 130px); line-height: 0.88; text-transform: uppercase; margin: 0 0 32px; letter-spacing: -0.01em; }
+    .hero-brand-ghost {
+      position: absolute;
+      top: 20px;
+      left: -6px;
+      font-family: var(--font-display);
+      font-size: clamp(150px, 18vw, 260px);
+      line-height: 0.78;
+      color: rgba(255,255,255,0.035);
+      letter-spacing: -0.08em;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+    .hero-kicker {
+      display: block;
+      font-family: var(--font-accent);
+      font-size: clamp(22px, 2.4vw, 34px);
+      font-weight: 600;
+      font-style: italic;
+      color: rgba(255,255,255,0.84);
+      margin-bottom: 14px;
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-headline { font-family: var(--font-display); font-weight: 900; font-size: clamp(88px, 10vw, 148px); line-height: 0.82; text-transform: uppercase; margin: 0 0 24px; letter-spacing: -0.025em; position: relative; z-index: 2; }
     .hero-headline .line { display: block; }
     .hero-headline .line--red { color: var(--red); }
     .hero-sub {
       font-family: var(--font-body);
-      font-size: 17px;
-      font-weight: 500;
-      color: rgba(236, 236, 236, 0.88);
-      line-height: 1.68;
-      max-width: 440px;
-      margin-bottom: 40px;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(236, 236, 236, 0.82);
+      line-height: 1.72;
+      max-width: 520px;
+      margin-bottom: 20px;
       text-shadow: 0 2px 14px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
     }
     .hero-sub-line {
       display: block;
       font-weight: 600;
     }
+    .hero-accent {
+      max-width: 520px;
+      font-family: var(--font-accent);
+      font-size: clamp(24px, 2.1vw, 34px);
+      line-height: 1.12;
+      color: rgba(245,239,232,0.92);
+      margin-bottom: 34px;
+      position: relative;
+      z-index: 2;
+    }
     .keep-together { white-space: nowrap; }
-    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-    .hero-pills { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
-    .pill { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, opacity 0.3s ease; cursor: pointer; }
-    .pill--red { color: rgba(232, 22, 27, 0.88); }
-    .pill--green { color: rgba(87, 184, 116, 0.92); }
-    .pill:hover { transform: translateY(-1px); opacity: 1; }
-    .pill--red:hover { color: rgba(255, 84, 89, 0.98); text-shadow: 0 0 12px rgba(232, 22, 27, 0.8); }
-    .pill--green:hover { color: rgba(117, 221, 148, 0.98); text-shadow: 0 0 12px rgba(87, 184, 116, 0.75); }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 38px; position: relative; z-index: 2; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-stat {
+      padding: 14px 16px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      backdrop-filter: blur(12px);
+    }
+    .hero-stat strong {
+      display:block;
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .hero-stat span {
+      display:block;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.58);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero-side-rail {
+      position: absolute;
+      right: max(4vw, calc((100vw - 1440px) / 2 + 28px));
+      bottom: 88px;
+      z-index: 5;
+      display: grid;
+      gap: 12px;
+      width: min(260px, 24vw);
+    }
+    .hero-side-label {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.26em;
+      color: rgba(255,255,255,0.46);
+      text-transform: uppercase;
+    }
+    .hero-side-item {
+      display:flex;
+      justify-content:space-between;
+      gap: 18px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.9);
+    }
+    .hero-side-item small {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: none;
+      letter-spacing: 0;
+    }
     
     .navbar-cta.pulse { animation: pulseCta 0.6s ease-out; }
     @keyframes pulseCta {
@@ -414,28 +558,31 @@
         object-position: 65% center !important;
       }
       .hero-gradient-overlay {
-        background: linear-gradient(180deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.42) 34%, rgba(8,8,8,0.74) 100%);
+        background:
+          linear-gradient(180deg, rgba(8,8,8,0.7) 0%, rgba(8,8,8,0.34) 28%, rgba(8,8,8,0.82) 100%),
+          radial-gradient(circle at 60% 18%, rgba(200,16,46,0.18) 0%, transparent 32%);
       }
       .hero-bottom-shadow { height: 250px; }
       .hero { min-height: 640px; }
       .hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
+      .hero-brand-ghost { left: 50%; top: 32px; transform: translateX(-50%); font-size: clamp(110px, 28vw, 160px); }
+      .hero-kicker { font-size: 22px; max-width: 320px; margin-bottom: 8px; }
       .hero-sub {
-        font-size: 12.2px;
-        line-height: 1.48;
+        font-size: 13px;
+        line-height: 1.52;
         max-width: none;
       }
-      .hero-sub-line {
-        white-space: nowrap;
-        font-size: 1.08em;
-      }
+      .hero-accent { font-size: 22px; max-width: 320px; margin-bottom: 24px; }
       .hero-ctas { justify-content: center; }
-      .hero-pills { justify-content: center; gap: 12px; flex-wrap: nowrap; width: 100%; }
-      .pill { font-size: 9px; letter-spacing: 0.08em; gap: 6px; }
+      .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; max-width: 380px; }
+      .hero-stat strong { font-size: 24px; }
+      .hero-side-rail { display: none; }
       .scroll-indicator { bottom: 16px; }
     }
     @media (max-width: 480px) {
       .hero { min-height: 610px; }
-      .hero-sub { font-size: 11.7px; }
+      .hero-headline { font-size: clamp(72px, 20vw, 102px); }
+      .hero-sub { font-size: 12px; }
     }
 
     .scroll-indicator { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 12; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.5; animation: scrollFade 2s ease-in-out infinite; }
@@ -469,16 +616,16 @@
     .card--featured .card-img-wrap { height: 400px; }
     .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms cubic-bezier(0.16, 1, 0.3, 1); will-change: transform; }
     .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.2) 50%, transparent 100%); transition: opacity var(--dur-med) var(--ease-smooth); }
-    .card:hover { transform: translateY(-4px); border-color: rgba(232, 22, 27, 0.3); box-shadow: 0 16px 40px rgba(232, 22, 27, 0.1); }
+    .card:hover { transform: translateY(-4px); border-color: rgba(var(--red-rgb), 0.3); box-shadow: 0 16px 40px rgba(var(--red-rgb), 0.1); }
     .card:hover .card-img-wrap img { transform: scale(1.08) translateY(-10px); filter: brightness(1.15) contrast(1.1); }
     .card:hover .card-overlay { opacity: 0.7; }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, rgba(232,22,27,0) 0%, rgba(232,22,27,0.8) 50%, rgba(232,22,27,0) 100%); transform: scaleX(0); transition: transform 400ms var(--ease-smooth); }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, rgba(var(--red-rgb),0) 0%, rgba(var(--red-rgb),0.86) 50%, rgba(var(--red-rgb),0) 100%); transform: scaleX(0); transition: transform 400ms var(--ease-smooth); }
     .card:hover::before { transform: scaleX(1); }
     
     .card-body { padding: 28px; position: relative; z-index: 2; }
     .card-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
     .card-name { font-family: var(--font-display); font-weight: 900; font-size: 28px; color: var(--white); text-transform: uppercase; letter-spacing: 0.03em; text-shadow: 0 2px 10px rgba(0,0,0,0.5); transition: text-shadow 0.3s; }
-    .card:hover .card-name { text-shadow: 0 0 20px rgba(232, 22, 27, 0.4); }
+    .card:hover .card-name { text-shadow: 0 0 20px rgba(var(--red-rgb), 0.4); }
     .card-price { font-family: var(--font-display); font-weight: 900; font-size: 28px; color: var(--red); white-space: nowrap; }
     .card-desc { font-size: 14px; color: var(--gray-1); line-height: 1.6; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
     .card-cta { font-family: var(--font-display); font-size: 12px; font-weight: 800; letter-spacing: 0.15em; color: var(--white); text-transform: uppercase; display: flex; align-items: center; gap: 8px; transition: all var(--dur-fast) var(--ease-smooth); }
@@ -514,6 +661,29 @@
     .eyebrow { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 0.3em; color: var(--red); text-transform: uppercase; display: block; margin-bottom: 16px; }
     .delivery-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(56px, 6vw, 88px); line-height: 0.9; text-transform: uppercase; margin: 0 0 24px; }
     .delivery-sub { font-size: 16px; color: var(--gray-1); line-height: 1.6; max-width: 380px; margin-bottom: 40px; }
+    .delivery-notes { display: grid; gap: 12px; max-width: 460px; margin-bottom: 32px; }
+    .delivery-note {
+      display: grid;
+      gap: 6px;
+      padding: 16px 18px;
+      border-left: 2px solid rgba(var(--green-rgb),0.8);
+      background: linear-gradient(90deg, rgba(var(--green-rgb),0.12), rgba(var(--red-rgb),0.04) 88%);
+      border-top: 1px solid rgba(var(--white-rgb),0.04);
+      border-bottom: 1px solid rgba(var(--white-rgb),0.04);
+    }
+    .delivery-note strong {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .delivery-note span {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--gray-1);
+    }
     
     .delivery-section .delivery-partners-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; background: transparent; padding: 0; }
     @media (max-width: 768px) {
@@ -532,13 +702,13 @@
     @media (min-width: 768px) { .units-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .units-grid { grid-template-columns: repeat(3, 1fr); } }
     .unit-card { background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.04); padding: 40px; position: relative; overflow: hidden; transition: border-color var(--dur-med), transform var(--dur-med), box-shadow var(--dur-med); }
-    .unit-card:hover { transform: translateY(-4px); border-color: rgba(232, 22, 27, 0.3); box-shadow: 0 12px 32px rgba(232, 22, 27, 0.1); }
-    .unit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, rgba(232,22,27,0.1) 0%, var(--red) 50%, rgba(232,22,27,0.1) 100%); transform: scaleX(0); transition: transform 400ms var(--ease-smooth); }
+    .unit-card:hover { transform: translateY(-4px); border-color: rgba(var(--green-rgb), 0.34); box-shadow: 0 12px 32px rgba(var(--green-rgb), 0.12); }
+    .unit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, rgba(var(--red-rgb),0.1) 0%, var(--green) 50%, rgba(var(--red-rgb),0.1) 100%); transform: scaleX(0); transition: transform 400ms var(--ease-smooth); }
     .unit-card:hover::before { transform: scaleX(1); }
     .unit-number { position: absolute; bottom: 20px; right: 24px; font-family: var(--font-display); font-weight: 900; font-size: 120px; color: rgba(255,255,255,0.02); line-height: 1; transition: color var(--dur-med), transform var(--dur-med); }
-    .unit-card:hover .unit-number { color: rgba(232,22,27,0.04); transform: scale(1.1) translateX(10px); }
+    .unit-card:hover .unit-number { color: rgba(var(--green-rgb),0.08); transform: scale(1.1) translateX(10px); }
     .unit-name { font-family: var(--font-display); font-weight: 900; font-size: 26px; text-transform: uppercase; color: var(--white); margin-bottom: 12px; letter-spacing: 0.03em; position: relative; z-index: 1; transition: color 0.3s; }
-    .unit-card:hover .unit-name { color: var(--red); }
+    .unit-card:hover .unit-name { color: var(--white); }
     .unit-address { font-style: normal; font-size: 13px; color: var(--gray-1); line-height: 1.6; margin-bottom: 24px; position: relative; z-index: 1; }
     .unit-hours { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 1; }
     .hour-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-1); font-family: var(--font-body); }
@@ -559,7 +729,34 @@
     .footer-main { background: var(--black); }
     .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; padding: 60px 0 40px; border-bottom: 1px solid var(--border); }
     @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 60px; } }
-    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-family: var(--font-display); font-weight: 900; font-size: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .footer-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; font-family: var(--font-display); font-weight: 900; font-size: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .footer-logo-badge {
+      width: 72px;
+      height: 72px;
+      padding: 7px;
+      border-radius: 50% !important;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(var(--white-rgb),0.14), transparent 45%),
+        linear-gradient(145deg, rgba(var(--red-rgb),0.2), rgba(var(--green-rgb),0.1) 70%, rgba(7,6,6,1));
+      border: 1px solid rgba(var(--white-rgb),0.09);
+      box-shadow: 0 18px 34px rgba(0,0,0,0.32);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50% !important;
+    }
+    .logo-text { display: inline-flex; flex-direction: column; gap: 6px; }
+    .logo-text small {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      color: rgba(var(--white-rgb),0.48);
+    }
     .footer-tagline { font-size: 13px; color: var(--gray-2); line-height: 1.7; margin-bottom: 24px; }
     .social-links { display: flex; gap: 12px; }
     .social-link { width: 40px; height: 40px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--gray-2); transition: all var(--dur-fast) var(--ease-smooth); border-radius: 50% !important; }
@@ -614,7 +811,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, rgba(232,22,27,0.7), rgba(232,22,27,0.05) 70%, transparent);
+      background: linear-gradient(90deg, rgba(var(--red-rgb),0.7), rgba(var(--red-rgb),0.05) 70%, transparent);
       pointer-events: none;
     }
     .careers-sidebar { display: flex; flex-direction: column; }
@@ -664,7 +861,7 @@
       margin-top: 6px;
       border-radius: 50% !important;
       background: var(--red);
-      box-shadow: 0 0 0 4px rgba(232,22,27,0.12);
+      box-shadow: 0 0 0 4px rgba(var(--red-rgb),0.12);
       flex: 0 0 auto;
     }
     .careers-profile-list {
@@ -674,7 +871,7 @@
     }
     .careers-profile-item {
       padding: 16px 0 16px 18px;
-      border-left: 2px solid rgba(232,22,27,0.34);
+      border-left: 2px solid rgba(var(--red-rgb),0.34);
       position: relative;
     }
     .careers-profile-item + .careers-profile-item {
@@ -709,7 +906,7 @@
     .careers-stack { display: flex; flex-direction: column; gap: 0; margin-top: 2px; }
     .careers-step {
       padding: 18px 0 18px 18px;
-      border-left: 2px solid rgba(232,22,27,0.38);
+      border-left: 2px solid rgba(var(--red-rgb),0.38);
       background: transparent;
       position: relative;
     }
@@ -759,7 +956,7 @@
     .careers-form-sub { font-size: 14px; color: var(--gray-1); line-height: 1.7; max-width: 620px; }
     .careers-badge {
       padding: 8px 14px;
-      border: 1px solid rgba(232,22,27,0.25);
+      border: 1px solid rgba(var(--red-rgb),0.25);
       color: var(--red);
       font-family: var(--font-display);
       font-size: 11px;
@@ -797,7 +994,7 @@
     .careers-textarea:focus {
       border-color: var(--red);
       background: #141414;
-      box-shadow: 0 0 0 4px rgba(232,22,27,0.08);
+      box-shadow: 0 0 0 4px rgba(var(--red-rgb),0.08);
     }
     .careers-input::placeholder,
     .careers-textarea::placeholder { color: #5d5d5d; }
@@ -810,13 +1007,13 @@
       padding: 22px 22px 20px;
       border: 1px dashed #343434;
       background:
-        linear-gradient(135deg, rgba(232,22,27,0.07), transparent 42%),
+        linear-gradient(135deg, rgba(var(--red-rgb),0.07), transparent 42%),
         #111;
       cursor: pointer;
       transition: border-color 0.2s, transform 0.2s, background 0.2s;
     }
     .careers-upload:hover {
-      border-color: rgba(232,22,27,0.5);
+      border-color: rgba(var(--red-rgb),0.5);
       transform: translateY(-1px);
     }
     .careers-upload.has-file {
@@ -938,9 +1135,9 @@
     .cardapio-card-img::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(transparent, #111); }
     .cardapio-card-badge { position: absolute; top: 14px; left: 14px; padding: 4px 10px; font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; z-index: 2; }
     .badge-top { background: var(--red); color: white; }
-    .badge-novo { background: #FFC72C; color: #111; }
+    .badge-novo { background: var(--green); color: white; }
     .badge-vegano { background: #2d7a3a; color: white; }
-    .badge-especial { background: #9b59b6; color: white; }
+    .badge-especial { background: var(--red); color: white; }
     .cardapio-card-body { padding: 20px 24px 28px; }
     .cardapio-card-category { font-size: 11px; font-weight: 600; color: var(--red); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; }
     .cardapio-card-name { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: white; text-transform: uppercase; line-height: 1.1; margin-bottom: 8px; }
@@ -1204,7 +1401,7 @@
       color: rgba(255,255,255,0.028); pointer-events: none; user-select: none;
       transition: color 0.4s;
     }
-    .step:hover::before { color: rgba(232,22,27,0.06); }
+    .step:hover::before { color: rgba(var(--red-rgb),0.06); }
     .step:hover { transform: translateY(-4px); }
     .step-icon {
       width: 64px; height: 64px; margin: 0 auto 20px;
@@ -1375,8 +1572,8 @@
     .testimonials-title-wrap { padding: 0 clamp(20px,5vw,80px); margin-bottom: 48px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
     .testimonials-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; margin-bottom: 8px; }
     .testimonials-headline { font-family: var(--font-display); font-size: clamp(28px,4vw,48px); font-weight: 800; text-transform: uppercase; color: white; }
-    .testimonials-badge { display: flex; align-items: center; gap: 8px; background: #111; padding: 10px 18px; border: 1px solid #222; }
-    .testimonials-badge-star { color: #FFC72C; font-size: 20px; }
+    .testimonials-badge { display: flex; align-items: center; gap: 8px; background: linear-gradient(90deg, rgba(var(--green-rgb),0.14), rgba(17,17,17,0.95)); padding: 10px 18px; border: 1px solid rgba(var(--white-rgb),0.08); }
+    .testimonials-badge-star { color: #f4d27f; font-size: 20px; }
     .testimonials-badge-info { font-size: 12px; color: #888; }
     .testimonials-badge-info strong { color: white; font-size: 16px; }
     .testimonial-track { display: flex; gap: 2px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 0 clamp(20px,5vw,80px); scrollbar-width: none; }
@@ -1384,7 +1581,7 @@
     @media (max-width: 768px) { .testimonial-track { scroll-snap-type: none; } }
     .testimonial-card { flex: 0 0 320px; scroll-snap-align: start; background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s; display: flex; flex-direction: column; gap: 16px; }
     .testimonial-card:hover { border-color: var(--red); }
-    .testimonial-stars { color: #FFC72C; font-size: 16px; letter-spacing: 2px; }
+    .testimonial-stars { color: #f4d27f; font-size: 16px; letter-spacing: 2px; }
     .testimonial-text { font-size: 14px; color: #aaa; line-height: 1.7; flex: 1; font-style: italic; }
     .testimonial-author { display: flex; align-items: center; gap: 12px; }
     .testimonial-avatar { width: 40px; height: 40px; border-radius: 50% !important; background: #222; display: flex; align-items: center; justify-content: center; font-size: 18px; }
@@ -1415,7 +1612,7 @@
     .value-text { font-size: 14px; color: #666; line-height: 1.7; }
 
     /* STATS BAR */
-    .stats-bar { background: var(--red); display: flex; justify-content: space-evenly; padding: 40px 24px; flex-wrap: wrap; gap: 24px; }
+    .stats-bar { background: linear-gradient(90deg, var(--green) 0%, #214d39 100%); display: flex; justify-content: space-evenly; padding: 40px 24px; flex-wrap: wrap; gap: 24px; }
     .stat-item { text-align: center; }
     .stat-number { font-family: var(--font-display); font-weight: 700; font-size: 52px; color: white; line-height: 1; }
     .stat-label { font-family: var(--font-body); font-weight: 500; font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 8px; }
@@ -1427,7 +1624,7 @@
     .units-search-input::placeholder { color: #444; }
     .city-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
     .city-tab { padding: 10px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #222; background: transparent; color: #555; cursor: pointer; transition: all 0.2s; }
-    .city-tab.active { background: var(--red); border-color: var(--red); color: white; }
+    .city-tab.active { background: var(--green); border-color: var(--green); color: white; }
     .city-tab:hover:not(.active) { border-color: #555; color: #ccc; }
     .units-page-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; background: #0a0a0a; }
     @media (max-width: 1024px) { .units-page-grid { grid-template-columns: repeat(2,1fr); } }
@@ -1447,8 +1644,8 @@
     .ucard-btns { display: flex; gap: 8px; flex-wrap: wrap; }
     .ucard-btn-map { padding: 9px 16px; border: 1px solid #333; color: #888; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: transparent; cursor: pointer; transition: all 0.2s; }
     .ucard-btn-map:hover { border-color: var(--red); color: var(--red); }
-    .ucard-btn-delivery { padding: 9px 16px; background: var(--red); border: 1px solid var(--red); color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
-    .ucard-btn-delivery:hover { background: #b71f15; }
+    .ucard-btn-delivery { padding: 9px 16px; background: var(--green); border: 1px solid var(--green); color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    .ucard-btn-delivery:hover { background: var(--green-hover); }
 
     /* DELIVERY PAGE */
     .delivery-partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: #0a0a0a; padding: 2px; }
@@ -1480,6 +1677,10 @@
     .partner-card[data-brand="99food"]::before { background: linear-gradient(180deg, rgba(245,166,35,0.12) 0%, transparent 100%); height: 120px; opacity: 0; }
     .partner-card[data-brand="99food"]:hover { border-color: #F5A623; box-shadow: 0 12px 40px rgba(245,166,35,0.12); }
     .partner-card[data-brand="99food"]:hover::before { opacity: 1; }
+    .partner-card[data-brand="whatsapp"] { border-top: 3px solid var(--green); }
+    .partner-card[data-brand="whatsapp"]::before { background: linear-gradient(180deg, rgba(var(--green-rgb),0.16) 0%, transparent 100%); height: 120px; opacity: 0; }
+    .partner-card[data-brand="whatsapp"]:hover { border-color: var(--green); box-shadow: 0 12px 40px rgba(var(--green-rgb),0.18); }
+    .partner-card[data-brand="whatsapp"]:hover::before { opacity: 1; }
     .partner-status { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
     .partner-status .dot { width: 6px; height: 6px; border-radius: 50% !important; background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.5); animation: pulse 2s infinite; }
     .partner-name { font-family: var(--font-display); font-size: 48px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
@@ -1496,10 +1697,12 @@
     .partner-card[data-brand="rappi"] .partner-name { color: #FF441F; }
     .partner-card[data-brand="keeta"] .partner-name { color: #42D8CC; }
     .partner-card[data-brand="99food"] .partner-name { color: #F5A623; }
+    .partner-card[data-brand="whatsapp"] .partner-name { color: var(--green); }
     .partner-card[data-brand="ifood"] .partner-status { color: #EA1D2C; }
     .partner-card[data-brand="rappi"] .partner-status { color: #FF441F; }
     .partner-card[data-brand="keeta"] .partner-status { color: #42D8CC; }
     .partner-card[data-brand="99food"] .partner-status { color: #F5A623; }
+    .partner-card[data-brand="whatsapp"] .partner-status { color: var(--green); }
 
     /* STEPS */
     .how-it-works { padding: 80px clamp(20px,5vw,80px); border-top: 1px solid #1a1a1a; }
@@ -1510,7 +1713,7 @@
     .step { background: #0f0f0f; padding: 40px 28px; border-top: 2px solid #1a1a1a; transition: border-color 0.4s, background 0.4s; position: relative; }
     .step:hover { border-color: var(--red); background: #111; }
     .step-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid #222; color: var(--red); transition: border-color 0.3s, background 0.3s; }
-    .step:hover .step-icon { border-color: var(--red); background: rgba(232,22,27,0.08); }
+    .step:hover .step-icon { border-color: var(--red); background: rgba(var(--red-rgb),0.08); }
     .step-num { font-family: var(--font-display); font-size: 11px; font-weight: 700; color: var(--red); letter-spacing: 0.15em; margin-bottom: 8px; }
     .step-title { font-family: var(--font-display); font-size: 18px; font-weight: 800; text-transform: uppercase; color: white; margin-bottom: 10px; }
     .step-text { font-size: 13px; color: #555; line-height: 1.7; }
@@ -1541,7 +1744,7 @@
     .preloader-icon { font-size: 48px; animation: preloaderPulse 1s ease-in-out infinite; }
     .preloader-text { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 20px; opacity: 0; animation: preloaderFadeIn 0.6s 0.3s forwards; }
     .preloader-bar { width: 200px; height: 3px; background: #1a1a1a; margin-top: 24px; overflow: hidden; }
-    .preloader-bar-fill { width: 0; height: 100%; background: var(--red); animation: preloaderFill 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .preloader-bar-fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--red), var(--green)); animation: preloaderFill 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     @keyframes preloaderPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
     @keyframes preloaderFadeIn { to { opacity: 1; } }
     @keyframes preloaderFill { to { width: 100%; } }
@@ -1552,8 +1755,8 @@
     .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
     .whatsapp-float::before { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50% !important; background: #25D366; animation: whatsappPing 2s cubic-bezier(0,0,0.2,1) infinite; z-index: -1; }
     @keyframes whatsappPing { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.8); opacity: 0; } }
-    .fab-menu { position: fixed; bottom: 28px; right: 28px; z-index: 9990; width: 60px; height: 60px; background: var(--red); border-radius: 50% !important; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(232, 22, 27, 0.4); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s, background 0.3s; border: none; }
-    .fab-menu:hover { transform: scale(1.05); box-shadow: 0 6px 30px rgba(232, 22, 27, 0.5); }
+    .fab-menu { position: fixed; bottom: 28px; right: 28px; z-index: 9990; width: 60px; height: 60px; background: var(--green); border-radius: 50% !important; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(var(--green-rgb), 0.4); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s, background 0.3s; border: none; }
+    .fab-menu:hover { transform: scale(1.05); box-shadow: 0 6px 30px rgba(var(--green-rgb), 0.5); }
     .fab-menu span { display: block; position: absolute; width: 22px; height: 2px; background: var(--white); transition: all 300ms var(--ease-smooth); }
     .fab-menu span:nth-child(1) { transform: translateY(-6px); }
     .fab-menu span:nth-child(2) { opacity: 1; }
@@ -1616,8 +1819,8 @@
     .testimonials-title-wrap { padding: 0 clamp(20px,5vw,80px); margin-bottom: 48px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
     .testimonials-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; margin-bottom: 8px; }
     .testimonials-headline { font-family: var(--font-display); font-size: clamp(28px,4vw,48px); font-weight: 800; text-transform: uppercase; color: white; }
-    .testimonials-badge { display: flex; align-items: center; gap: 8px; background: #111; padding: 10px 18px; border: 1px solid #222; }
-    .testimonials-badge-star { color: #FFC72C; font-size: 20px; }
+    .testimonials-badge { display: flex; align-items: center; gap: 8px; background: linear-gradient(90deg, rgba(var(--green-rgb),0.14), rgba(17,17,17,0.95)); padding: 10px 18px; border: 1px solid rgba(var(--white-rgb),0.08); }
+    .testimonials-badge-star { color: #f4d27f; font-size: 20px; }
     .testimonials-badge-info { font-size: 12px; color: #888; }
     .testimonials-badge-info strong { color: white; font-size: 16px; }
     .testimonial-track { display: flex; gap: 2px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 0 clamp(20px,5vw,80px); scrollbar-width: none; }
@@ -1625,7 +1828,7 @@
     @media (max-width: 768px) { .testimonial-track { scroll-snap-type: none; } }
     .testimonial-card { flex: 0 0 320px; scroll-snap-align: start; background: #111; padding: 32px 28px; border-top: 2px solid transparent; transition: border-color 0.3s; display: flex; flex-direction: column; gap: 16px; }
     .testimonial-card:hover { border-color: var(--red); }
-    .testimonial-stars { color: #FFC72C; font-size: 16px; letter-spacing: 2px; }
+    .testimonial-stars { color: #f4d27f; font-size: 16px; letter-spacing: 2px; }
     .testimonial-text { font-size: 14px; color: #aaa; line-height: 1.7; flex: 1; font-style: italic; }
     .testimonial-author { display: flex; align-items: center; gap: 12px; }
     .testimonial-avatar { width: 40px; height: 40px; border-radius: 50% !important; background: #222; display: flex; align-items: center; justify-content: center; font-size: 18px; }
@@ -1635,7 +1838,7 @@
 
     /* PROMO TICKER */
     .promo-ticker { animation: tickerScroll 25s linear infinite; display: flex; white-space: nowrap; }
-    .ticker { background: var(--red); padding: 12px 0; overflow: hidden; position: relative; z-index: 10; }
+    .ticker { background: linear-gradient(90deg, var(--green) 0%, #214d39 100%); padding: 12px 0; overflow: hidden; position: relative; z-index: 10; }
     .ticker-track { display: flex; gap: 40px; }
     .ticker-track span { font-family: var(--font-display); font-weight: 800; font-size: 14px; color: white; text-transform: uppercase; letter-spacing: 0.1em; }
     /* .ticker-bridge herda background: var(--red) do .ticker e adiciona gradientes de transição via CSS no topo */
@@ -1894,7 +2097,7 @@
       height: 6px;
       border-radius: 50% !important;
       background: var(--red);
-      box-shadow: 0 0 8px rgba(232,22,27,0.6);
+      box-shadow: 0 0 8px rgba(var(--red-rgb),0.6);
       animation: entryDotPulse 2s ease-in-out infinite;
     }
     @keyframes entryDotPulse {
@@ -1977,7 +2180,7 @@
     .item-panel-cat { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 6px; }
     .item-panel-name { font-family: var(--font-display); font-size: clamp(30px, 5vw, 38px); font-weight: 900; color: white; text-transform: uppercase; line-height: 1.0; margin-bottom: 10px; }
     .item-panel-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-    .item-panel-stars { color: #FFC72C; font-size: 14px; letter-spacing: 2px; }
+    .item-panel-stars { color: #f4d27f; font-size: 14px; letter-spacing: 2px; }
     .item-panel-rating-num { font-size: 13px; font-weight: 700; color: white; }
     .item-panel-rating-count { font-size: 11px; color: #444; }
     .item-panel-tagline { font-size: 13px; color: #555; line-height: 1.6; font-style: italic; }
@@ -2007,12 +2210,12 @@
     .item-panel-base-price { font-family: var(--font-display); font-size: 46px; font-weight: 900; color: var(--red); line-height: 1; }
     .item-panel-qty { display: flex; align-items: stretch; }
     .item-panel-qty-btn { width: 40px; height: 40px; background: #141414; border: 1px solid #1e1e1e; color: white; font-size: 22px; font-weight: 300; cursor: pointer; transition: background 0.15s, border-color 0.15s; display: flex; align-items: center; justify-content: center; line-height: 1; user-select: none; }
-    .item-panel-qty-btn:hover { background: var(--red); border-color: var(--red); }
+    .item-panel-qty-btn:hover { background: var(--green); border-color: var(--green); }
     .item-panel-qty-count { width: 48px; height: 40px; background: #0f0f0f; border-top: 1px solid #1e1e1e; border-bottom: 1px solid #1e1e1e; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 22px; font-weight: 800; color: white; }
     .item-panel-total { font-size: 12px; color: #333; letter-spacing: 0.05em; }
     .item-panel-total strong { color: #666; font-size: 13px; }
     .item-panel-ctas { padding: 18px 28px 56px; display: flex; flex-direction: column; gap: 10px; }
-    .item-cta-primary { display: block; padding: 18px 24px; background: var(--red); color: white; font-family: var(--font-display); font-size: 17px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; text-decoration: none; transition: opacity 0.18s, transform 0.15s; }
+    .item-cta-primary { display: block; padding: 18px 24px; background: var(--green); color: white; font-family: var(--font-display); font-size: 17px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; text-decoration: none; transition: opacity 0.18s, transform 0.15s; }
     .item-cta-primary:hover { opacity: 0.9; transform: translateY(-1px); }
     .item-cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .item-cta-row--3 { grid-template-columns: 1fr 1fr 1fr; }
@@ -2030,7 +2233,7 @@
     }
     /* Cardápio card hover arrow */
     .cardapio-card-btn { padding: 8px 16px; background: transparent; border: 1px solid #252525; color: #555; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
-    .cardapio-card-btn:hover, .cardapio-card:hover .cardapio-card-btn { border-color: var(--red); color: var(--red); background: rgba(232,22,27,0.06); }
+    .cardapio-card-btn:hover, .cardapio-card:hover .cardapio-card-btn { border-color: var(--red); color: var(--red); background: rgba(var(--red-rgb),0.06); }
 
   
     /* Italian accent bar */
@@ -2111,15 +2314,15 @@
 
   <!-- PRELOADER -->
   <div class="preloader" id="preloader">
-    <div class="preloader-icon"><img src="/assets/rosso/logo-transparente.png" style="height:60px;object-fit:contain;filter:brightness(0)invert(1)"></div>
+    <div class="preloader-icon"><img src="/assets/rosso/logo-oficial.jpeg" alt="Rosso Burguer" style="height:72px;width:72px;object-fit:cover;border-radius:50%;border:1px solid rgba(255,255,255,0.12);box-shadow:0 12px 28px rgba(0,0,0,0.35);"></div>
     <div class="preloader-text">ROSSO BURGUER</div>
     <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
   </div>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/5511947936611?text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Rosso%20Burguer" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp">
+  <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="whatsapp-float" aria-label="Escolha sua unidade no WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    <span class="whatsapp-tooltip">Peça pelo WhatsApp!</span>
+    <span class="whatsapp-tooltip">Escolha sua unidade</span>
   </a>
 
   <!-- FAB MENU (MOBILE) -->
@@ -2134,17 +2337,19 @@
   <nav class="navbar" id="navbar">
     <div class="container navbar-inner">
       <a href="#" onclick="showPage('home'); return false;" class="navbar-logo">
-        <img src="/assets/rosso/logo-transparente.png" alt="Rosso Burguer" style="height:58px;width:58px;object-fit:contain;">
-        <span>ROSSO BURGUER</span>
+        <span class="navbar-logo-badge"><img src="/assets/rosso/logo-mascote.jpeg" alt="Rosso Burguer"></span>
+        <span class="navbar-logo-mark"><span>ROSSO BURGUER</span><small>SINCE 2017</small></span>
       </a>
-      <div class="navbar-links" style="display:flex;gap:8px;align-items:center;">
-        <a href="#unidades" onclick="document.getElementById('unidades').scrollIntoView({behavior:'smooth'});return false;" class="btn btn--outline" style="padding:10px 24px;font-size:12px;border-color:rgba(45,106,79,0.8);color:#2d6a4f;" onmouseover="this.style.background='#2d6a4f';this.style.color='white';this.style.borderColor='#2d6a4f';" onmouseout="this.style.background='';this.style.color='#2d6a4f';this.style.borderColor='rgba(45,106,79,0.8)';">LOJAS</a>
-        <a href="mailto:rh@rossoburguer.com.br" class="btn btn--outline" style="padding:10px 24px;font-size:12px;">TRAMPE NO ROSSO</a>
-        <a href="mailto:contato@rossoburguer.com.br" class="btn btn--primary" style="padding:10px 24px;font-size:12px;">FALE CONOSCO</a>
+      <div class="navbar-links">
+        <a href="#manifesto" onclick="goToHomeSection('manifesto'); return false;" class="nav-link">Manifesto</a>
+        <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly'); return false;" class="nav-link">Processo</a>
+        <a href="#assinaturas" onclick="goToHomeSection('assinaturas'); return false;" class="nav-link">Assinaturas</a>
+        <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="nav-link">Lojas</a>
+        <a href="#canais" onclick="goToHomeSection('canais'); return false;" class="nav-link">Canais</a>
       </div>
       <div class="navbar-actions">
-        
-        
+        <a href="#" onclick="showPage('carreiras'); return false;" class="navbar-utility">Trampe no Rosso</a>
+        <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="btn btn--primary navbar-cta">ESCOLHER LOJA</a>
         <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -2158,11 +2363,15 @@
     <button class="drawer-close" id="drawerClose">✕</button>
     
     <nav class="drawer-nav">
-          <a href="#unidades" onclick="document.getElementById('unidades').scrollIntoView({behavior:'smooth'});toggleMenu(false);return false;">LOJAS</a>
-          <a href="mailto:rh@rossoburguer.com.br">TRAMPE NO ROSSO</a>
-          <a href="mailto:contato@rossoburguer.com.br">FALE CONOSCO</a>
-        </nav>
-    <a href="#" onclick="showPage('delivery'); return false;" class="btn btn--primary" style="justify-content: center; margin-top: auto;" data-i18n="nav_pedir">PEDIR AGORA</a>
+      <a href="#manifesto" onclick="goToHomeSection('manifesto');toggleMenu(false);return false;">MANIFESTO</a>
+      <a href="#burgerAssembly" onclick="goToHomeSection('burgerAssembly');toggleMenu(false);return false;">PROCESSO</a>
+      <a href="#assinaturas" onclick="goToHomeSection('assinaturas');toggleMenu(false);return false;">ASSINATURAS</a>
+      <a href="#unidades" onclick="goToHomeSection('unidades');toggleMenu(false);return false;">LOJAS</a>
+      <a href="#canais" onclick="goToHomeSection('canais');toggleMenu(false);return false;">CANAIS</a>
+      <a href="#" onclick="showPage('carreiras');toggleMenu(false);return false;">TRAMPE NO ROSSO</a>
+      <a href="mailto:contato@rossoburguer.com.br">FALE CONOSCO</a>
+    </nav>
+    <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="btn btn--primary" style="justify-content: center; margin-top: auto;">ESCOLHER LOJA</a>
   </div>
 
   <!-- HOME PAGE -->
@@ -2174,24 +2383,28 @@
     <!-- Left side (Text) -->
     <div class="hero-split-left">
       <div class="hero-content">
+        <span class="hero-brand-ghost" aria-hidden="true">ROSSO</span>
         <span class="hero-badge reveal" data-delay="1">SÃO PAULO · DESDE 2017</span>
+        <span class="hero-kicker reveal" data-delay="2">Tradição italiana em chama alta.</span>
         <h1 class="hero-headline">
-          <span class="line reveal" data-delay="1">HAMBÚRGUER</span>
-          <span class="line reveal" data-delay="2">ARTESANAL COM A</span>
-          <span class="line line--red reveal" data-delay="3">TRADIÇÃO ITALIANA.</span>
+          <span class="line reveal" data-delay="1">BRASA.</span>
+          <span class="line reveal" data-delay="2">ITALIA.</span>
+          <span class="line line--red reveal" data-delay="3">MEMÓRIA.</span>
         </h1>
         <p class="hero-sub reveal" data-delay="4">
-          <span class="hero-sub-line">Blend artesanal, ingredientes frescos, <span class="keep-together">sem atalhos.</span></span>
-          <span class="hero-sub-line">O hambúrguer com tradição italiana.</span>
+          <span class="hero-sub-line">Parrilla à lenha, assinatura visual forte e canais diretos por unidade.</span>
+          <span class="hero-sub-line">Uma Rosso mais premium, mais desejável e mais pronta para converter.</span>
         </p>
+        <p class="hero-accent reveal" data-delay="4">Do primeiro scroll ao primeiro pedido, a marca precisa parecer tão forte quanto o sabor que promete.</p>
         <div class="hero-ctas reveal" data-delay="4">
-          <a href="#unidades" onclick="document.getElementById('unidades').scrollIntoView({behavior:'smooth'});return false;" class="btn btn--primary">VER LOJAS &rarr;</a>
-          <a href="#historia" onclick="document.getElementById('historia').scrollIntoView({behavior:'smooth'});return false;" class="btn btn--outline">NOSSA HISTÓRIA</a>
+          <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--primary">ESCOLHER LOJA &rarr;</a>
+          <a href="#assinaturas" onclick="goToHomeSection('assinaturas');return false;" class="btn btn--outline">VER ASSINATURAS</a>
         </div>
-        <div class="hero-pills reveal" data-delay="5">
-          <span class="pill pill--red">● PARRILLA À LENHA</span>
-          <span class="pill pill--green">● 5 UNIDADES EM SP</span>
-          <span class="pill pill--red">● SINCE 2017</span>
+        <div class="hero-stats reveal" data-delay="5">
+          <div class="hero-stat"><strong>5</strong><span>unidades ativas em SP e Jundiaí</span></div>
+          <div class="hero-stat"><strong>2017</strong><span>desde quando a marca está em jogo</span></div>
+          <div class="hero-stat"><strong>3</strong><span>canais centrais de pedido hoje</span></div>
+          <div class="hero-stat"><strong>FAST</strong><span>rota curta entre apetite e compra</span></div>
         </div>
       </div>
     </div>
@@ -2209,6 +2422,13 @@
     <!-- Ticker visual integration shadow -->
     <div class="hero-bottom-shadow"></div>
 
+    <div class="hero-side-rail reveal" data-delay="5">
+      <span class="hero-side-label">ASSINATURA ROSSO</span>
+      <div class="hero-side-item"><span>PARRILLA À LENHA</span><small>fogo, crosta e presença</small></div>
+      <div class="hero-side-item"><span>ITALIAN DNA</span><small>tradição traduzida em linguagem atual</small></div>
+      <div class="hero-side-item"><span>IFOOD + WHATSAPP</span><small>conversão por unidade, sem ruído</small></div>
+    </div>
+
     <div class="scroll-indicator" aria-hidden="true">
       <span>SCROLL</span>
       <div class="scroll-line"></div>
@@ -2219,16 +2439,16 @@
   <!-- PROMO TICKER (PONTE VISUAL) -->
   <div class="ticker ticker-bridge" aria-hidden="true">
     <div class="ticker-track promo-ticker">
-      <span>HAMBÚRGUER ARTESANAL COM TRADIÇÃO ITALIANA</span><span class="dot">•</span>
-      <span>FEITO NA PARRILLA À LENHA</span><span class="dot">•</span>
-      <span>5 UNIDADES EM SP E JUNDIAÍ</span><span class="dot">•</span>
-      <span>SINCE 2017 · BENVENUTI</span><span class="dot">•</span>
-      <span>PEÇA DIRETO OU PELO IFOOD</span><span class="dot">•</span>
-      <span>HAMBÚRGUER ARTESANAL COM TRADIÇÃO ITALIANA</span><span class="dot">•</span>
-      <span>FEITO NA PARRILLA À LENHA</span><span class="dot">•</span>
-      <span>5 UNIDADES EM SP E JUNDIAÍ</span><span class="dot">•</span>
-      <span>SINCE 2017 · BENVENUTI</span><span class="dot">•</span>
-      <span>PEÇA DIRETO OU PELO IFOOD</span><span class="dot">•</span>
+      <span>TRADIÇÃO ITALIANA EM CHAMA ALTA</span><span class="dot">•</span>
+      <span>PARRILLA À LENHA · ASSINATURA ROSSO</span><span class="dot">•</span>
+      <span>5 UNIDADES · SP + JUNDIAÍ</span><span class="dot">•</span>
+      <span>IFOOD · WHATSAPP · 99FOOD QUANDO ATIVO</span><span class="dot">•</span>
+      <span>BENVENUTI ALLA ROSSO</span><span class="dot">•</span>
+      <span>TRADIÇÃO ITALIANA EM CHAMA ALTA</span><span class="dot">•</span>
+      <span>PARRILLA À LENHA · ASSINATURA ROSSO</span><span class="dot">•</span>
+      <span>5 UNIDADES · SP + JUNDIAÍ</span><span class="dot">•</span>
+      <span>IFOOD · WHATSAPP · 99FOOD QUANDO ATIVO</span><span class="dot">•</span>
+      <span>BENVENUTI ALLA ROSSO</span><span class="dot">•</span>
     </div>
   </div>
 
@@ -2253,7 +2473,7 @@
       <!-- Label de entrada -->
       <div class="assembly-entry-label" id="assemblyEntryLabel">
         <span class="assembly-entry-dot" aria-hidden="true"></span>
-        INGREDIENTES / Role para descobrir
+        PROCESSO / Role para sentir a marca
       </div>
 
       <!-- UI principal -->
@@ -2264,44 +2484,44 @@
 
           <div class="assembly-label-item" data-appear="0.05" data-vanish="0.35">
             <span class="assembly-label-num">01</span>
-            <span class="assembly-label-name">Pão Brioche</span>
-            <span class="assembly-label-desc">Assado por parceiro artesanal toda manhã</span>
+            <span class="assembly-label-name">Brasa Real</span>
+            <span class="assembly-label-desc">calor lateral, presença de parrilla e leitura de fogo</span>
           </div>
 
           <div class="assembly-label-item" data-appear="0.18" data-vanish="0.48">
             <span class="assembly-label-num">02</span>
-            <span class="assembly-label-name">Cheddar Artesanal</span>
-            <span class="assembly-label-desc">Maturado 90 dias, cremosidade perfeita</span>
+            <span class="assembly-label-name">Crosta</span>
+            <span class="assembly-label-desc">o ponto visual que já vende a primeira mordida</span>
           </div>
 
           <div class="assembly-label-item" data-appear="0.30" data-vanish="0.60">
             <span class="assembly-label-num">03</span>
-            <span class="assembly-label-name">Blend na Parrilla</span>
-            <span class="assembly-label-desc">Costela + fraldinha, selado na brasa</span>
+            <span class="assembly-label-name">Queijo</span>
+            <span class="assembly-label-desc">camada generosa, leitura indulgente, impacto imediato</span>
           </div>
 
           <div class="assembly-label-item" data-appear="0.44" data-vanish="0.72">
             <span class="assembly-label-num">04</span>
-            <span class="assembly-label-name">Alface Americana</span>
-            <span class="assembly-label-desc">Higienizada e crocante, sem exceção</span>
+            <span class="assembly-label-name">Molho da Casa</span>
+            <span class="assembly-label-desc">identidade, final e memória em uma mesma camada</span>
           </div>
 
           <div class="assembly-label-item" data-appear="0.56" data-vanish="0.82">
             <span class="assembly-label-num">05</span>
-            <span class="assembly-label-name">Tomate Fresco</span>
-            <span class="assembly-label-desc">Selecionado diariamente no Ceagesp</span>
+            <span class="assembly-label-name">Contraste</span>
+            <span class="assembly-label-desc">verde, acidez e respiro para segurar intensidade</span>
           </div>
 
           <div class="assembly-label-item" data-appear="0.68" data-vanish="0.92">
             <span class="assembly-label-num">06</span>
-            <span class="assembly-label-name">Cebola Caramelizada</span>
-            <span class="assembly-label-desc">40 minutos de fogo baixo. Sem atalhos.</span>
+            <span class="assembly-label-name">Montagem</span>
+            <span class="assembly-label-desc">altura, pressão, alinhamento e acabamento premium</span>
           </div>
 
           <div class="assembly-label-item" data-appear="0.78" data-vanish="1.00">
             <span class="assembly-label-num">07</span>
-            <span class="assembly-label-name">Molho Rosso</span>
-            <span class="assembly-label-desc">Receita exclusiva da casa, desde 2017</span>
+            <span class="assembly-label-name">Assinatura Rosso</span>
+            <span class="assembly-label-desc">quando tudo encaixa, a marca aparece inteira</span>
           </div>
 
         </div>
@@ -2310,33 +2530,33 @@
         <div class="assembly-headlines">
 
           <div class="assembly-phase active" data-phase-start="0.00" data-phase-end="0.12">
-            <span class="assembly-phase-eyebrow">A montagem</span>
-            <span class="assembly-phase-title">Cada camada tem<br>uma história.</span>
-            <span class="assembly-phase-body">Role para descobrir o que vai dentro de cada Rosso Burguer.</span>
+            <span class="assembly-phase-eyebrow">O ritual</span>
+            <span class="assembly-phase-title">Não é só montar.<br>É acender desejo.</span>
+            <span class="assembly-phase-body">A Rosso entra melhor quando o processo parece assinatura, não produção em série.</span>
           </div>
 
           <div class="assembly-phase" data-phase-start="0.12" data-phase-end="0.35">
-            <span class="assembly-phase-eyebrow">Fundação</span>
-            <span class="assembly-phase-title">O pão que<br>muda tudo.</span>
-            <span class="assembly-phase-body">Brioche artesanal assado toda manhã. Macio por dentro, dourado por fora.</span>
+            <span class="assembly-phase-eyebrow">A primeira leitura</span>
+            <span class="assembly-phase-title">Tudo começa<br>na brasa.</span>
+            <span class="assembly-phase-body">Antes do argumento, vem o impacto visual: fogo, crosta e o calor certo para abrir o apetite.</span>
           </div>
 
           <div class="assembly-phase" data-phase-start="0.35" data-phase-end="0.62">
-            <span class="assembly-phase-eyebrow">A parrilla</span>
-            <span class="assembly-phase-title">Na parrilla<br>à lenha.</span>
-            <span class="assembly-phase-body">Blend selado na brasa. O calor da parrilla forma a crosta que você sente na primeira mordida.</span>
+            <span class="assembly-phase-eyebrow">A intensidade</span>
+            <span class="assembly-phase-title">Queijo, molho<br>e pressão visual.</span>
+            <span class="assembly-phase-body">A marca cresce quando cada camada trabalha junta: peso, brilho, contraste e vontade de clicar.</span>
           </div>
 
           <div class="assembly-phase" data-phase-start="0.62" data-phase-end="0.84">
-            <span class="assembly-phase-eyebrow">O compromisso</span>
-            <span class="assembly-phase-title">Sem linha de<br>produção.</span>
-            <span class="assembly-phase-body">Cada burger montado à mão, ingrediente por ingrediente. Sem atalhos.</span>
+            <span class="assembly-phase-eyebrow">O controle</span>
+            <span class="assembly-phase-title">Montagem limpa.<br>Marca legível.</span>
+            <span class="assembly-phase-body">Quando o visual organiza o excesso, a Rosso parece maior, mais premium e mais pronta para competir no topo.</span>
           </div>
 
           <div class="assembly-phase" data-phase-start="0.84" data-phase-end="1.00">
             <span class="assembly-phase-eyebrow">O resultado</span>
-            <span class="assembly-phase-title">A tradição<br>italiana.</span>
-            <span class="assembly-phase-body">São Paulo tem seus favoritos. O Rosso Clássico é o nosso.</span>
+            <span class="assembly-phase-title">Tradição italiana.<br>Entrega contemporânea.</span>
+            <span class="assembly-phase-body">É aqui que a Rosso deixa de parecer mais uma hamburgueria e vira marca memorável de verdade.</span>
           </div>
 
         </div>
@@ -2345,98 +2565,99 @@
 
       <!-- CTA final -->
       <div class="assembly-cta" id="assemblyCta">
-        <a href="#" onclick="showPage('cardapio'); return false;" class="btn btn--primary">VER AS NOSSAS LOJAS &rarr;</a>
+        <a href="#assinaturas" onclick="goToHomeSection('assinaturas'); return false;" class="btn btn--primary">VER ASSINATURAS &rarr;</a>
       </div>
 
     </div>
   </section>
   <!-- FAVORITES -->
-  <section class="section favorites">
+  <section class="section favorites" id="assinaturas">
     <div class="container">
       <div class="section-header reveal">
         <div>
-          <h2 class="section-title">OS FAVORITOS <br><span class="text-red">DA CASA</span></h2>
-          <p class="section-sub">Aqueles que fizeram nossa história. Se é sua primeira vez, comece por aqui.</p>
+          <h2 class="section-title">ASSINATURAS <br><span class="text-red">ROSSO</span></h2>
+          <p class="section-sub">Menos catálogo genérico, mais vitrine de desejo. Uma seleção curta para abrir apetite e reforçar a identidade da casa.</p>
         </div>
-        <a href="#" onclick="showPage('cardapio'); return false;" class="link-arrow">VER MENU COMPLETO &rarr;</a>
+        <a href="#unidades" onclick="goToHomeSection('unidades'); return false;" class="link-arrow">ESCOLHER LOJA &rarr;</a>
       </div>
       
       <div class="favorites-grid">
-        <article class="card card--featured reveal" data-delay="1" onclick="openItemModal('rosso-classico')" style="cursor:pointer">
+        <article class="card card--featured reveal" data-delay="1" onclick="openItemModal('il-rosso')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="/assets/rosso/hero-dois-lanches.jpeg" alt="Rosso Clássico" loading="lazy">
+            <img src="/assets/rosso/hero-dois-lanches.jpeg" alt="Il Rosso" loading="lazy">
             <div class="card-overlay"></div>
-            <span class="card-badge badge--hot">MAIS PEDIDO</span>
+            <span class="card-badge badge--hot">ASSINATURA</span>
           </div>
           <div class="card-body">
             <div class="card-row">
-              <h3 class="card-name">ROSSO CLÁSSICO</h3>
-              <span class="card-price">R$ 36</span>
+              <h3 class="card-name">IL ROSSO</h3>
+              <span class="card-price">R$ 34,50</span>
             </div>
-            <p class="card-desc">Pão brioche artesanal, blend 160g na parrilla, queijo prato derretido, alface americana, tomate e nossa maionese secreta.</p>
-            <a href="#" onclick="event.stopPropagation(); openItemModal('rosso-classico'); return false;" class="card-cta">VER DETALHES &rarr;</a>
+            <p class="card-desc">Pão brioche, burger, muito cheddar, barbecue, bacon em fatias e cebola crispy. Direto ao ponto.</p>
+            <a href="#" onclick="event.stopPropagation(); openItemModal('il-rosso'); return false;" class="card-cta">VER DETALHES &rarr;</a>
           </div>
         </article>
 
-        <article class="card reveal" data-delay="2" onclick="openItemModal('duplo-cheddar')" style="cursor:pointer">
+        <article class="card reveal" data-delay="2" onclick="openItemModal('monster-cheddar')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="/assets/rosso/lanche-queijo.jpeg" alt="Duplo Queijo" loading="lazy">
+            <img src="/assets/rosso/lanche-queijo.jpeg" alt="Monster Cheddar" loading="lazy">
             <div class="card-overlay"></div>
+            <span class="card-badge badge--new">CHEDDAR</span>
           </div>
           <div class="card-body">
             <div class="card-row">
-              <h3 class="card-name">DUPLO CHEDDAR</h3>
-              <span class="card-price">R$ 48</span>
+              <h3 class="card-name">MONSTER CHEDDAR</h3>
+              <span class="card-price">R$ 36,50</span>
             </div>
-            <p class="card-desc">Pão australiano, dois blends 160g, muito cheddar cremoso, fatias de bacon crocante e cebola caramelizada.</p>
-            <a href="#" onclick="event.stopPropagation(); openItemModal('duplo-cheddar'); return false;" class="card-cta">VER DETALHES &rarr;</a>
+            <p class="card-desc">Muito cheddar, barbecue, bacon em fatias e cebola crispy em um burger feito para quem gosta de intensidade.</p>
+            <a href="#" onclick="event.stopPropagation(); openItemModal('monster-cheddar'); return false;" class="card-cta">VER DETALHES &rarr;</a>
           </div>
         </article>
 
-        <article class="card reveal" data-delay="3" onclick="openItemModal('smash-duplo')" style="cursor:pointer">
+        <article class="card reveal" data-delay="3" onclick="openItemModal('rucolina')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="/assets/rosso/lanche-01.jpeg" alt="Smash Rosso" loading="lazy">
+            <img src="/assets/rosso/lanche-01.jpeg" alt="Rucolina" loading="lazy">
             <div class="card-overlay"></div>
-            <span class="card-badge badge--new">NOVO</span>
+            <span class="card-badge badge--new">AUTORAL</span>
           </div>
           <div class="card-body">
             <div class="card-row">
-              <h3 class="card-name">SMASH ROSSO</h3>
-              <span class="card-price">R$ 32</span>
+              <h3 class="card-name">RUCOLINA</h3>
+              <span class="card-price">R$ 39,90</span>
             </div>
-            <p class="card-desc">Pão de batata, dois smash burgers de 90g, american cheese, picles e mostarda escura.</p>
-            <a href="#" onclick="event.stopPropagation(); openItemModal('smash-duplo'); return false;" class="card-cta">VER DETALHES &rarr;</a>
+            <p class="card-desc">Cheddar, molho especial, onion rings, rúcula, tomate e cebola roxa em uma construção cheia de contraste.</p>
+            <a href="#" onclick="event.stopPropagation(); openItemModal('rucolina'); return false;" class="card-cta">VER DETALHES &rarr;</a>
           </div>
         </article>
 
-        <article class="card reveal" data-delay="4" onclick="openItemModal('vegano-da-vila')" style="cursor:pointer">
+        <article class="card reveal" data-delay="4" onclick="openItemModal('dry-aged-rosso')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="/assets/rosso/lanche-02.jpeg" alt="Rosso Especial" loading="lazy">
+            <img src="/assets/rosso/lanche-02.jpeg" alt="Dry Aged Rosso" loading="lazy">
             <div class="card-overlay"></div>
-            <span class="card-badge badge--vegan">VEGANO</span>
+            <span class="card-badge badge--hot">PREMIUM</span>
           </div>
           <div class="card-body">
             <div class="card-row">
-              <h3 class="card-name">ROSSO ESPECIAL</h3>
-              <span class="card-price">R$ 38</span>
+              <h3 class="card-name">DRY AGED ROSSO</h3>
+              <span class="card-price">R$ 41,50</span>
             </div>
-            <p class="card-desc">Pão vegano, hambúrguer de grão de bico e cogumelos, queijo vegano, rúcula e maionese de alho assado.</p>
-            <a href="#" onclick="event.stopPropagation(); openItemModal('vegano-da-vila'); return false;" class="card-cta">VER DETALHES &rarr;</a>
+            <p class="card-desc">Leitura mais intensa e madura da casa, pensada para destacar carne, textura e acabamento de parrilla.</p>
+            <a href="#" onclick="event.stopPropagation(); openItemModal('dry-aged-rosso'); return false;" class="card-cta">VER DETALHES &rarr;</a>
           </div>
         </article>
 
-        <article class="card reveal" data-delay="5" onclick="openItemModal('o-classico')" style="cursor:pointer">
+        <article class="card reveal" data-delay="5" onclick="openItemModal('fritas-cheddar')" style="cursor:pointer">
           <div class="card-img-wrap">
-            <img src="/assets/rosso/batata-frita.jpeg" alt="O Clássico" loading="lazy">
+            <img src="/assets/rosso/batata-cheddar.jpeg" alt="Fritas com cheddar" loading="lazy">
             <div class="card-overlay"></div>
           </div>
           <div class="card-body">
             <div class="card-row">
-              <h3 class="card-name">FRITAS ROSSO</h3>
-              <span class="card-price">R$ 28</span>
+              <h3 class="card-name">FRITAS COM CHEDDAR</h3>
+              <span class="card-price">R$ 24,00</span>
             </div>
-            <p class="card-desc">Pão macio, blend 120g, queijo americano, ketchup artesanal, mostarda e picles crocante.</p>
-            <a href="#" onclick="event.stopPropagation(); openItemModal('o-classico'); return false;" class="card-cta">VER DETALHES &rarr;</a>
+            <p class="card-desc">Acompanhamento que aparece com frequência nos pedidos: frita bem servida, molho cremoso e finalização forte.</p>
+            <a href="#" onclick="event.stopPropagation(); openItemModal('fritas-cheddar'); return false;" class="card-cta">VER DETALHES &rarr;</a>
           </div>
         </article>
       </div>
@@ -2444,63 +2665,70 @@
   </section>
 
   <!-- EDITORIAL -->
-  <section class="section editorial">
+  <section class="section editorial" id="manifesto">
     <div class="editorial-bg">
       <img src="/assets/rosso/hero-dois-lanches.jpeg" alt="Qualidade Rosso Burguer" loading="lazy">
     </div>
     <div class="editorial-bg-overlay"></div>
     
     <div class="container editorial-content">
-      <span class="editorial-ghost" aria-hidden="true">2017</span>
+      <span class="editorial-ghost" aria-hidden="true">ROSSO</span>
       <div class="editorial-text reveal-scale">
         <div class="editorial-line"></div>
-        <blockquote class="editorial-quote">TRADIÇÃO QUE<br><em>VOCÊ SENTE.</em></blockquote>
+        <blockquote class="editorial-quote">ITÁLIA NA MEMÓRIA.<br><em>BRASA NO PRESENTE.</em></blockquote>
         <div class="editorial-attr">
           <div class="editorial-dash"></div>
-          <span>FUNDADOR, 2017</span>
+          <span>MANIFESTO ROSSO</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- DELIVERY -->
-  <section class="section delivery-section">
+  <section class="section delivery-section" id="canais">
     <div class="container delivery-grid">
       <div class="delivery-text">
-        <span class="eyebrow reveal">DELIVERY</span>
-        <h2 class="delivery-title reveal" data-delay="1">ENTREGUE.<br><span class="text-red">QUENTE.</span></h2>
-        <p class="delivery-sub reveal" data-delay="2">Pediu, saiu. Parceiros selecionados que garantem que seu lanche chega do jeito que saiu da chapa.</p>
-        <a href="#" onclick="showPage('delivery'); return false;" class="btn btn--primary reveal" data-delay="3">PEDIR DELIVERY &rarr;</a>
+        <span class="eyebrow reveal">CANAIS OFICIAIS</span>
+        <h2 class="delivery-title reveal" data-delay="1">PEÇA COM<br><span class="text-red">CAMINHO CLARO.</span></h2>
+        <p class="delivery-sub reveal" data-delay="2">Cada unidade já nasce com sua rota pronta. Menos dúvida, menos clique perdido, mais Rosso parecendo uma marca pronta para vender forte.</p>
+        <div class="delivery-notes reveal" data-delay="3">
+          <div class="delivery-note">
+            <strong>Ifood por unidade</strong>
+            <span>Entrada direta para quem já quer decidir rápido e seguir para o pedido sem desvio.</span>
+          </div>
+          <div class="delivery-note">
+            <strong>WhatsApp direto</strong>
+            <span>Atalho para atendimento, pedido e conversa com a loja certa sem ruído no caminho.</span>
+          </div>
+          <div class="delivery-note">
+            <strong>99Food quando ativo</strong>
+            <span>Canal complementar mantido apenas onde a marca já aparece hoje de forma confirmada.</span>
+          </div>
+        </div>
+        <a href="#" onclick="showPage('delivery'); return false;" class="btn btn--primary reveal" data-delay="3">VER CANAIS &rarr;</a>
       </div>
       
       <div class="delivery-partners-grid">
-        <a href="https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood" class="partner-card reveal" data-brand="ifood" data-delay="1" target="_blank" rel="noopener noreferrer">
-          <div class="partner-status"><div class="dot"></div> Disponível agora</div>
+        <a href="#" onclick="showPage('unidades'); return false;" class="partner-card reveal" data-brand="ifood" data-delay="1">
+          <div class="partner-status"><div class="dot"></div> Disponível nas 5 lojas</div>
           <h3 class="partner-name">iFood</h3>
-          <p class="partner-sub">Entrega rápida oficial. Acompanhe em tempo real.</p>
-          <div class="partner-tag">★ 4.8 na loja</div>
-          <button class="partner-btn"><span>Pedir no iFood</span></button>
+          <p class="partner-sub">Cobertura principal da marca para delivery, com link dedicado por unidade.</p>
+          <div class="partner-tag">Escolha a loja e siga direto</div>
+          <button class="partner-btn"><span>VER LOJAS NO IFOOD</span></button>
         </a>
-        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" class="partner-card reveal" data-brand="rappi" data-delay="2" target="_blank" rel="noopener noreferrer">
-          <div class="partner-status"><div class="dot"></div> Disponível agora</div>
-          <h3 class="partner-name">Rappi</h3>
-          <p class="partner-sub">Experimente pedir com Rappi Prime.</p>
-          <div class="partner-tag">⚡ Entrega Expressa</div>
-          <button class="partner-btn"><span>Pedir no Rappi</span></button>
+        <a href="#" onclick="showPage('unidades'); return false;" class="partner-card reveal" data-brand="whatsapp" data-delay="2">
+          <div class="partner-status"><div class="dot"></div> Atendimento direto</div>
+          <h3 class="partner-name">WhatsApp</h3>
+          <p class="partner-sub">Contato rápido por unidade para pedido direto, informação e encaminhamento comercial.</p>
+          <div class="partner-tag">Escolha a unidade mais próxima</div>
+          <button class="partner-btn"><span>ABRIR WHATSAPP</span></button>
         </a>
-        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.sankuai.sailor.afooddelivery" class="partner-card reveal" data-brand="keeta" data-delay="3" target="_blank" rel="noopener noreferrer">
-          <div class="partner-status"><div class="dot"></div> Disponível agora</div>
-          <h3 class="partner-name">Keeta</h3>
-          <p class="partner-sub">O novo app com promoções diárias.</p>
-          <div class="partner-tag">🏷️ Cupons Exclusivos</div>
-          <button class="partner-btn"><span>Pedir no Keeta</span></button>
-        </a>
-        <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.taxis99" class="partner-card reveal" data-brand="99food" data-delay="4" target="_blank" rel="noopener noreferrer">
-          <div class="partner-status"><div class="dot"></div> Disponível agora</div>
+        <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" class="partner-card reveal" data-brand="99food" data-delay="3" target="_blank" rel="noopener noreferrer">
+          <div class="partner-status"><div class="dot"></div> 3 unidades ativas</div>
           <h3 class="partner-name">99Food</h3>
-          <p class="partner-sub">Descontos especiais e entrega garantida.</p>
-          <div class="partner-tag">🎫 Promos de Primeira</div>
-          <button class="partner-btn"><span>Pedir no 99Food</span></button>
+          <p class="partner-sub">Canal disponível no Linktree oficial da marca para Anália Franco, São Caetano e Sapopemba.</p>
+          <div class="partner-tag">Abrir Linktree oficial</div>
+          <button class="partner-btn"><span>VER NO 99FOOD</span></button>
         </a>
       </div>
     </div>
@@ -2510,9 +2738,9 @@
   <section class="section units-section" id="unidades">
     <div class="container">
       <div class="section-header-center reveal">
-        <span class="eyebrow">NOSSAS UNIDADES</span>
-        <h2 class="section-title-xl">FAÇA SEU PEDIDO.</h2>
-        <p style="color:var(--gray-1);margin-top:16px;font-size:16px;">5 unidades para você. Peça direto pelo WhatsApp ou pelo iFood.</p>
+        <span class="eyebrow">LOJAS ROSSO</span>
+        <h2 class="section-title-xl">ESCOLHA SUA ROTA.</h2>
+        <p style="color:var(--gray-1);margin-top:16px;font-size:16px;">Cinco operações, canais oficiais claros e uma leitura mais premium do primeiro clique ao pedido.</p>
       </div>
 
       <div class="units-grid">
@@ -2605,44 +2833,39 @@
   <section class="testimonials section" style="background:var(--surface-1)">
     <div class="testimonials-title-wrap">
       <div>
-        <div class="testimonials-label">O QUE DIZEM</div>
-        <h2 class="testimonials-headline">AVALIAÇÕES REAIS.</h2>
+        <div class="testimonials-label">QUEM PEDE, VOLTA</div>
+        <h2 class="testimonials-headline">SINAIS DE 5 ESTRELAS.</h2>
       </div>
       <div class="testimonials-badge">
         <span class="testimonials-badge-star">★</span>
-        <div class="testimonials-badge-info"><strong>4.8</strong> — 2.4k avaliações no Google</div>
+        <div class="testimonials-badge-info"><strong>Google Maps + pedidos</strong> — percepção real usada como tom de marca, sem depoimento inventado.</div>
       </div>
     </div>
     <div class="testimonial-track">
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Melhor hambúrguer que já comi em SP. O blend na parrilla é absurdamente bom. Vou toda semana!"</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">👨</div><div class="testimonial-author-info"><span class="testimonial-author-name">Lucas M.</span><span class="testimonial-author-via">via Google</span></div></div>
+        <p class="testimonial-text">Na leitura das avaliações 5 estrelas da unidade Anália Franco, aparecem com força o sabor de brasa, o burger marcante e a vontade de voltar.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">★</div><div class="testimonial-author-info"><span class="testimonial-author-name">Anália Franco</span><span class="testimonial-author-via">Google Maps</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Pedi pelo iFood e chegou quentinho em 30 min! O Duplo Cheddar é viciante. Fritas com cheddar também são obrigatórias."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">👩</div><div class="testimonial-author-info"><span class="testimonial-author-name">Fernanda S.</span><span class="testimonial-author-via">via iFood</span></div></div>
+        <p class="testimonial-text">Nos pedidos de delivery, a percepção recorrente é de lanche chegando quente, montagem firme e fritas acompanhando bem a experiência.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">🚚</div><div class="testimonial-author-info"><span class="testimonial-author-name">Pedidos Rosso</span><span class="testimonial-author-via">Apps de entrega</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Ambiente incrível, atendimento rápido e o smash burger é perfeito. Nota 10 pra tudo. Melhor hamburgueria de SP!"</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">👨</div><div class="testimonial-author-info"><span class="testimonial-author-name">Rafael P.</span><span class="testimonial-author-via">via Google</span></div></div>
+        <p class="testimonial-text">A combinação de atendimento ágil, cheddar generoso e vontade de repetir o pedido aparece como traço forte da experiência Rosso.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">🍔</div><div class="testimonial-author-info"><span class="testimonial-author-name">Feedback de loja</span><span class="testimonial-author-via">Google Maps</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Sou vegana e finalmente achei um burger que não é só 'aceitável' — é GOSTOSO de verdade. Rosso Especial mudou minha vida."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">👩</div><div class="testimonial-author-info"><span class="testimonial-author-name">Juliana R.</span><span class="testimonial-author-via">via Keeta</span></div></div>
+        <p class="testimonial-text">Quando a operação acerta, o cliente percebe no conjunto: burger no ponto, montagem limpa e identidade própria do começo ao fim.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">🔥</div><div class="testimonial-author-info"><span class="testimonial-author-name">Leitura da marca</span><span class="testimonial-author-via">Canais oficiais</span></div></div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Levei a família inteira e todo mundo amou. As crianças pediram pra voltar no dia seguinte. Preço justo pelo que entregam."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">👨</div><div class="testimonial-author-info"><span class="testimonial-author-name">André C.</span><span class="testimonial-author-via">via Google</span></div></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"O Rosso Clássico com blend na parrilla é nível de restaurante fine dining, mas num preço acessível. Impressionante!"</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">👩</div><div class="testimonial-author-info"><span class="testimonial-author-name">Camila T.</span><span class="testimonial-author-via">via Google</span></div></div>
+        <p class="testimonial-text">Quando produto, atendimento e identidade caminham juntos, a experiência deixa de ser só delivery e vira lembrança de marca.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">✔</div><div class="testimonial-author-info"><span class="testimonial-author-name">Leitura da marca</span><span class="testimonial-author-via">Google + apps</span></div></div>
       </div>
     </div>
   </section>
@@ -2651,23 +2874,21 @@
 
   <!-- PAGE: CARDÁPIO -->
   <div id="page-cardapio" class="spa-page">
-    <div class="subpage-hero" style="min-height:35vh;background:linear-gradient(to bottom,#091609,#111);">
-      <span class="hero-label">NOSSO CARDÁPIO</span>
-      <h1 class="hero-title">FEITO À MÃO.</h1>
-      <p class="hero-subtitle">Ingredientes que você reconhece. Sabor que você nunca esquece.</p>
+    <div class="subpage-hero" style="min-height:35vh;background:linear-gradient(160deg,#090807 0%,#141010 52%,#1d2a20 100%);">
+      <span class="hero-label">DESTAQUES DA CASA</span>
+      <h1 class="hero-title">ROSSO, EM<br>CADA CAMADA.</h1>
+      <p class="hero-subtitle">Uma curadoria visual dos burgers e acompanhamentos que ajudam a traduzir a assinatura da marca.</p>
     </div>
     <div class="filter-bar-wrap">
       <div class="filter-tabs" id="filterTabs">
         <button class="filter-tab active" data-cat="todos">TODOS <span class="filter-count" id="countTodos"></span></button>
         <button class="filter-tab" data-cat="hamburguer">HAMBÚRGUERES <span class="filter-count" id="countHamburguer"></span></button>
         <button class="filter-tab" data-cat="acompanhamento">ACOMPANHAMENTOS <span class="filter-count" id="countAcompanhamento"></span></button>
-        <button class="filter-tab" data-cat="bebida">BEBIDAS <span class="filter-count" id="countBebida"></span></button>
-        <button class="filter-tab" data-cat="sobremesa">SOBREMESAS <span class="filter-count" id="countSobremesa"></span></button>
       </div>
       <div class="filter-actions">
         <div class="filter-search-wrap">
           <svg class="filter-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input class="filter-search" id="cardapioSearch" placeholder="Buscar no cardápio..." autocomplete="off">
+          <input class="filter-search" id="cardapioSearch" placeholder="Buscar nos destaques..." autocomplete="off">
         </div>
         <select class="filter-sort" id="cardapioSort">
           <option value="">ORDENAR POR</option>
@@ -2681,54 +2902,52 @@
     <div class="cardapio-grid" id="cardapioGrid"></div>
     <div class="filter-empty" id="cardapioEmpty">
       <div class="filter-empty-title">NENHUM ITEM ENCONTRADO</div>
-      <div class="filter-empty-sub">Tente outro filtro ou busca.</div>
+      <div class="filter-empty-sub">Tente outro filtro ou explore as unidades para pedir.</div>
     </div>
     <div style="background:var(--green);padding:40px;text-align:center;">
-      <p style="font-family:var(--font-display);font-size:24px;font-weight:700;color:white;text-transform:uppercase;margin-bottom:20px;">Prefere pedir pelo app?</p>
-      <a href="https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood" class="pill-btn" target="_blank" rel="noopener noreferrer">iFOOD</a>
-      <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" class="pill-btn" target="_blank" rel="noopener noreferrer">RAPPI</a>
-      <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.sankuai.sailor.afooddelivery" class="pill-btn" target="_blank" rel="noopener noreferrer">KEETA</a>
-      <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.taxis99" class="pill-btn" target="_blank" rel="noopener noreferrer">99FOOD</a>
+      <p style="font-family:var(--font-display);font-size:24px;font-weight:700;color:white;text-transform:uppercase;margin-bottom:14px;">Peça no canal oficial da sua unidade.</p>
+      <p style="color:rgba(255,255,255,0.78);font-size:14px;max-width:560px;margin:0 auto 24px;">iFood, WhatsApp Direto e 99Food onde houver disponibilidade ativa. Escolha primeiro a loja mais próxima.</p>
+      <a href="#" onclick="showPage('unidades'); return false;" class="pill-btn">VER LOJAS</a>
+      <a href="#" onclick="showPage('delivery'); return false;" class="pill-btn">CANAIS DE PEDIDO</a>
+      <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" class="pill-btn" target="_blank" rel="noopener noreferrer">99FOOD</a>
     </div>
   </div><!-- END CARDÁPIO -->
 
   <!-- PAGE: HISTÓRIA -->
-  <div id="historia" id="page-historia" class="spa-page">
-    <div class="subpage-hero" style="min-height:50vh;background:linear-gradient(160deg,#091609 0%,#111 60%);position:relative;">
+  <div id="page-historia" class="spa-page">
+    <div class="subpage-hero" style="min-height:50vh;background:linear-gradient(160deg,#090807 0%,#141010 46%,#1b271d 100%);position:relative;">
       <span class="subpage-ghost" aria-hidden="true" style="opacity:0.03;">2017</span>
       <span class="hero-label" style="position:relative;z-index:1;">NOSSA HISTÓRIA</span>
-      <h1 class="hero-title" style="position:relative;z-index:1;">TUDO COMEÇOU<br>COM UMA<br>CHAPA QUENTE.</h1>
+      <h1 class="hero-title" style="position:relative;z-index:1;">TUDO COMEÇOU<br>COM UMA<br>PARRILLA ACESA.</h1>
       <p class="hero-subtitle" style="position:relative;z-index:1;">São Paulo, 2017.</p>
     </div>
     <div class="timeline">
       <div class="timeline-inner">
-        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">O COMEÇO</h3><p class="timeline-card-text">Dois amigos, uma chapa de aço e uma obsessão por carne boa. A primeira Rosso Burguer abriu em São Paulo com 4 mesas e uma fila que nunca acabava.</p></div><div class="timeline-year">2017</div><div class="timeline-empty"></div></div>
-        <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">2019</div><div class="timeline-card"><h3 class="timeline-card-title">O MENU SECRETO NASCE</h3><p class="timeline-card-text">Clientes fiéis começaram a pedir combinações fora do cardápio. O Duplo Cheddar com bacon surgiu assim — de um pedido especial que nunca mais saiu da lista.</p></div></div>
-        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">A VIRADA</h3><p class="timeline-card-text">No ano mais difícil, a Rosso Burguer apostou no delivery antes de todo mundo. A fila na porta virou fila no app. Crescemos 300% sem abrir uma segunda loja.</p></div><div class="timeline-year">2020</div><div class="timeline-empty"></div></div>
-        <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">2021</div><div class="timeline-card"><h3 class="timeline-card-title">EXPANSÃO SP</h3><p class="timeline-card-text">Com a demanda explodindo, abrimos novas unidades em São Paulo. Mesmo ritmo, mesma qualidade — a receita nunca mudou.</p></div></div>
-        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">O RECONHECIMENTO</h3><p class="timeline-card-text">Eleita 3 anos seguidos como a melhor hamburgeria artesanal de São Paulo pelo Guia Comer & Beber. O prêmio ficou na parede, a fila continuou na calçada.</p></div><div class="timeline-year">2023</div><div class="timeline-empty"></div></div>
-        <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">HOJE</div><div class="timeline-card"><h3 class="timeline-card-title">A MISSÃO CONTINUA</h3><p class="timeline-card-text">5 unidades entre São Paulo e Jundiaí. Mesmos ingredientes de 2017. A parrilla que nunca apagou.</p></div></div>
+        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">A ORIGEM</h3><p class="timeline-card-text">A Rosso nasce em 2017 com uma proposta clara: juntar hambúrguer artesanal, calor de parrilla à lenha e uma leitura de marca com sotaque italiano.</p></div><div class="timeline-year">2017</div><div class="timeline-empty"></div></div>
+        <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">PROCESSO</div><div class="timeline-card"><h3 class="timeline-card-title">A ASSINATURA DA CASA</h3><p class="timeline-card-text">Mais do que receita, a construção da marca passa pelo processo: brasa, montagem limpa, contraste de textura e atenção ao ponto em cada pedido.</p></div></div>
+        <div class="timeline-entry"><div class="timeline-card"><h3 class="timeline-card-title">A EXPANSÃO</h3><p class="timeline-card-text">Com a operação amadurecida, a Rosso amplia presença sem perder a direção central: experiência consistente, leitura forte de produto e serviço prático para o dia a dia.</p></div><div class="timeline-year">SP + JUNDIAÍ</div><div class="timeline-empty"></div></div>
+        <div class="timeline-entry"><div class="timeline-empty"></div><div class="timeline-year">HOJE</div><div class="timeline-card"><h3 class="timeline-card-title">5 UNIDADES, MESMA ESSÊNCIA</h3><p class="timeline-card-text">Hoje a marca atende São Paulo e Jundiaí com cinco operações e múltiplos canais de pedido, mantendo como eixo o hambúrguer artesanal com tradição italiana.</p></div></div>
       </div>
     </div>
     <div class="values-grid">
-      <div class="value-card"><div class="value-icon">🥩</div><h3 class="value-title">CARNE FRESCA DIÁRIA</h3><p class="value-text">Entregue todas as manhãs. Nunca viu um freezer, nunca vai ver.</p></div>
-      <div class="value-card"><div class="value-icon">🍞</div><h3 class="value-title">PÃO ARTESANAL</h3><p class="value-text">Padaria própria. Fornos às 5h da manhã para que o pão chegue perfeito às 12h.</p></div>
-      <div class="value-card"><div class="value-icon">👐</div><h3 class="value-title">FEITO À MÃO</h3><p class="value-text">Cada hambúrguer montado por mãos humanas. Sem linhas de produção, sem shortcuts.</p></div>
+      <div class="value-card"><div class="value-icon">🔥</div><h3 class="value-title">PARRILLA À LENHA</h3><p class="value-text">O discurso da marca gira em torno da brasa e da forma de preparo. É isso que sustenta a memória de sabor e diferencia a experiência Rosso.</p></div>
+      <div class="value-card"><div class="value-icon">🍔</div><h3 class="value-title">BLEND ARTESANAL</h3><p class="value-text">A Rosso se posiciona como burger artesanal de assinatura forte: textura, queijo, molho e montagem pensados para leitura premium e apetite imediato.</p></div>
+      <div class="value-card"><div class="value-icon">📍</div><h3 class="value-title">OPERAÇÃO MULTIUNIDADE</h3><p class="value-text">Cinco unidades, canais oficiais organizados e presença consistente em shopping, rua e delivery, sem perder clareza de marca no digital.</p></div>
     </div>
     <div class="stats-bar">
       <div class="stat-item"><div class="stat-number">2017</div><div class="stat-label">ANO DE FUNDAÇÃO</div></div>
       <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">UNIDADES</div></div>
-      <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">ARTESANAL</div></div>
+      <div class="stat-item"><div class="stat-number">SP + JD</div><div class="stat-label">PRESENÇA ATUAL</div></div>
     </div>
     <div class="cta-section" style="background:#111;">
-      <p class="cta-sub">Conheça o que fazemos de melhor.</p>
-      <a href="#" onclick="showPage('cardapio'); return false;" class="btn btn--primary">VER CARDÁPIO &rarr;</a>
+      <p class="cta-sub">Escolha a unidade mais próxima e peça do jeito que preferir.</p>
+      <a href="#" onclick="showPage('unidades'); return false;" class="btn btn--primary">VER LOJAS &rarr;</a>
     </div>
   </div><!-- END HISTÓRIA -->
 
     <!-- PAGE: UNIDADES -->
   <div id="page-unidades" class="spa-page">
-    <div class="subpage-hero" style="min-height:40vh;background:linear-gradient(160deg,#0a0a0a 0%,#0f0f0f 60%,#1a0a0a 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;">
+    <div class="subpage-hero" style="min-height:40vh;background:linear-gradient(160deg,#090807 0%,#111111 54%,#1b241d 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;">
       <div>
         <span class="eyebrow">NOSSAS LOJAS</span>
         <h1 class="section-title" style="font-size:clamp(56px,8vw,100px);margin-bottom:16px;">NOS ENCONTRE.</h1>
@@ -2816,7 +3035,7 @@
   </div><!-- END UNIDADES -->
 
     <div id="page-delivery" class="spa-page">
-    <div class="subpage-hero" style="min-height:40vh;background:linear-gradient(160deg,#0a0a0a 0%,#111 60%,#1a0a0a 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;">
+    <div class="subpage-hero" style="min-height:40vh;background:linear-gradient(160deg,#090807 0%,#111111 50%,#1e281f 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;">
       <div>
         <span class="eyebrow">DELIVERY</span>
         <h1 class="section-title" style="font-size:clamp(56px,8vw,100px);margin-bottom:16px;">PEÇA ONDE<br><span class="text-red">ESTIVER.</span></h1>
@@ -2837,21 +3056,31 @@
             <div style="width:80px;height:80px;background:#EA1D2C;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:var(--font-display);font-size:11px;letter-spacing:0.1em;color:white;text-align:center;">iFOOD</div>
             <div>
               <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">iFood</h3>
-              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Maior cobertura de São Paulo e Jundiaí · Entrega em até 45 min · Rastreamento em tempo real</p>
+              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Canal principal para descobrir a loja mais próxima, comparar disponibilidade e pedir com a experiência oficial da unidade.</p>
             </div>
-            <a href="#unidades" onclick="showPage('home');setTimeout(()=>document.getElementById('unidades').scrollIntoView({behavior:'smooth'}),100);return false;" class="btn btn--primary" style="white-space:nowrap;">VER LOJAS →</a>
+            <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--primary" style="white-space:nowrap;">VER LOJAS →</a>
           </div>
 
           <!-- WhatsApp Direto -->
-          <div class="partner-card reveal" data-delay="1" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
+          <div class="partner-card reveal" data-brand="whatsapp" data-delay="1" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
             <div style="width:80px;height:80px;background:#25D366;display:flex;align-items:center;justify-content:center;">
               <svg viewBox="0 0 24 24" width="36" height="36" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </div>
             <div>
               <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">WhatsApp Direto</h3>
-              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Peça diretamente com a nossa equipe · Atendimento personalizado · Resposta rápida</p>
+              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Atalho para falar com a unidade certa, tirar dúvidas rápidas e seguir para o pedido direto com o canal oficial de cada loja.</p>
             </div>
-            <a href="#unidades" onclick="showPage('home');setTimeout(()=>document.getElementById('unidades').scrollIntoView({behavior:'smooth'}),100);return false;" class="btn btn--outline" style="white-space:nowrap;">VER LOJAS →</a>
+            <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--outline" style="white-space:nowrap;">VER LOJAS →</a>
+          </div>
+
+          <!-- 99Food -->
+          <div class="partner-card reveal" data-delay="2" style="background:rgba(15,15,15,0.8);border:1px solid rgba(255,255,255,0.06);padding:40px;display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;">
+            <div style="width:80px;height:80px;background:linear-gradient(135deg,#ffde59,#f6b900);display:flex;align-items:center;justify-content:center;font-weight:900;font-family:var(--font-display);font-size:11px;letter-spacing:0.1em;color:#111;text-align:center;">99FOOD</div>
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:24px;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;">99Food</h3>
+              <p style="color:var(--gray-1);font-size:14px;line-height:1.6;">Algumas unidades aparecem com rota ativa no Linktree oficial da Rosso. Use como canal complementar quando disponível.</p>
+            </div>
+            <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener" class="btn btn--outline" style="white-space:nowrap;">ABRIR LINKTREE →</a>
           </div>
         </div>
 
@@ -2872,8 +3101,8 @@
             </div>
             <div class="step-item">
               <div class="step-num">03</div>
-              <h3 class="step-title">Receba em Casa</h3>
-              <p class="step-body">Seu Rosso Burguer preparado na parrilla chega quentinho até você.</p>
+              <h3 class="step-title">Finalize no Canal Oficial</h3>
+              <p class="step-body">Siga para iFood, WhatsApp ou 99Food quando houver disponibilidade ativa para concluir o pedido com segurança.</p>
             </div>
           </div>
         </div>
@@ -2981,7 +3210,7 @@
 
               <div class="careers-field">
                 <label class="careers-label" for="careerPhone">WhatsApp</label>
-                <input class="careers-input" id="careerPhone" name="phone" type="tel" placeholder="contato@rossoburguer.com.br" required>
+                <input class="careers-input" id="careerPhone" name="phone" type="tel" placeholder="(11) 99999-9999" required>
               </div>
 
               <div class="careers-field">
@@ -3063,12 +3292,12 @@
     <div class="newsletter">
       <div class="container newsletter-inner">
         <div class="newsletter-text reveal">
-          <h3 class="newsletter-title">FIQUE POR DENTRO.</h3>
-          <p>Promoções, novidades e bastidores direto no seu e-mail.</p>
+          <h3 class="newsletter-title">ACOMPANHE O ROSSO.</h3>
+          <p>Instagram oficial, Linktree com canais ativos e contato institucional em um bloco mais fiel à operação real da marca.</p>
         </div>
         <div class="newsletter-form reveal" data-delay="2">
-          <input type="email" placeholder="Seu melhor e-mail" class="newsletter-input">
-          <button class="btn btn--primary newsletter-btn" onclick="handleNewsletter(this)">INSCREVER</button>
+          <a href="https://www.instagram.com/rossoburguer" target="_blank" rel="noopener" class="btn btn--primary newsletter-btn" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">INSTAGRAM</a>
+          <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener" class="btn btn--outline newsletter-btn" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">LINKTREE</a>
         </div>
       </div>
     </div>
@@ -3076,8 +3305,8 @@
     <div class="footer-main">
       <div class="container footer-grid">
         <div class="footer-brand">
-          <div class="footer-logo"><img src="/assets/rosso/logo-transparente.png" style="height:48px;width:48px;object-fit:contain;"><span class="logo-text">ROSSO BURGUER</span></div>
-          <p class="footer-tagline">O hambúrguer com tradição italiana.<br>Blend artesanal, ingredientes frescos, <span class="keep-together">sem atalhos.</span></p>
+          <div class="footer-logo"><span class="footer-logo-badge"><img src="/assets/rosso/logo-oficial.jpeg" alt="Rosso Burguer"></span><span class="logo-text">ROSSO BURGUER<small>TRADIÇÃO ITALIANA DESDE 2017</small></span></div>
+          <p class="footer-tagline">O hambúrguer artesanal com a tradição italiana.<br>Parrilla à lenha, identidade forte e canais oficiais claros do começo ao fim.</p>
           <div class="social-links" style="display:flex;gap:16px;margin-top:24px;">
             <a href="https://www.instagram.com/rossoburguer" target="_blank" aria-label="Instagram" class="social-link" style="width:44px;height:44px;border-radius:50%;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:white;transition:0.3s;" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)';" onmouseout="this.style.borderColor='#333';this.style.color='white';">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
@@ -3091,11 +3320,11 @@
         <nav class="footer-nav">
           <h4 class="footer-col-title">NAVEGAÇÃO</h4>
           <ul>
-            <li><a href="#" onclick="showPage('cardapio'); return false;">Cardápio</a></li>
-            <li><a href="#" onclick="showPage('historia'); return false;">Nossa História</a></li>
-            <li><a href="#" onclick="showPage('unidades'); return false;">Unidades</a></li>
-            <li><a href="#" onclick="showPage('delivery'); return false;">Delivery</a></li>
-            <li><a href="#" onclick="showPage('carreiras'); return false;">Carreiras</a></li>
+            <li><a href="#" onclick="showPage('unidades'); return false;">Lojas</a></li>
+            <li><a href="#" onclick="showPage('delivery'); return false;">Peça Agora</a></li>
+            <li><a href="#" onclick="showPage('cardapio'); return false;">Destaques</a></li>
+            <li><a href="#" onclick="showPage('historia'); return false;">A Marca</a></li>
+            <li><a href="#" onclick="showPage('carreiras'); return false;">Trampe no Rosso</a></li>
           </ul>
         </nav>
         
@@ -3104,26 +3333,27 @@
           <ul>
             <li><a href="mailto:contato@rossoburguer.com.br" style="color:var(--gray-1);">contato@rossoburguer.com.br</a></li>
             <li><a href="mailto:rh@rossoburguer.com.br" style="color:var(--gray-1);">rh@rossoburguer.com.br</a></li>
+            <li><a href="https://rossoburguer.com.br/" target="_blank" rel="noopener" style="color:var(--gray-1);">rossoburguer.com.br</a></li>
           </ul>
         </div>
         
         <div class="footer-hours">
-          <h4 class="footer-col-title">HORÁRIOS</h4>
+          <h4 class="footer-col-title">CANAIS</h4>
           <div class="hours-list">
-            <div class="hour-row"><span>Segunda</span><span class="text-red font-bold">FECHADO</span></div>
-            <div class="hour-row"><span>Ter - Qui</span><span>18h - 23h</span></div>
-            <div class="hour-row"><span>Sex - Sáb</span><span>18h - 01h</span></div>
-            <div class="hour-row"><span>Domingo</span><span>17h - 23h</span></div>
+            <div class="hour-row"><span>iFood</span><span>Ativo por unidade</span></div>
+            <div class="hour-row"><span>WhatsApp</span><span>Pedir Direto</span></div>
+            <div class="hour-row"><span>99Food</span><span>Quando disponível</span></div>
+            <div class="hour-row"><span>Instagram</span><span>@rossoburguer</span></div>
           </div>
         </div>
       </div>
       
       <div class="footer-bottom">
         <div class="container footer-bottom-inner">
-          <span>© 2026 Rosso Burguer SP. Todos os direitos reservados.</span>
+          <span>© 2026 Rosso Burguer · Since 2017.</span>
           <div class="footer-legal">
-            <a href="#">Termos de Uso</a>
-            <a href="#">Privacidade</a>
+            <a href="mailto:contato@rossoburguer.com.br">Fale Conosco</a>
+            <a href="mailto:rh@rossoburguer.com.br">Trampe no Rosso</a>
           </div>
         </div>
       </div>
@@ -3172,11 +3402,11 @@
         </div>
         <!-- CTAs -->
         <div class="item-panel-ctas">
-          <a href="https://play.google.com/store/apps/details?hl=pt-BR&id=br.com.brainweb.ifood" target="_blank" rel="noopener noreferrer" class="item-cta-primary">PEDIR NO IFOOD →</a>
+          <a href="#" onclick="closeItemModal();showPage('unidades');return false;" class="item-cta-primary">ESCOLHER UNIDADE →</a>
           <div class="item-cta-row item-cta-row--3">
-            <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.rappi.br" target="_blank" rel="noopener noreferrer" class="item-cta-secondary" style="background:#FF441F;color:white">RAPPI</a>
-            <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.sankuai.sailor.afooddelivery" target="_blank" rel="noopener noreferrer" class="item-cta-secondary" style="background:linear-gradient(135deg,#42D8CC,#29BDB9);color:#07343A">KEETA</a>
-            <a href="https://play.google.com/store/apps/details?hl=pt_BR&id=com.taxis99" target="_blank" rel="noopener noreferrer" class="item-cta-secondary item-cta--99food">99FOOD</a>
+            <a href="#" onclick="closeItemModal();showPage('delivery');return false;" class="item-cta-secondary" style="background:#EA1D2C;color:white">IFOOD</a>
+            <a href="#" onclick="closeItemModal();showPage('unidades');return false;" class="item-cta-secondary" style="background:#25D366;color:#062d16">WHATSAPP</a>
+            <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener noreferrer" class="item-cta-secondary item-cta--99food">99FOOD</a>
           </div>
         </div>
       </div>
@@ -3187,14 +3417,14 @@
   <div class="lead-popup-overlay" id="leadPopup">
     <div class="lead-popup">
       <button class="lead-popup-close" onclick="document.getElementById('leadPopup').classList.remove('open')">&times;</button>
-      <div class="lead-popup-icon">🍔</div>
-      <h3 class="lead-popup-title">10% OFF NO PRIMEIRO PEDIDO</h3>
-      <p class="lead-popup-sub">Inscreva-se e receba um cupom exclusivo direto no seu e-mail. Promoções semanais e novidades do cardápio.</p>
+      <div class="lead-popup-icon"><img src="/assets/rosso/logo-oficial.jpeg" alt="Rosso Burguer" style="height:66px;width:66px;object-fit:cover;border-radius:50%;border:1px solid rgba(255,255,255,0.12);"></div>
+      <h3 class="lead-popup-title">ESCOLHA SUA UNIDADE</h3>
+      <p class="lead-popup-sub">Peça pelo iFood, fale direto no WhatsApp da loja ou abra o Linktree oficial para ver os canais ativos da Rosso.</p>
       <div class="lead-popup-form">
-        <input type="email" class="lead-popup-input" id="leadEmail" placeholder="Seu melhor e-mail">
-        <button class="lead-popup-btn" onclick="handleLeadPopup(this)">QUERO!</button>
+        <a href="#" class="lead-popup-btn" style="text-decoration:none;text-align:center;" onclick="document.getElementById('leadPopup').classList.remove('open');showPage('unidades');return false;">VER LOJAS</a>
+        <a href="https://linktr.ee/RossoBurguerr?utm_source=linktree_profile_share&ltsid=20bdebfb-1d77-4994-8188-0dfec3befac3" target="_blank" rel="noopener" class="lead-popup-btn" style="text-decoration:none;text-align:center;background:#0f0f0f;color:white;border:1px solid #2a2a2a;">ABRIR LINKTREE</a>
       </div>
-      <p class="lead-popup-disclaimer">Sem spam. Só hambúrguer.</p>
+      <p class="lead-popup-disclaimer">Demo premium orientada pelos canais oficiais da marca.</p>
     </div>
   </div>
 
@@ -3203,144 +3433,84 @@
     /* ── MENU DATA ── */
         const menuData = [
       {
-        id:'rosso-classico', category:'hamburguer', catLabel:'HAMBÚRGUER',
-        name:'Rosso Clássico', tagline:'O clássico que fez a nossa história.',
+        id:'il-rosso', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Il Rosso', tagline:'A assinatura que melhor representa a casa.',
         image:'/assets/rosso/hero-dois-lanches.jpeg',
-        badge:{label:'MAIS PEDIDO',type:'top'},
-        desc:'Pão brioche artesanal, blend 160g na parrilla à lenha, queijo prato derretido, alface americana, tomate e nossa maionese secreta.',
-        ingredients:['Pão Brioche','Blend 160g Parrilla','Queijo Prato','Alface Americana','Tomate','Maionese Secreta'],
-        extras:[{name:'Bacon Crocante',price:6},{name:'Cheddar Extra',price:4},{name:'Ovo Caipira',price:4}],
-        price:36, kcal:780, prepTime:'12 min', rating:4.9, reviews:2847, popular:true, isNew:false
+        badge:{label:'ASSINATURA',type:'top'},
+        desc:'Burger de leitura clássica, queijo bem presente e acabamento que traduz a identidade Rosso sem exagero visual.',
+        ingredients:['Pão da casa','Burger artesanal','Queijo derretido','Molho Rosso','Montagem clássica'],
+        extras:[{name:'Bacon crocante',price:6},{name:'Queijo extra',price:4},{name:'Molho da casa',price:3}],
+        price:34.5, prepTime:'Perfil clássico', rating:4.9, reviewSource:'sinal 5 estrelas', profile:'Assinatura Rosso', popular:true, isNew:false
       },
       {
-        id:'duplo-cheddar', category:'hamburguer', catLabel:'HAMBÚRGUER',
-        name:'Duplo Cheddar', tagline:'Dois blends. Cheddar que escorre.',
+        id:'monster-cheddar', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Monster Cheddar', tagline:'Cheddar generoso, impacto imediato.',
         image:'/assets/rosso/lanche-queijo.jpeg',
-        badge:null,
-        desc:'Pão australiano, dois blends 160g na parrilla, muito cheddar cremoso, fatias de bacon crocante e cebola caramelizada.',
-        ingredients:['Pão Australiano','2× Blend 160g','Cheddar Cremoso','Bacon Crocante','Cebola Caramelizada'],
-        extras:[{name:'Bacon Extra',price:6},{name:'Cheddar Extra',price:4},{name:'Picles',price:2}],
-        price:48, kcal:1020, prepTime:'14 min', rating:4.8, reviews:1923, popular:false, isNew:false
+        badge:{label:'CHEDDAR LOVER',type:'especial'},
+        desc:'Uma leitura intensa para quem quer molho, queijo e presença forte já no primeiro olhar do card.',
+        ingredients:['Pão macio','Burger artesanal','Cheddar cremoso','Bacon crocante','Finalização intensa'],
+        extras:[{name:'Cheddar extra',price:4},{name:'Bacon extra',price:6},{name:'Picles',price:2}],
+        price:36.5, prepTime:'Cheddar em destaque', rating:4.9, reviewSource:'comentários de retorno', profile:'Camada intensa', popular:true, isNew:false
       },
       {
-        id:'smash-rosso', category:'hamburguer', catLabel:'HAMBÚRGUER',
-        name:'Smash Rosso', tagline:'Crocante por fora. Suculento por dentro.',
+        id:'rosso-chicken', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Rosso Chicken', tagline:'Uma leitura mais leve sem perder assinatura.',
         image:'/assets/rosso/lanche-01.jpeg',
         badge:{label:'NOVO',type:'novo'},
-        desc:'Pão de batata, dois smash burgers 90g na parrilla, american cheese, picles e mostarda artesanal.',
-        ingredients:['Pão de Batata','2× Smash 90g Parrilla','American Cheese','Picles','Mostarda Artesanal'],
-        extras:[{name:'Bacon Crocante',price:6},{name:'Jalapeño',price:3},{name:'Molho Rosso Extra',price:2}],
-        price:34, kcal:720, prepTime:'10 min', rating:4.7, reviews:842, popular:false, isNew:true
+        desc:'Frango empanado, queijo e molho em uma composição que amplia o repertório da marca sem fugir do apetite visual do Rosso.',
+        ingredients:['Pão da casa','Frango empanado','Queijo derretido','Molho da casa','Montagem crocante'],
+        extras:[{name:'Bacon crocante',price:6},{name:'Queijo extra',price:4},{name:'Molho rosso',price:3}],
+        price:34, prepTime:'Crocância equilibrada', rating:4.8, reviewSource:'pedido recorrente', profile:'Leitura leve', popular:false, isNew:true
       },
       {
         id:'rosso-especial', category:'hamburguer', catLabel:'HAMBÚRGUER',
-        name:'Rosso Especial', tagline:'O mais completo da nossa parrilla.',
+        name:'Rosso Especial', tagline:'Mais camadas, mais presença, mais marca.',
         image:'/assets/rosso/lanche-02.jpeg',
         badge:{label:'ESPECIAL',type:'especial'},
-        desc:'Pão brioche artesanal, blend 200g wagyu na parrilla, queijo brie, rúcula, cebola caramelizada e molho especial Rosso.',
-        ingredients:['Pão Brioche','Blend 200g Wagyu','Queijo Brie','Rúcula','Cebola Caramelizada','Molho Rosso'],
-        extras:[{name:'Bacon Extra',price:6},{name:'Trufa',price:10},{name:'Ovo Caipira',price:4}],
-        price:54, kcal:960, prepTime:'16 min', rating:4.9, reviews:678, popular:false, isNew:false
+        desc:'Burger criado para quem busca um perfil mais completo da casa, com leitura premium, molho marcante e construção robusta.',
+        ingredients:['Pão da casa','Burger artesanal','Queijo especial','Molho Rosso','Montagem premium'],
+        extras:[{name:'Bacon crocante',price:6},{name:'Queijo extra',price:4},{name:'Cebola crispy',price:3}],
+        price:38.5, prepTime:'Montagem premium', rating:4.9, reviewSource:'percepção premium', profile:'Mais completo', popular:false, isNew:false
       },
       {
-        id:'rosso-bacon', category:'hamburguer', catLabel:'HAMBÚRGUER',
-        name:'Rosso Bacon', tagline:'Pra quem gosta de intensidade.',
-        image:'/assets/rosso/lanche-queijo.jpeg',
+        id:'rucolina', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Rucolina', tagline:'Verde, fresco e com contraste italiano.',
+        image:'/assets/rosso/lanche-02.jpeg',
         badge:null,
-        desc:'Pão rústico, blend 160g na parrilla, creme de cheddar, fatias generosas de bacon e molho defumado.',
-        ingredients:['Pão Rústico','Blend 160g Parrilla','Creme Cheddar','Bacon Generoso','Molho Defumado'],
-        extras:[{name:'Bacon Extra',price:6},{name:'Jalapeño',price:3},{name:'Cheddar Extra',price:4}],
-        price:42, kcal:890, prepTime:'12 min', rating:4.8, reviews:1102, popular:false, isNew:false
+        desc:'Uma leitura mais fresca da marca, com rúcula em destaque e construção que aproxima ainda mais o discurso italiano do produto.',
+        ingredients:['Pão da casa','Burger artesanal','Rúcula','Queijo derretido','Molho Rosso'],
+        extras:[{name:'Bacon crocante',price:6},{name:'Queijo extra',price:4},{name:'Molho da casa',price:3}],
+        price:39.9, prepTime:'Fresco e intenso', rating:4.8, reviewSource:'curadoria da casa', profile:'Contraste italiano', popular:false, isNew:false
       },
       {
-        id:'rosso-frango', category:'hamburguer', catLabel:'HAMBÚRGUER',
-        name:'Rosso Frango', tagline:'Leveza com a assinatura Rosso.',
-        image:'/assets/rosso/lanche-01.jpeg',
-        badge:null,
-        desc:'Pão brioche, filé de frango empanado artesanal, queijo prato, alface, tomate e maionese de ervas.',
-        ingredients:['Pão Brioche','Frango Empanado Artesanal','Queijo Prato','Alface','Tomate','Maionese de Ervas'],
-        extras:[{name:'Bacon Crocante',price:6},{name:'Cheddar Extra',price:4},{name:'Abacaxi Grelhado',price:3}],
-        price:38, kcal:680, prepTime:'12 min', rating:4.6, reviews:514, popular:false, isNew:false
+        id:'dry-aged-rosso', category:'hamburguer', catLabel:'HAMBÚRGUER',
+        name:'Dry Aged Rosso', tagline:'Perfil mais maduro, final mais intenso.',
+        image:'/assets/rosso/hero-dois-lanches.jpeg',
+        badge:{label:'DRY AGED',type:'especial'},
+        desc:'Uma leitura de intensidade maior para a vitrine premium da marca, pensada para comunicar profundidade e desejo.',
+        ingredients:['Pão da casa','Burger dry aged','Queijo derretido','Molho Rosso','Final intenso'],
+        extras:[{name:'Bacon crocante',price:6},{name:'Queijo extra',price:4},{name:'Cebola crispy',price:3}],
+        price:41.5, prepTime:'Intensidade alta', rating:4.9, reviewSource:'premium da vitrine', profile:'Leitura madura', popular:false, isNew:false
       },
       {
         id:'fritas-rosso', category:'acompanhamento', catLabel:'ACOMPANHAMENTO',
         name:'Fritas Rosso', tagline:'Crocantes. Temperadas. Irresistíveis.',
         image:'/assets/rosso/batata-frita.jpeg',
         badge:{label:'MAIS PEDIDO',type:'top'},
-        desc:'Batatas rústicas com casca, temperadas com sal grosso e ervas. Crocantes por fora, macias por dentro.',
-        ingredients:['Batata Rústica com Casca','Sal Grosso','Ervas Frescas','Azeite'],
-        extras:[{name:'Cheddar Cremoso',price:6},{name:'Bacon Bits',price:4},{name:'Cebola Crispy',price:3}],
-        price:18, kcal:380, prepTime:'8 min', rating:4.8, reviews:3421, popular:true, isNew:false
+        desc:'Acompanhamento direto, visualmente apetitoso e fácil de combinar com qualquer um dos burgers em destaque da Rosso.',
+        ingredients:['Batata frita crocante','Sal da casa','Finalização quente'],
+        extras:[{name:'Cheddar cremoso',price:6},{name:'Bacon crocante',price:4},{name:'Molho da casa',price:3}],
+        price:19, prepTime:'Crocância total', rating:4.8, reviewSource:'combo recorrente', profile:'Acompanhamento da casa', popular:true, isNew:false
       },
       {
         id:'fritas-cheddar', category:'acompanhamento', catLabel:'ACOMPANHAMENTO',
         name:'Fritas com Cheddar', tagline:'Nossa frita favorita, no próximo nível.',
         image:'/assets/rosso/batata-cheddar.jpeg',
-        badge:null,
-        desc:'Nossas fritas cobertas com molho de cheddar cremoso e bacon bits crocante.',
-        ingredients:['Batata Rústica','Molho Cheddar','Bacon Bits','Cebolinha'],
-        extras:[{name:'Jalapeño',price:3},{name:'Bacon Extra',price:4},{name:'Cebola Crispy',price:3}],
-        price:26, kcal:580, prepTime:'10 min', rating:4.7, reviews:1876, popular:false, isNew:false
-      },
-      {
-        id:'onion-rings', category:'acompanhamento', catLabel:'ACOMPANHAMENTO',
-        name:'Onion Rings', tagline:'Empanados na hora, sem perdão.',
-        image:'/assets/rosso/batata-frita.jpeg',
-        badge:null,
-        desc:'Anéis de cebola empanados artesanalmente, servidos com molho aioli da casa.',
-        ingredients:['Cebola Doce','Empanado Artesanal','Molho Aioli da Casa'],
-        extras:[{name:'Molho BBQ',price:3},{name:'Aioli Extra',price:2}],
-        price:22, kcal:420, prepTime:'8 min', rating:4.6, reviews:965, popular:false, isNew:false
-      },
-      {
-        id:'shake-baunilha', category:'bebida', catLabel:'BEBIDA',
-        name:'Shake de Baunilha', tagline:'Feito na hora. Cremoso sem limites.',
-        image:'/assets/rosso/batata-cheddar.jpeg',
-        badge:{label:'MAIS PEDIDO',type:'top'},
-        desc:'Milkshake cremoso feito na hora com sorvete artesanal de baunilha madagáscar.',
-        ingredients:['Sorvete Baunilha Madagáscar','Leite Integral','Chantilly'],
-        extras:[{name:'Calda de Chocolate',price:3},{name:'Granola',price:2}],
-        price:22, kcal:460, prepTime:'5 min', rating:4.8, reviews:2108, popular:true, isNew:false
-      },
-      {
-        id:'shake-chocolate', category:'bebida', catLabel:'BEBIDA',
-        name:'Shake de Chocolate', tagline:'Intenso. Denso. Memorável.',
-        image:'/assets/rosso/batata-cheddar.jpeg',
-        badge:null,
-        desc:'Milkshake denso de chocolate belga 70% com sorvete artesanal. Intenso e cremoso.',
-        ingredients:['Chocolate Belga 70%','Sorvete Artesanal','Leite Integral','Chantilly'],
-        extras:[{name:'Nutella',price:5},{name:'Granola',price:2}],
-        price:22, kcal:510, prepTime:'5 min', rating:4.7, reviews:1543, popular:false, isNew:false
-      },
-      {
-        id:'limonada', category:'bebida', catLabel:'BEBIDA',
-        name:'Limonada da Casa', tagline:'Fresca. Cremosa. Refrescante.',
-        image:'/assets/rosso/batata-frita.jpeg',
-        badge:null,
-        desc:'Limonada suíça feita na hora, cremosa, no ponto certo de doce e azedo.',
-        ingredients:['Limão Tahiti','Leite Condensado','Água com Gás','Hortelã'],
-        extras:[{name:'Dose de Gim',price:12},{name:'Hortelã Extra',price:2}],
-        price:14, kcal:180, prepTime:'4 min', rating:4.7, reviews:2234, popular:false, isNew:false
-      },
-      {
-        id:'brownie', category:'sobremesa', catLabel:'SOBREMESA',
-        name:'Brownie Quente', tagline:'Quente, derretendo, com sorvete. Ponto.',
-        image:'/assets/rosso/batata-cheddar.jpeg',
-        badge:null,
-        desc:'Brownie de chocolate belga aquecido, servido com sorvete de creme e calda de caramelo.',
-        ingredients:['Chocolate Belga','Sorvete de Creme','Calda de Caramelo','Nozes Trituradas'],
-        extras:[{name:'Sorvete Extra',price:6},{name:'Calda de Chocolate',price:3}],
-        price:19, kcal:560, prepTime:'6 min', rating:4.8, reviews:876, popular:false, isNew:false
-      },
-      {
-        id:'sundae', category:'sobremesa', catLabel:'SOBREMESA',
-        name:'Sundae Rosso', tagline:'Clássico demais para ser ignorado.',
-        image:'/assets/rosso/batata-cheddar.jpeg',
-        badge:null,
-        desc:'Sorvete artesanal com cobertura quente de chocolate, granola crocante e chantilly.',
-        ingredients:['Sorvete Artesanal','Cobertura de Chocolate Quente','Granola Crocante','Chantilly'],
-        extras:[{name:'Calda de Caramelo',price:3},{name:'Amendoim',price:2}],
-        price:16, kcal:420, prepTime:'5 min', rating:4.6, reviews:621, popular:false, isNew:false
+        badge:{label:'PEDIDO CERTO',type:'top'},
+        desc:'A versão com cheddar que ajuda a reforçar o lado indulgente da marca e funciona muito bem como complemento visual na vitrine.',
+        ingredients:['Batata frita','Cheddar cremoso','Bacon crocante','Finalização Rosso'],
+        extras:[{name:'Cheddar extra',price:4},{name:'Bacon extra',price:4},{name:'Cebola crispy',price:3}],
+        price:24, prepTime:'Comfort absoluto', rating:4.8, reviewSource:'favorita do delivery', profile:'Cheddar em evidência', popular:true, isNew:false
       },
     ];
 
@@ -3353,7 +3523,7 @@
     }
 
     function formatPrice(value) {
-      return `R$ ${value}`;
+      return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
     function formatReviewCount(reviews) {
@@ -3427,14 +3597,12 @@
     }
 
     function updateFilterCounts() {
-      const counts = { hamburguer:0, acompanhamento:0, bebida:0, sobremesa:0 };
+      const counts = { hamburguer:0, acompanhamento:0 };
       menuData.forEach(i => counts[i.category]++);
       const el = id => document.getElementById(id);
       if(el('countTodos')) el('countTodos').textContent = menuData.length;
       if(el('countHamburguer')) el('countHamburguer').textContent = counts.hamburguer;
       if(el('countAcompanhamento')) el('countAcompanhamento').textContent = counts.acompanhamento;
-      if(el('countBebida')) el('countBebida').textContent = counts.bebida;
-      if(el('countSobremesa')) el('countSobremesa').textContent = counts.sobremesa;
     }
 
     /* ── OPEN ITEM MODAL ── */
@@ -3467,7 +3635,7 @@
       document.getElementById('modalRating').innerHTML =
         `<span class="item-panel-stars">${starsHtml}</span>` +
         `<span class="item-panel-rating-num">${item.rating}</span>` +
-        `<span class="item-panel-rating-count">${formatReviewCount(item.reviews)}</span>`;
+        `<span class="item-panel-rating-count">${tr(item.reviewSource || 'sinal 5 estrelas')}</span>`;
 
       // Ingredients
       document.getElementById('modalIngredients').innerHTML =
@@ -3475,8 +3643,8 @@
 
       // Meta info
       document.getElementById('modalMeta').innerHTML =
-        `<div class="item-panel-meta-item"><div class="item-panel-meta-label">${tr('CALORIAS')}</div><div class="item-panel-meta-val">${item.kcal} kcal</div></div>` +
-        `<div class="item-panel-meta-item"><div class="item-panel-meta-label">${tr('PREPARO')}</div><div class="item-panel-meta-val">${viewItem.prepTime}</div></div>` +
+        `<div class="item-panel-meta-item"><div class="item-panel-meta-label">${tr('PERFIL')}</div><div class="item-panel-meta-val">${tr(item.profile || 'Assinatura Rosso')}</div></div>` +
+        `<div class="item-panel-meta-item"><div class="item-panel-meta-label">${tr('ESTILO')}</div><div class="item-panel-meta-val">${viewItem.prepTime}</div></div>` +
         `<div class="item-panel-meta-item"><div class="item-panel-meta-label">${tr('CATEGORIA')}</div><div class="item-panel-meta-val">${viewItem.catLabel}</div></div>`;
 
       // Price & qty
@@ -3610,7 +3778,7 @@
       document.querySelectorAll('.spa-page').forEach(p => p.classList.remove('active'));
       const target = document.getElementById('page-' + page);
       if (target) target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
       // Close mobile drawer
       toggleMenu(false);
       // Update active nav link
@@ -3629,6 +3797,16 @@
       } else {
         updateHeroScene();
       }
+    }
+
+    function goToHomeSection(id) {
+      showPage('home');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 90);
     }
 
     // Mobile Menu
@@ -3979,19 +4157,8 @@
         closeItemModal();
       }
     });
-    function handleLeadPopup(btn) {
-      const input = document.getElementById('leadEmail');
-      if (!input.value.includes('@')) {
-        input.style.borderColor = 'var(--red)';
-        input.placeholder = tr('Digite um e-mail válido');
-        return;
-      }
-      btn.textContent = tr('✓ PRONTO!');
-      btn.style.background = '#22c55e';
-      input.value = '';
-      setTimeout(() => {
-        document.getElementById('leadPopup').classList.remove('open');
-      }, 1500);
+    function handleLeadPopup() {
+      document.getElementById('leadPopup').classList.remove('open');
     }
 
     // Testimonial Auto-scroll (Mobile)
