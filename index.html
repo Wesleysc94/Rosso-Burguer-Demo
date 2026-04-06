@@ -138,8 +138,8 @@
     .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .navbar-logo { font-family: var(--font-display); font-weight: 900; font-size: 18px; text-transform: uppercase; color: var(--white); display: flex; align-items: center; gap: 14px; letter-spacing: 0.08em; }
     .navbar-logo-badge {
-      width: 44px;
-      height: 44px;
+      width: 58px;
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -151,12 +151,12 @@
       object-fit: contain;
       object-position: center;
       filter: brightness(0) invert(1);
-      opacity: 0.92;
+      opacity: 0.9;
       transition: opacity 0.25s, filter 0.25s;
     }
     .navbar-logo:hover .navbar-logo-badge img {
       opacity: 1;
-      filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(200,16,46,0.6));
+      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(200,16,46,0.65));
     }
     .navbar-logo-mark { display:flex; flex-direction:column; line-height:0.9; }
     .navbar-logo-mark span { display:block; }
@@ -269,15 +269,15 @@
       background:
         linear-gradient(90deg,
           rgba(7,6,6,1) 0%,
-          rgba(7,6,6,0.98) 22%,
-          rgba(7,6,6,0.88) 40%,
-          rgba(7,6,6,0.48) 58%,
-          rgba(7,6,6,0.12) 78%,
+          rgba(7,6,6,0.97) 20%,
+          rgba(7,6,6,0.78) 38%,
+          rgba(7,6,6,0.28) 56%,
+          rgba(7,6,6,0.05) 74%,
           rgba(7,6,6,0.0) 100%),
         linear-gradient(180deg,
-          rgba(7,6,6,0.22) 0%,
-          transparent 20%,
-          rgba(7,6,6,0.65) 100%);
+          rgba(7,6,6,0.15) 0%,
+          transparent 18%,
+          rgba(7,6,6,0.52) 100%);
       z-index: 3;
       pointer-events: none;
     }
@@ -397,11 +397,11 @@
     .hero-headline {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(76px, 9vw, 130px);
+      font-size: clamp(88px, 11vw, 168px);
       line-height: 0.82;
       text-transform: uppercase;
       margin: 0 0 28px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       position: relative;
       z-index: 2;
     }
@@ -410,12 +410,12 @@
     .hero-sub {
       font-family: var(--font-body);
       font-size: 15px;
-      font-weight: 500;
-      color: rgba(244, 237, 228, 0.72);
-      line-height: 1.7;
-      max-width: 420px;
+      font-weight: 400;
+      color: rgba(244, 237, 228, 0.86);
+      line-height: 1.72;
+      max-width: 400px;
       margin-bottom: 32px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 14px rgba(0,0,0,0.55);
       position: relative;
       z-index: 2;
     }
@@ -538,7 +538,9 @@
     @media (max-width: 768px) {
       .hero-split-left {
         width: 100%;
+        max-width: 100%;
         padding-left: 24px;
+        padding-right: 24px;
         padding-right: 24px;
         align-items: center;
         text-align: center;
@@ -558,16 +560,16 @@
       }
       .hero-bottom-shadow { height: 200px; }
       .hero { min-height: 620px; }
-      .hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
+      .hero-content { text-align: center; display: flex; flex-direction: column; align-items: center; padding-top: 82px; padding-bottom: 32px; }
       .hero-sub { font-size: 13px; line-height: 1.55; max-width: 300px; }
       .hero-ctas { justify-content: center; }
       .hero-pills { justify-content: center; }
-      .scroll-indicator { bottom: 16px; }
+      .scroll-indicator { display: none; }
     }
     @media (max-width: 480px) {
-      .hero { min-height: 610px; }
-      .hero-headline { font-size: clamp(72px, 20vw, 102px); }
-      .hero-sub { font-size: 12px; }
+      .hero { min-height: 640px; }
+      .hero-headline { font-size: clamp(80px, 22vw, 120px); }
+      .hero-sub { font-size: 13px; max-width: 280px; }
     }
 
     .scroll-indicator { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 12; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.5; animation: scrollFade 2s ease-in-out infinite; }
@@ -2363,13 +2365,13 @@
       <div class="hero-content">
         <span class="hero-badge reveal" data-delay="1">São Paulo &amp; Jundiaí &nbsp;·&nbsp; Desde 2017</span>
         <h1 class="hero-headline">
-          <span class="line reveal" data-delay="2">BLEND BOVINO.</span>
-          <span class="line reveal" data-delay="3">BRASA À LENHA.</span>
+          <span class="line reveal" data-delay="2">BLEND.</span>
+          <span class="line reveal" data-delay="3">BRASA.</span>
           <span class="line line--red reveal" data-delay="4">ROSSO.</span>
         </h1>
         <p class="hero-sub reveal" data-delay="5">
-          Hambúrguer artesanal na parrilla à lenha.<br>
-          Tradição italiana em cada pedido, desde 2017.
+          Blend bovino artesanal, brasa à lenha, tradição italiana.<br>
+          Hambúrguer feito com identidade própria desde 2017.
         </p>
         <div class="hero-ctas reveal" data-delay="5">
           <a href="#unidades" onclick="goToHomeSection('unidades');return false;" class="btn btn--primary">ESCOLHER LOJA &rarr;</a>
