@@ -1294,8 +1294,9 @@
     .pill-btn:hover { background: white; color: var(--red); }
 
     /* PRELOADER */
-    .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; }
+    .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; animation: preloaderAutoHide 0.5s 3.5s forwards; }
     .preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+    @keyframes preloaderAutoHide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
     .preloader-icon { font-size: 48px; animation: preloaderPulse 1s ease-in-out infinite; }
     .preloader-text { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 20px; opacity: 0; animation: preloaderFadeIn 0.6s 0.3s forwards; }
     .preloader-bar { width: 200px; height: 3px; background: #1a1a1a; margin-top: 24px; overflow: hidden; }
@@ -1534,8 +1535,9 @@
     .pill-btn:hover { background: white; color: var(--red); }
 
     /* PRELOADER */
-    .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; }
+    .preloader { position: fixed; inset: 0; z-index: 999999; background: #080808; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; animation: preloaderAutoHide 0.5s 3.5s forwards; }
     .preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+    @keyframes preloaderAutoHide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
     .preloader-icon { font-size: 48px; animation: preloaderPulse 1s ease-in-out infinite; }
     .preloader-text { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 0.15em; margin-top: 20px; opacity: 0; animation: preloaderFadeIn 0.6s 0.3s forwards; }
     .preloader-bar { width: 200px; height: 3px; background: #1a1a1a; margin-top: 24px; overflow: hidden; }
@@ -3543,7 +3545,7 @@
     // Init grid on load
     renderCardapioGrid();
 
-    lucide.createIcons();
+    try { lucide.createIcons(); } catch(e) { console.warn('Lucide not loaded:', e); }
 
     // Custom Cursor
     const cursor = document.createElement('div');
